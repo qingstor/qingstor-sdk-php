@@ -54,3 +54,4 @@ vendor/
 *.zip
 
 composer.lock
+test_config.yaml

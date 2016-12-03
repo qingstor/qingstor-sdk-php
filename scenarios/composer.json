@@ -1,0 +1,14 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/yunify/qingstor-sdk-php"
+    }
+  ],
+  "require-dev": {
+    "yunify/qingstor-sdk": "dev-master",
+    "katzgrau/klogger": "dev-master",
+    "behat/behat": "^3.2",
+    "PHPUnit/PHPUnit": "^5.6"
+  }
+}
