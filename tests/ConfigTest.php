@@ -22,33 +22,53 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    private $testConfig;
-
-    public function setUp()
+    public function test_initConfigWithoutKey()
     {
-        $this->testConfig = new Config();
+        $testConfig = new Config();
+
+        $this->assertEquals('', $testConfig->access_key_id);
+        $this->assertEquals('', $testConfig->secret_access_key);
+        $this->assertEquals('qingstor.com', $testConfig->host);
+        $this->assertEquals(443, $testConfig->port);
+        $this->assertEquals('https', $testConfig->protocol);
+        $this->assertEquals(3, $testConfig->connection_retries);
+        $this->assertEquals('warn', $testConfig->log_level);
+    }
+
+    public function test_initConfigWithKey()
+    {
+        $testConfig = new Config('ACCESS_KEY_ID_EXAMPLE', 'SECRET_ACCESS_KEY_EXAMPLE');
+
+        $this->assertEquals('ACCESS_KEY_ID_EXAMPLE', $testConfig->access_key_id);
+        $this->assertEquals('SECRET_ACCESS_KEY_EXAMPLE', $testConfig->secret_access_key);
+        $this->assertEquals('qingstor.com', $testConfig->host);
+        $this->assertEquals(443, $testConfig->port);
+        $this->assertEquals('https', $testConfig->protocol);
+        $this->assertEquals(3, $testConfig->connection_retries);
+        $this->assertEquals('warn', $testConfig->log_level);
     }
 
     public function test_loadConfigFromData()
     {
+        $testConfig = new Config();
         $configData = array(
-            'access_key_id' => 'ACCESS_KEY_ID',
-            'secret_access_key' => 'SECRET_ACCESS_KEY',
-            'host' => 'qingstor.com',
-            'port' => 443,
-            'protocol' => 'https',
-            'connection_retries' => 3,
-            'log_level' => 'warn',
+            'access_key_id' => 'ACCESS_KEY_ID_1',
+            'secret_access_key' => 'SECRET_ACCESS_KEY_1',
+            'host' => 'private.com',
+            'port' => 80,
+            'protocol' => 'http',
+            'connection_retries' => 1,
+            'log_level' => 'info',
         );
 
-        $this->testConfig->loadConfigFromData($configData);
+        $testConfig->loadConfigFromData($configData);
 
-        $this->assertEquals('ACCESS_KEY_ID', $this->testConfig->access_key_id);
-        $this->assertEquals('SECRET_ACCESS_KEY', $this->testConfig->secret_access_key);
-        $this->assertEquals('qingstor.com', $this->testConfig->host);
-        $this->assertEquals(443, $this->testConfig->port);
-        $this->assertEquals('https', $this->testConfig->protocol);
-        $this->assertEquals(3, $this->testConfig->connection_retries);
-        $this->assertEquals('warn', $this->testConfig->log_level);
+        $this->assertEquals('ACCESS_KEY_ID_1', $testConfig->access_key_id);
+        $this->assertEquals('SECRET_ACCESS_KEY_1', $testConfig->secret_access_key);
+        $this->assertEquals('private.com', $testConfig->host);
+        $this->assertEquals(80, $testConfig->port);
+        $this->assertEquals('http', $testConfig->protocol);
+        $this->assertEquals(1, $testConfig->connection_retries);
+        $this->assertEquals('info', $testConfig->log_level);
     }
 }

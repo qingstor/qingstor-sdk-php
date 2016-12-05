@@ -37,6 +37,7 @@ class ServiceContext implements Context
     public function __construct()
     {
         $this->config = new Config();
+        $this->config->loadUserConfig();
         $this->test = new QingStor(
             $this->config,
             'pek3a'

@@ -21,8 +21,8 @@ use GuzzleHttp\Client;
 
 const defaultConfigFileContent = "# QingStor Services Configuration
 
-access_key_id: 'ACCESS_KEY_ID'
-secret_access_key: 'SECRET_ACCESS_KEY'
+access_key_id: ''
+secret_access_key: ''
 
 host: 'qingstor.com'
 port: 443
@@ -39,13 +39,17 @@ class Config
     public $client;
     public $logger;
 
-    public function __construct()
+    public function __construct($access_key_id = '', $secret_access_key = '')
     {
         $GLOBALS['version'] = '2.0.0-alpha.1';
         $this->client = new Client([
             'http_errors' => false,
         ]);
-        $this->loadUserConfig();
+        $this->loadDefaultConfig();
+        if ($access_key_id !== '' && $secret_access_key !== '') {
+            $this->access_key_id = $access_key_id;
+            $this->secret_access_key = $secret_access_key;
+        }
         $this->logger = Logger::getInstance($this->log_level);
     }
 
@@ -82,7 +86,7 @@ class Config
 
     public function loadDefaultConfig()
     {
-        $config = yaml_parse(defaultConfigFileContent);
+        $config = spyc_load(defaultConfigFileContent);
         $this->loadConfigFromData($config);
     }
 

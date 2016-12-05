@@ -39,6 +39,7 @@ class BucketContext implements Context
     {
         $this->test_config = spyc_load_file('test_config.yaml');
         $this->config = new Config();
+        $this->config->loadUserConfig();
         $this->test_service = new QingStor(
             $this->config,
             'pek3a'
