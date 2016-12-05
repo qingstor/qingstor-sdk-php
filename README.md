@@ -26,14 +26,18 @@ secret_access_key: 'SECRET_ACCESS_KEY_EXAMPLE'
 ### Usage
 
 Now you are ready to code. You can read the detailed guides in the list below to have a clear understanding or just take the quick start code example.
-Checkout our releases and change logs for information about the latest features, bug fixes and new ideas.
+Checkout our [releases](https://github.com/yunify/qingstor-sdk-php/releases) and [change logs](CHANGELOG.md) for information about the latest features, bug fixes and new ideas.
+
+- [Configuration Guide](docs/configuration.md)
+- [QingStor Service Usage Guide](docs/qingstor_service_usage.md)
 
 *Quick Start Code Example:*
+
 ```php
 use QingStor\SDK\Service\QingStor;
 use QingStor\SDK\Config;
 
-$test_config = new Config();
+$test_config = new Config("ACCESS_KEY_ID_EXAMPLE","SECRET_ACCESS_KEY_EXAMPLE");
 $test_service = new QingStor(
     $test_config,
     'pek3a'
@@ -52,7 +56,7 @@ $test_bucket = $test_service->Bucket(
 
 ## Contributing
 
-This repository was automatically generated, please contribute to [snips](https://github.com/yunify/snips) instead.
+Please see [Contributing Guidelines](docs/contributing.md) of this project before submitting patches.
 
 ## LICENSE
 
