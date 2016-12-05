@@ -11,8 +11,8 @@ ___Default Configuration File:___
 ``` yaml
 # QingStor services configuration
 
-access_key_id: 'ACCESS_KEY_ID'
-secret_access_key: 'SECRET_ACCESS_KEY'
+access_key_id: ''
+secret_access_key: ''
 
 host: 'qingstor.com'
 port: 443
