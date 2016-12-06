@@ -51,7 +51,7 @@ class QingStor
             ),
             'Elements' => array(
             ),
-            'Properties' => $this->properties,
+            'Properties' => array(),
             'Body' => null,
         );
         $builder = new Builder\QingStor($this->config, $operation);
