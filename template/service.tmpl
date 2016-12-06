@@ -30,15 +30,21 @@ use QingStor\SDK\Exception;
 class {{$service.Name | camelCase}}Service
 {
 
-    function __construct($config, $zone="")
+    function __construct($config)
     {
         $this->config = $config;
-        $this->zone = $zone;
     }
 
     {{range $_, $operation := $service.Operations}}
+
+    {{- $hasParams := gt (len $operation.Request.Params.Properties) 0}}
+    {{- $hasHeaders := gt (len $operation.Request.Headers.Properties) 0}}
+    {{- $hasElements := gt (len $operation.Request.Elements.Properties) 0}}
+    {{- $hasStringBody := eq $operation.Request.Body.Type "string"}}
+    {{- $hasBinaryBody := eq $operation.Request.Body.Type "binary"}}
+    {{- $hasInput := or $hasParams $hasHeaders $hasElements $hasStringBody $hasBinaryBody}}
     /**
-     * {{$operation.ID | camelCase}}: {{$operation.Description}}
+     * {{$operation.ID | camelCase | lowerFirst}}: {{$operation.Description}}
      {{- if $operation.DocumentationURL}}
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
@@ -54,18 +60,30 @@ class {{$service.Name | camelCase}}Service
      *
      * @return response
      */
-    public function {{$operation.ID | camelCase}}Request($options=array())
+    public function {{$operation.ID | camelCase | lowerFirst}}Request(
+        {{- if $hasInput}}$options=array(){{end -}})
     {
         $operation = array(
             "Method" => "{{$operation.Request.Method}}",
             "Uri" => "{{$operation.Request.URI}}",
             "Headers" => array(
-                "Host" => $this->config->host
+                "Host" => $this->config->host,
+                {{- range $id, $property := $operation.Request.Headers.Properties}}
+                '{{$property.Name}}' => isset($options['{{$property.ID}}'])?$options['{{$property.ID}}']:null,
+                {{- end}}
             ),
-            "Params" => array(),
-            "Elements" => array(),
-            "Properties" => array(),
-            "Body" => null
+            "Params" => array(
+                {{- range $id, $property := $operation.Request.Params.Properties}}
+                '{{$property.Name | snakeCase}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
+                {{- end}}
+            ),
+            "Elements" => array(
+                {{- range $id, $property := $operation.Request.Elements.Properties}}
+                '{{$property.Name}}' => isset($options['{{$property.ID | snakeCase}}'])?$options['{{$property.ID | snakeCase}}']:null,
+                {{- end}}
+            ),
+            "Properties" => $this->properties,
+            "Body" => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:""{{else}}null{{end}}
         );
         $builder = new Builder\QingStor($this->config, $operation);
         $request = $builder->parse();
@@ -78,7 +96,7 @@ class {{$service.Name | camelCase}}Service
     }
 
     /**
-     * {{$operation.ID | camelCase}}: {{$operation.Description}}
+     * {{$operation.ID | camelCase | lowerFirst}}: {{$operation.Description}}
      {{- if $operation.DocumentationURL}}
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
@@ -94,9 +112,10 @@ class {{$service.Name | camelCase}}Service
      *
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function {{$operation.ID | camelCase}}()
+    public function {{$operation.ID | camelCase | lowerFirst}}(
+{{- if $hasInput}}$options=array(){{end -}})
     {
-        $signer = $this->{{$operation.ID | camelCase}}Request($options=array());
+        $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request({{- if $hasInput}}$options{{end -}});
         $response = $this->config->client->send(
             $signer->sign()
         );
@@ -104,7 +123,7 @@ class {{$service.Name | camelCase}}Service
     }
 
     /**
-     * {{$operation.ID | camelCase}}Query: {{$operation.ID | camelCase}}'s Query Sign Way
+     * {{$operation.ID | camelCase | lowerFirst}}Query: {{$operation.ID | camelCase}}'s Query Sign Way
      {{- if $operation.DocumentationURL}}
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
@@ -118,15 +137,12 @@ class {{$service.Name | camelCase}}Service
      * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
      {{- end}}
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Signer
      */
-    public function {{$operation.ID | camelCase}}Query($expires,$options=array())
+    public function {{$operation.ID | camelCase | lowerFirst}}Query($expires {{- if $hasInput}}, $options=array(){{end -}})
     {
-        $signer = $this->{{$operation.ID | camelCase}}Request($options);
-        $response = $this->config->client->send(
-            $signer->query_sign($expires)
-        );
-        return $response;
+        $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request({{- if $hasInput}}$options{{end -}});
+        return $signer->query_sign($expires);
     }
     {{end}}
 
