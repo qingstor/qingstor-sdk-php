@@ -35,8 +35,7 @@ class ObjectContext implements Context
         $this->config = new Config();
         $this->config->loadUserConfig();
         $this->test_service = new QingStor(
-            $this->config,
-            'pek3a'
+            $this->config
         );
         self::$test_bucket = $this->test_service->Bucket($this->test_config['bucket_name'], 'pek3a');
     }
@@ -49,8 +48,7 @@ class ObjectContext implements Context
         $config = new Config();
         $test_config = spyc_load_file('test_config.yaml');
         $test_service = new QingStor(
-            $config,
-            'pek3a'
+            $config
         );
         $test_bucket = $test_service->Bucket($test_config['bucket_name'], 'pek3a');
         $test_bucket->put();
@@ -62,8 +60,7 @@ class ObjectContext implements Context
         $config = new Config();
         $test_config = spyc_load_file('test_config.yaml');
         $test_service = new QingStor(
-            $config,
-            'pek3a'
+            $config
         );
         $test_bucket = $test_service->Bucket($test_config['bucket_name'], 'pek3a');
         $test_bucket->delete();

@@ -39,8 +39,7 @@ class ServiceContext implements Context
         $this->config = new Config();
         $this->config->loadUserConfig();
         $this->test = new QingStor(
-            $this->config,
-            'pek3a'
+            $this->config
         );
     }
 
@@ -50,8 +49,7 @@ class ServiceContext implements Context
     public function initializeQingStor()
     {
         $this->test = new QingStor(
-            $this->config,
-            'pek3a'
+            $this->config
         );
     }
 
