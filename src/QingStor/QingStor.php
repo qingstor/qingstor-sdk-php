@@ -24,14 +24,13 @@ use QingStor\SDK\Builder;
 
 class QingStor
 {
-    public function __construct($config, $zone = '')
+    public function __construct($config)
     {
         $this->config = $config;
-        $this->zone = $zone;
     }
 
     /**
-     * ListBuckets: Retrieve the bucket list.
+     * listBuckets: Retrieve the bucket list.
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
@@ -39,17 +38,20 @@ class QingStor
      *
      * @return response
      */
-    public function ListBucketsRequest($options = array())
+    public function listBucketsRequest($options = array())
     {
         $operation = array(
             'Method' => 'GET',
             'Uri' => '/',
             'Headers' => array(
                 'Host' => $this->config->host,
+                'Location' => isset($options['Location']) ? $options['Location'] : null,
             ),
-            'Params' => array(),
-            'Elements' => array(),
-            'Properties' => array(),
+            'Params' => array(
+            ),
+            'Elements' => array(
+            ),
+            'Properties' => $this->properties,
             'Body' => null,
         );
         $builder = new Builder\QingStor($this->config, $operation);
@@ -64,7 +66,7 @@ class QingStor
     }
 
     /**
-     * ListBuckets: Retrieve the bucket list.
+     * listBuckets: Retrieve the bucket list.
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
@@ -72,9 +74,9 @@ class QingStor
      *
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function ListBuckets()
+    public function listBuckets($options = array())
     {
-        $signer = $this->ListBucketsRequest($options = array());
+        $signer = $this->listBucketsRequest($options);
         $response = $this->config->client->send(
             $signer->sign()
         );
@@ -83,22 +85,19 @@ class QingStor
     }
 
     /**
-     * ListBucketsQuery: ListBuckets's Query Sign Way.
+     * listBucketsQuery: ListBuckets's Query Sign Way.
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
      * @param string "Location" Limits results to buckets that in the location
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Signer
      */
-    public function ListBucketsQuery($expires, $options = array())
+    public function listBucketsQuery($expires, $options = array())
     {
-        $signer = $this->ListBucketsRequest($options);
-        $response = $this->config->client->send(
-            $signer->query_sign($expires)
-        );
+        $signer = $this->listBucketsRequest($options);
 
-        return $response;
+        return $signer->query_sign($expires);
     }
 
     public function Bucket($bucket_name, $zone)
