@@ -13,7 +13,7 @@ all: update generate unit
 test:
 	@echo "run service test"
 	pushd "scenarios"; \
-	composer install; \
+	composer update; \
 	vendor/bin/behat; \
 	popd
 	@echo "ok"
