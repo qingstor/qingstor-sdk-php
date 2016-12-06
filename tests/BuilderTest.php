@@ -89,7 +89,7 @@ class BuilderTest extends TestCase
             array(
                 'Host' => 'pek3a.qingstor.com',
                 'Date' => 'Wed, 10 Dec 2014 17:20:31 GMT',
-                'User-Agent' => 'qingstor-sdk-php/' . $GLOBALS['version'] . '  (PHP v' . phpversion() . '; ' . php_uname('s') . ')',
+                'User-Agent' => 'qingstor-sdk-php/'.$GLOBALS['version'].'  (PHP v'.phpversion().'; '.php_uname('s').')',
             ),
             $this->testBuilder->parsedHeaders
         );
