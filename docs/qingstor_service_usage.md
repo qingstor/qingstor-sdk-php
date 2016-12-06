@@ -14,8 +14,7 @@ Initialize the QingStor service with a configuration
 
 ``` php
 $test_service = new QingStor(
-    configuration,
-    'pek3a'
+    configuration
 );
 ```
 

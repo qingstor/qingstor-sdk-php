@@ -39,13 +39,13 @@ use QingStor\SDK\Config;
 
 $test_config = new Config("ACCESS_KEY_ID_EXAMPLE","SECRET_ACCESS_KEY_EXAMPLE");
 $test_service = new QingStor(
-    $test_config,
-    'pek3a'
+    $test_config
 );
 $test_bucket = $test_service->Bucket(
     'test_bucket',
     'pek3a'
 );
+$res = $test_bucket->listObjects();
 ```
 
 ## Reference Documentations
