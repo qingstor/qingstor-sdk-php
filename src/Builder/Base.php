@@ -83,11 +83,9 @@ class Base
         if (!empty($this->operation['Body'])) {
             $this->parsedBody = $this->operation['Body'];
             $this->parsedHeaders['Content-Length'] = strlen($this->parsedBody);
-            $this->parsedHeaders['Content-MD5'] = isset($this->operation['Headers']['Content-MD5']) ? $this->operation['Headers']['Content-MD5'] : md5($this->parsedBody);
         } elseif (!empty($this->operation['Elements'])) {
             $this->parsedBody = json_encode($this->operation['Elements']);
             $this->parsedHeaders['Content-Length'] = strlen($this->parsedBody);
-            $this->parsedHeaders['Content-MD5'] = isset($this->operation['Headers']['Content-MD5']) ? $this->operation['Headers']['Content-MD5'] : md5($this->parsedBody);
         }
     }
 
