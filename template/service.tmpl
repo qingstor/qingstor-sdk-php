@@ -82,7 +82,7 @@ class {{$service.Name | camelCase}}Service
                 '{{$property.Name}}' => isset($options['{{$property.ID | snakeCase}}'])?$options['{{$property.ID | snakeCase}}']:null,
                 {{- end}}
             ),
-            "Properties" => $this->properties,
+            "Properties" => array(),
             "Body" => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:""{{else}}null{{end}}
         );
         $builder = new Builder\QingStor($this->config, $operation);
