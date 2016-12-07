@@ -37,15 +37,10 @@ Checkout our [releases](https://github.com/yunify/qingstor-sdk-php/releases) and
 use QingStor\SDK\Service\QingStor;
 use QingStor\SDK\Config;
 
-$test_config = new Config("ACCESS_KEY_ID_EXAMPLE","SECRET_ACCESS_KEY_EXAMPLE");
-$test_service = new QingStor(
-    $test_config
-);
-$test_bucket = $test_service->Bucket(
-    'test_bucket',
-    'pek3a'
-);
-$res = $test_bucket->listObjects();
+$config = new Config('ACCESS_KEY_ID_EXAMPLE','SECRET_ACCESS_KEY_EXAMPLE');
+$service = new QingStor($config);
+$bucket = $service->Bucket('test_bucket', 'pek3a');
+$res = $bucket->listObjects();
 ```
 
 ## Reference Documentations
