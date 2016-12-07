@@ -53,7 +53,7 @@ class Bucket
             'Body' => null,
         );
         $this->deleteValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -138,7 +138,7 @@ class Bucket
             'Body' => null,
         );
         $this->deleteCORSValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -223,7 +223,7 @@ class Bucket
             'Body' => null,
         );
         $this->deleteExternalMirrorValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -308,7 +308,7 @@ class Bucket
             'Body' => null,
         );
         $this->deletePolicyValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -400,7 +400,7 @@ class Bucket
             'Body' => null,
         );
         $this->deleteMultipleObjectsValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -510,7 +510,7 @@ class Bucket
             'Body' => null,
         );
         $this->getACLValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -595,7 +595,7 @@ class Bucket
             'Body' => null,
         );
         $this->getCORSValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -680,7 +680,7 @@ class Bucket
             'Body' => null,
         );
         $this->getExternalMirrorValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -765,7 +765,7 @@ class Bucket
             'Body' => null,
         );
         $this->getPolicyValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -850,7 +850,7 @@ class Bucket
             'Body' => null,
         );
         $this->getStatisticsValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -935,7 +935,7 @@ class Bucket
             'Body' => null,
         );
         $this->headValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1029,7 +1029,7 @@ class Bucket
             'Body' => null,
         );
         $this->listObjectsValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1124,7 +1124,7 @@ class Bucket
             'Body' => null,
         );
         $this->putValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1212,7 +1212,7 @@ class Bucket
             'Body' => null,
         );
         $this->putACLValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1368,7 +1368,7 @@ class Bucket
             'Body' => null,
         );
         $this->putCORSValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1485,7 +1485,7 @@ class Bucket
             'Body' => null,
         );
         $this->putExternalMirrorValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1584,7 +1584,7 @@ class Bucket
             'Body' => null,
         );
         $this->putPolicyValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1768,7 +1768,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->abortMultipartUploadValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1879,7 +1879,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->completeMultipartUploadValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -1996,7 +1996,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->deleteObjectValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2100,7 +2100,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->getObjectValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2220,7 +2220,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->headObjectValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2332,7 +2332,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->initiateMultipartUploadValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2436,7 +2436,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->listMultipartValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2545,7 +2545,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->optionsObjectValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2689,7 +2689,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->putObjectValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
@@ -2827,7 +2827,7 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->uploadMultipartValidate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,

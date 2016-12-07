@@ -54,7 +54,7 @@ class QingStor
             'Properties' => array(),
             'Body' => null,
         );
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
