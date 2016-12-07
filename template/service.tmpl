@@ -85,7 +85,7 @@ class {{$service.Name | camelCase}}Service
             "Properties" => array(),
             "Body" => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:""{{else}}null{{end}}
         );
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,

@@ -166,7 +166,7 @@
         $operation['Properties']['object-key'] = $object_key;
         {{- end}}
         $this->{{$opID | camelCase | lowerFirst}}Validate($operation);
-        $builder = new Builder\QingStor($this->config, $operation);
+        $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
             $request,
