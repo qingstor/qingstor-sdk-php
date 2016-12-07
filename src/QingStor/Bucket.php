@@ -375,9 +375,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/delete_multiple.html Documentation URL
      *
-     * @param string "Content-MD5" Object MD5sum
-     * @param array "objects" A list of keys to delete
-     * @param bool "quiet" Whether to return the list of deleted objects
+     * @param string 'Content-MD5' Object MD5sum
+     * @param array 'objects' A list of keys to delete
+     * @param bool 'quiet' Whether to return the list of deleted objects
      *
      * @return Signer
      */
@@ -416,9 +416,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/delete_multiple.html Documentation URL
      *
-     * @param string "Content-MD5" Object MD5sum
-     * @param array "objects" A list of keys to delete
-     * @param bool "quiet" Whether to return the list of deleted objects
+     * @param string 'Content-MD5' Object MD5sum
+     * @param array 'objects' A list of keys to delete
+     * @param bool 'quiet' Whether to return the list of deleted objects
      *
      * @return \GuzzleHttp\Psr7\Response
      *
@@ -453,9 +453,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/delete_multiple.html Documentation URL
      *
-     * @param string "Content-MD5" Object MD5sum
-     * @param array "objects" A list of keys to delete
-     * @param bool "quiet" Whether to return the list of deleted objects
+     * @param string 'Content-MD5' Object MD5sum
+     * @param array 'objects' A list of keys to delete
+     * @param bool 'quiet' Whether to return the list of deleted objects
      *
      * @return Signer
      */
@@ -1002,10 +1002,10 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
      *
-     * @param string "delimiter" Put all keys that share a common prefix into a list
-     * @param int "limit" Results count limit
-     * @param string "marker" Limit results to keys that start at this marker
-     * @param string "prefix" Limits results to keys that begin with the prefix
+     * @param string 'delimiter' Put all keys that share a common prefix into a list
+     * @param int 'limit' Results count limit
+     * @param string 'marker' Limit results to keys that start at this marker
+     * @param string 'prefix' Limits results to keys that begin with the prefix
      *
      * @return Signer
      */
@@ -1045,10 +1045,10 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
      *
-     * @param string "delimiter" Put all keys that share a common prefix into a list
-     * @param int "limit" Results count limit
-     * @param string "marker" Limit results to keys that start at this marker
-     * @param string "prefix" Limits results to keys that begin with the prefix
+     * @param string 'delimiter' Put all keys that share a common prefix into a list
+     * @param int 'limit' Results count limit
+     * @param string 'marker' Limit results to keys that start at this marker
+     * @param string 'prefix' Limits results to keys that begin with the prefix
      *
      * @return \GuzzleHttp\Psr7\Response
      *
@@ -1083,10 +1083,10 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
      *
-     * @param string "delimiter" Put all keys that share a common prefix into a list
-     * @param int "limit" Results count limit
-     * @param string "marker" Limit results to keys that start at this marker
-     * @param string "prefix" Limits results to keys that begin with the prefix
+     * @param string 'delimiter' Put all keys that share a common prefix into a list
+     * @param int 'limit' Results count limit
+     * @param string 'marker' Limit results to keys that start at this marker
+     * @param string 'prefix' Limits results to keys that begin with the prefix
      *
      * @return Signer
      */
@@ -1191,7 +1191,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/put_acl.html Documentation URL
      *
-     * @param array "acl" Bucket ACL rules
+     * @param array 'acl' Bucket ACL rules
      *
      * @return Signer
      */
@@ -1228,7 +1228,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/put_acl.html Documentation URL
      *
-     * @param array "acl" Bucket ACL rules
+     * @param array 'acl' Bucket ACL rules
      *
      * @return \GuzzleHttp\Psr7\Response
      *
@@ -1263,7 +1263,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/put_acl.html Documentation URL
      *
-     * @param array "acl" Bucket ACL rules
+     * @param array 'acl' Bucket ACL rules
      *
      * @return Signer
      */
@@ -1347,7 +1347,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/put_cors.html Documentation URL
      *
-     * @param array "cors_rules" Bucket CORS rules
+     * @param array 'cors_rules' Bucket CORS rules
      *
      * @return Signer
      */
@@ -1384,7 +1384,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/put_cors.html Documentation URL
      *
-     * @param array "cors_rules" Bucket CORS rules
+     * @param array 'cors_rules' Bucket CORS rules
      *
      * @return \GuzzleHttp\Psr7\Response
      *
@@ -1419,7 +1419,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/put_cors.html Documentation URL
      *
-     * @param array "cors_rules" Bucket CORS rules
+     * @param array 'cors_rules' Bucket CORS rules
      *
      * @return Signer
      */
@@ -1464,7 +1464,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/put_external_mirror.html Documentation URL
      *
-     * @param string "source_site" Source site url
+     * @param string 'source_site' Source site url
      *
      * @return Signer
      */
@@ -1501,7 +1501,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/put_external_mirror.html Documentation URL
      *
-     * @param string "source_site" Source site url
+     * @param string 'source_site' Source site url
      *
      * @return \GuzzleHttp\Psr7\Response
      *
@@ -1536,7 +1536,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/put_external_mirror.html Documentation URL
      *
-     * @param string "source_site" Source site url
+     * @param string 'source_site' Source site url
      *
      * @return Signer
      */
@@ -1563,7 +1563,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
      *
-     * @param array "statement" Bucket policy statement
+     * @param array 'statement' Bucket policy statement
      *
      * @return Signer
      */
@@ -1600,7 +1600,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
      *
-     * @param array "statement" Bucket policy statement
+     * @param array 'statement' Bucket policy statement
      *
      * @return \GuzzleHttp\Psr7\Response
      *
@@ -1635,7 +1635,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
      *
-     * @param array "statement" Bucket policy statement
+     * @param array 'statement' Bucket policy statement
      *
      * @return Signer
      */
@@ -1746,7 +1746,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/abort_multipart_upload.html Documentation URL
      *
-     * @param string "upload_id" Object multipart upload ID
+     * @param string 'upload_id' Object multipart upload ID
      *
      * @return Signer
      */
@@ -1784,7 +1784,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/abort_multipart_upload.html Documentation URL
      *
-     * @param string "upload_id" Object multipart upload ID
+     * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -1820,7 +1820,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/abort_multipart_upload.html Documentation URL
      *
-     * @param string "upload_id" Object multipart upload ID
+     * @param string 'upload_id' Object multipart upload ID
      *
      * @return Signer
      */
@@ -1847,12 +1847,12 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/complete_multipart_upload.html Documentation URL
      *
-     * @param string "ETag" MD5sum of the object part
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "upload_id" Object multipart upload ID
-     * @param array "object_parts" Object parts
+     * @param string 'ETag' MD5sum of the object part
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'upload_id' Object multipart upload ID
+     * @param array 'object_parts' Object parts
      *
      * @return Signer
      */
@@ -1895,12 +1895,12 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/complete_multipart_upload.html Documentation URL
      *
-     * @param string "ETag" MD5sum of the object part
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "upload_id" Object multipart upload ID
-     * @param array "object_parts" Object parts
+     * @param string 'ETag' MD5sum of the object part
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'upload_id' Object multipart upload ID
+     * @param array 'object_parts' Object parts
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -1936,12 +1936,12 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/complete_multipart_upload.html Documentation URL
      *
-     * @param string "ETag" MD5sum of the object part
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "upload_id" Object multipart upload ID
-     * @param array "object_parts" Object parts
+     * @param string 'ETag' MD5sum of the object part
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'upload_id' Object multipart upload ID
+     * @param array 'object_parts' Object parts
      *
      * @return Signer
      */
@@ -2064,14 +2064,14 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/get.html Documentation URL
      *
-     * @param string "If-Match" Check whether the ETag matches
-     * @param timestamp "If-Modified-Since" Check whether the object has been modified
-     * @param string "If-None-Match" Check whether the ETag does not match
-     * @param timestamp "If-Unmodified-Since" Check whether the object has not been modified
-     * @param string "Range" Specified range of the object
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'If-Match' Check whether the ETag matches
+     * @param timestamp 'If-Modified-Since' Check whether the object has been modified
+     * @param string 'If-None-Match' Check whether the ETag does not match
+     * @param timestamp 'If-Unmodified-Since' Check whether the object has not been modified
+     * @param string 'Range' Specified range of the object
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
      * @return Signer
      */
@@ -2116,14 +2116,14 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/get.html Documentation URL
      *
-     * @param string "If-Match" Check whether the ETag matches
-     * @param timestamp "If-Modified-Since" Check whether the object has been modified
-     * @param string "If-None-Match" Check whether the ETag does not match
-     * @param timestamp "If-Unmodified-Since" Check whether the object has not been modified
-     * @param string "Range" Specified range of the object
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'If-Match' Check whether the ETag matches
+     * @param timestamp 'If-Modified-Since' Check whether the object has been modified
+     * @param string 'If-None-Match' Check whether the ETag does not match
+     * @param timestamp 'If-Unmodified-Since' Check whether the object has not been modified
+     * @param string 'Range' Specified range of the object
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2159,14 +2159,14 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/get.html Documentation URL
      *
-     * @param string "If-Match" Check whether the ETag matches
-     * @param timestamp "If-Modified-Since" Check whether the object has been modified
-     * @param string "If-None-Match" Check whether the ETag does not match
-     * @param timestamp "If-Unmodified-Since" Check whether the object has not been modified
-     * @param string "Range" Specified range of the object
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'If-Match' Check whether the ETag matches
+     * @param timestamp 'If-Modified-Since' Check whether the object has been modified
+     * @param string 'If-None-Match' Check whether the ETag does not match
+     * @param timestamp 'If-Unmodified-Since' Check whether the object has not been modified
+     * @param string 'Range' Specified range of the object
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
      * @return Signer
      */
@@ -2186,13 +2186,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/head.html Documentation URL
      *
-     * @param string "If-Match" Check whether the ETag matches
-     * @param timestamp "If-Modified-Since" Check whether the object has been modified
-     * @param string "If-None-Match" Check whether the ETag does not match
-     * @param timestamp "If-Unmodified-Since" Check whether the object has not been modified
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'If-Match' Check whether the ETag matches
+     * @param timestamp 'If-Modified-Since' Check whether the object has been modified
+     * @param string 'If-None-Match' Check whether the ETag does not match
+     * @param timestamp 'If-Unmodified-Since' Check whether the object has not been modified
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
      * @return Signer
      */
@@ -2236,13 +2236,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/head.html Documentation URL
      *
-     * @param string "If-Match" Check whether the ETag matches
-     * @param timestamp "If-Modified-Since" Check whether the object has been modified
-     * @param string "If-None-Match" Check whether the ETag does not match
-     * @param timestamp "If-Unmodified-Since" Check whether the object has not been modified
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'If-Match' Check whether the ETag matches
+     * @param timestamp 'If-Modified-Since' Check whether the object has been modified
+     * @param string 'If-None-Match' Check whether the ETag does not match
+     * @param timestamp 'If-Unmodified-Since' Check whether the object has not been modified
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2278,13 +2278,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/head.html Documentation URL
      *
-     * @param string "If-Match" Check whether the ETag matches
-     * @param timestamp "If-Modified-Since" Check whether the object has been modified
-     * @param string "If-None-Match" Check whether the ETag does not match
-     * @param timestamp "If-Unmodified-Since" Check whether the object has not been modified
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'If-Match' Check whether the ETag matches
+     * @param timestamp 'If-Modified-Since' Check whether the object has been modified
+     * @param string 'If-None-Match' Check whether the ETag does not match
+     * @param timestamp 'If-Unmodified-Since' Check whether the object has not been modified
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
      * @return Signer
      */
@@ -2304,10 +2304,10 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/initiate_multipart_upload.html Documentation URL
      *
-     * @param string "Content-Type" Object content type
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'Content-Type' Object content type
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
      * @return Signer
      */
@@ -2348,10 +2348,10 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/initiate_multipart_upload.html Documentation URL
      *
-     * @param string "Content-Type" Object content type
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'Content-Type' Object content type
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2387,10 +2387,10 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/initiate_multipart_upload.html Documentation URL
      *
-     * @param string "Content-Type" Object content type
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
+     * @param string 'Content-Type' Object content type
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
      * @return Signer
      */
@@ -2410,9 +2410,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/list_multipart.html Documentation URL
      *
-     * @param int "limit" Limit results count
-     * @param int "part_number_marker" Object multipart upload part number
-     * @param string "upload_id" Object multipart upload ID
+     * @param int 'limit' Limit results count
+     * @param int 'part_number_marker' Object multipart upload part number
+     * @param string 'upload_id' Object multipart upload ID
      *
      * @return Signer
      */
@@ -2452,9 +2452,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/list_multipart.html Documentation URL
      *
-     * @param int "limit" Limit results count
-     * @param int "part_number_marker" Object multipart upload part number
-     * @param string "upload_id" Object multipart upload ID
+     * @param int 'limit' Limit results count
+     * @param int 'part_number_marker' Object multipart upload part number
+     * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2490,9 +2490,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/list_multipart.html Documentation URL
      *
-     * @param int "limit" Limit results count
-     * @param int "part_number_marker" Object multipart upload part number
-     * @param string "upload_id" Object multipart upload ID
+     * @param int 'limit' Limit results count
+     * @param int 'part_number_marker' Object multipart upload part number
+     * @param string 'upload_id' Object multipart upload ID
      *
      * @return Signer
      */
@@ -2519,9 +2519,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/options.html Documentation URL
      *
-     * @param string "Access-Control-Request-Headers" Request headers
-     * @param string "Access-Control-Request-Method" Request method
-     * @param string "Origin" Request origin
+     * @param string 'Access-Control-Request-Headers' Request headers
+     * @param string 'Access-Control-Request-Method' Request method
+     * @param string 'Origin' Request origin
      *
      * @return Signer
      */
@@ -2561,9 +2561,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/options.html Documentation URL
      *
-     * @param string "Access-Control-Request-Headers" Request headers
-     * @param string "Access-Control-Request-Method" Request method
-     * @param string "Origin" Request origin
+     * @param string 'Access-Control-Request-Headers' Request headers
+     * @param string 'Access-Control-Request-Method' Request method
+     * @param string 'Origin' Request origin
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2599,9 +2599,9 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/options.html Documentation URL
      *
-     * @param string "Access-Control-Request-Headers" Request headers
-     * @param string "Access-Control-Request-Method" Request method
-     * @param string "Origin" Request origin
+     * @param string 'Access-Control-Request-Headers' Request headers
+     * @param string 'Access-Control-Request-Method' Request method
+     * @param string 'Origin' Request origin
      *
      * @return Signer
      */
@@ -2635,23 +2635,23 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/put.html Documentation URL
      *
-     * @param int "Content-Length" Object content size
-     * @param string "Content-MD5" Object MD5sum
-     * @param string "Content-Type" Object content type
-     * @param string "Expect" Used to indicate that particular server behaviors are required by the client
-     * @param string "X-QS-Copy-Source" Copy source, format (/<bucket-name>/<object-key>)
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "X-QS-Copy-Source-If-Match" Check whether the copy source matches
-     * @param timestamp "X-QS-Copy-Source-If-Modified-Since" Check whether the copy source has been modified
-     * @param string "X-QS-Copy-Source-If-None-Match" Check whether the copy source does not match
-     * @param timestamp "X-QS-Copy-Source-If-Unmodified-Since" Check whether the copy source has not been modified
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "X-QS-Fetch-Source" Fetch source, should be a valid url
-     * @param string "X-QS-Move-Source" Move source, format (/<bucket-name>/<object-key>)
+     * @param int 'Content-Length' Object content size
+     * @param string 'Content-MD5' Object MD5sum
+     * @param string 'Content-Type' Object content type
+     * @param string 'Expect' Used to indicate that particular server behaviors are required by the client
+     * @param string 'X-QS-Copy-Source' Copy source, format (/<bucket-name>/<object-key>)
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Copy-Source-If-Match' Check whether the copy source matches
+     * @param timestamp 'X-QS-Copy-Source-If-Modified-Since' Check whether the copy source has been modified
+     * @param string 'X-QS-Copy-Source-If-None-Match' Check whether the copy source does not match
+     * @param timestamp 'X-QS-Copy-Source-If-Unmodified-Since' Check whether the copy source has not been modified
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
+     * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      *
      * @return Signer
      */
@@ -2705,23 +2705,23 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/put.html Documentation URL
      *
-     * @param int "Content-Length" Object content size
-     * @param string "Content-MD5" Object MD5sum
-     * @param string "Content-Type" Object content type
-     * @param string "Expect" Used to indicate that particular server behaviors are required by the client
-     * @param string "X-QS-Copy-Source" Copy source, format (/<bucket-name>/<object-key>)
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "X-QS-Copy-Source-If-Match" Check whether the copy source matches
-     * @param timestamp "X-QS-Copy-Source-If-Modified-Since" Check whether the copy source has been modified
-     * @param string "X-QS-Copy-Source-If-None-Match" Check whether the copy source does not match
-     * @param timestamp "X-QS-Copy-Source-If-Unmodified-Since" Check whether the copy source has not been modified
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "X-QS-Fetch-Source" Fetch source, should be a valid url
-     * @param string "X-QS-Move-Source" Move source, format (/<bucket-name>/<object-key>)
+     * @param int 'Content-Length' Object content size
+     * @param string 'Content-MD5' Object MD5sum
+     * @param string 'Content-Type' Object content type
+     * @param string 'Expect' Used to indicate that particular server behaviors are required by the client
+     * @param string 'X-QS-Copy-Source' Copy source, format (/<bucket-name>/<object-key>)
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Copy-Source-If-Match' Check whether the copy source matches
+     * @param timestamp 'X-QS-Copy-Source-If-Modified-Since' Check whether the copy source has been modified
+     * @param string 'X-QS-Copy-Source-If-None-Match' Check whether the copy source does not match
+     * @param timestamp 'X-QS-Copy-Source-If-Unmodified-Since' Check whether the copy source has not been modified
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
+     * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2757,23 +2757,23 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/put.html Documentation URL
      *
-     * @param int "Content-Length" Object content size
-     * @param string "Content-MD5" Object MD5sum
-     * @param string "Content-Type" Object content type
-     * @param string "Expect" Used to indicate that particular server behaviors are required by the client
-     * @param string "X-QS-Copy-Source" Copy source, format (/<bucket-name>/<object-key>)
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Copy-Source-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "X-QS-Copy-Source-If-Match" Check whether the copy source matches
-     * @param timestamp "X-QS-Copy-Source-If-Modified-Since" Check whether the copy source has been modified
-     * @param string "X-QS-Copy-Source-If-None-Match" Check whether the copy source does not match
-     * @param timestamp "X-QS-Copy-Source-If-Unmodified-Since" Check whether the copy source has not been modified
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param string "X-QS-Fetch-Source" Fetch source, should be a valid url
-     * @param string "X-QS-Move-Source" Move source, format (/<bucket-name>/<object-key>)
+     * @param int 'Content-Length' Object content size
+     * @param string 'Content-MD5' Object MD5sum
+     * @param string 'Content-Type' Object content type
+     * @param string 'Expect' Used to indicate that particular server behaviors are required by the client
+     * @param string 'X-QS-Copy-Source' Copy source, format (/<bucket-name>/<object-key>)
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Copy-Source-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Copy-Source-If-Match' Check whether the copy source matches
+     * @param timestamp 'X-QS-Copy-Source-If-Modified-Since' Check whether the copy source has been modified
+     * @param string 'X-QS-Copy-Source-If-None-Match' Check whether the copy source does not match
+     * @param timestamp 'X-QS-Copy-Source-If-Unmodified-Since' Check whether the copy source has not been modified
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
+     * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      *
      * @return Signer
      */
@@ -2793,13 +2793,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/multipart/upload_multipart.html Documentation URL
      *
-     * @param int "Content-Length" Object multipart content length
-     * @param string "Content-MD5" Object multipart content MD5sum
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param int "part_number" Object multipart upload part number
-     * @param string "upload_id" Object multipart upload ID
+     * @param int 'Content-Length' Object multipart content length
+     * @param string 'Content-MD5' Object multipart content MD5sum
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param int 'part_number' Object multipart upload part number
+     * @param string 'upload_id' Object multipart upload ID
      *
      * @return Signer
      */
@@ -2843,13 +2843,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/multipart/upload_multipart.html Documentation URL
      *
-     * @param int "Content-Length" Object multipart content length
-     * @param string "Content-MD5" Object multipart content MD5sum
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param int "part_number" Object multipart upload part number
-     * @param string "upload_id" Object multipart upload ID
+     * @param int 'Content-Length' Object multipart content length
+     * @param string 'Content-MD5' Object multipart content MD5sum
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param int 'part_number' Object multipart upload part number
+     * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -2885,13 +2885,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/multipart/upload_multipart.html Documentation URL
      *
-     * @param int "Content-Length" Object multipart content length
-     * @param string "Content-MD5" Object multipart content MD5sum
-     * @param string "X-QS-Encryption-Customer-Algorithm" Encryption algorithm of the object
-     * @param string "X-QS-Encryption-Customer-Key" Encryption key of the object
-     * @param string "X-QS-Encryption-Customer-Key-MD5" MD5sum of encryption key
-     * @param int "part_number" Object multipart upload part number
-     * @param string "upload_id" Object multipart upload ID
+     * @param int 'Content-Length' Object multipart content length
+     * @param string 'Content-MD5' Object multipart content MD5sum
+     * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
+     * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
+     * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param int 'part_number' Object multipart upload part number
+     * @param string 'upload_id' Object multipart upload ID
      *
      * @return Signer
      */

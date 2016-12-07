@@ -34,7 +34,7 @@ class QingStor
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
-     * @param string "Location" Limits results to buckets that in the location
+     * @param string 'Location' Limits results to buckets that in the location
      *
      * @return response
      */
@@ -70,7 +70,7 @@ class QingStor
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
-     * @param string "Location" Limits results to buckets that in the location
+     * @param string 'Location' Limits results to buckets that in the location
      *
      * @return \GuzzleHttp\Psr7\Response
      */
@@ -89,7 +89,7 @@ class QingStor
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
-     * @param string "Location" Limits results to buckets that in the location
+     * @param string 'Location' Limits results to buckets that in the location
      *
      * @return Signer
      */
