@@ -36,7 +36,7 @@
     {{- range $_, $property := $customizedType.Properties}}
         {{- if eq $property.Type "object"}}
         if(!isset(${{$prefix}}['{{$property.ID}}'])
-            ||(${{$prefix}}['{{$property.ID}}'] ===""
+            ||(${{$prefix}}['{{$property.ID}}'] ===''
                 || ${{$prefix}}['{{$property.ID}}'] === array()
                 || ${{$prefix}}['{{$property.ID}}'] === null
                )
@@ -54,7 +54,7 @@
     {{- else if eq $property.Type "array"}}
         {{- if $property.IsRequired}}
         if (!isset(${{$prefix}}['{{$property.ID}}'])
-            || (${{$prefix}}['{{$property.ID}}'] ===""
+            || (${{$prefix}}['{{$property.ID}}'] ===''
                 || ${{$prefix}}['{{$property.ID}}'] === array()
                 || ${{$prefix}}['{{$property.ID}}'] === null
                 )
@@ -77,7 +77,7 @@
     {{- if not $isContentLength}}
     {{- if $property.IsRequired}}
     if(!isset(${{$prefix}}['{{$property.ID}}'])
-        ||(${{$prefix}}['{{$property.ID}}'] ===""
+        ||(${{$prefix}}['{{$property.ID}}'] ===''
         || ${{$prefix}}['{{$property.ID}}'] === array()
         || ${{$prefix}}['{{$property.ID}}'] === null
     )){
@@ -86,7 +86,7 @@
     {{- end}}
     {{- if gt ($property.Enum | len) 0}}
     if(!isset(${{$prefix}}['{{$property.ID}}'])
-        || (${{$prefix}}['{{$property.ID}}'] ===""
+        || (${{$prefix}}['{{$property.ID}}'] ===''
             || ${{$prefix}}['{{$property.ID}}'] === array()
             || ${{$prefix}}['{{$property.ID}}'] === null
             )
@@ -124,13 +124,13 @@
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
      {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
      * @return Signer
@@ -141,26 +141,26 @@
         {{- if $hasInput}}$options=array(){{end -}})
     {
         $operation = array(
-            "Method" => "{{$operation.Request.Method}}",
-            "Uri" => "{{$operation.Request.URI}}",
-            "Headers" => array(
-                "Host" => $this->properties["zone"] . "." . $this->config->host,
+            'Method' => '{{$operation.Request.Method}}',
+            'Uri' => '{{$operation.Request.URI}}',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
                 {{- range $id, $property := $operation.Request.Headers.Properties}}
                 '{{$property.Name}}' => isset($options['{{$property.ID}}'])?$options['{{$property.ID}}']:null,
                 {{- end}}
             ),
-            "Params" => array(
+            'Params' => array(
                 {{- range $id, $property := $operation.Request.Params.Properties}}
                 '{{$property.Name | snakeCase}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
                 {{- end}}
             ),
-            "Elements" => array(
+            'Elements' => array(
                 {{- range $id, $property := $operation.Request.Elements.Properties}}
                 '{{$property.Name}}' => isset($options['{{$property.ID | snakeCase}}'])?$options['{{$property.ID | snakeCase}}']:null,
                 {{- end}}
             ),
-            "Properties" => $this->properties,
-            "Body" => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:""{{else}}null{{end}}
+            'Properties' => $this->properties,
+            'Body' => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:''{{else}}null{{end}}
         );
         {{- if eq $belongs "Object"}}
         $operation['Properties']['object-key'] = $object_key;
@@ -195,13 +195,13 @@
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
      {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- if eq $belongs "Object"}}
      * @params string $object_key
@@ -221,7 +221,7 @@
         $retries = $this->config->connection_retries;
         while(1){
             try {
-                $this->config->logger->info("Sending QingStor request: {{$opID | camelCase | lowerFirst}}");
+                $this->config->logger->info('Sending QingStor request: {{$opID | camelCase | lowerFirst}}');
                 $response = $this->config->client->send(
                     $signer->sign()
                 );
@@ -230,7 +230,7 @@
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
-                    throw new \Exception("Network Error");
+                    throw new \Exception('Network Error');
                 }
             }
             break;
@@ -257,13 +257,13 @@
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
      {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
      * @return Signer

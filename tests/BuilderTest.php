@@ -92,7 +92,7 @@ class BuilderTest extends TestCase
                 'Host' => 'pek3a.qingstor.com',
                 'Date' => 'Wed, 10 Dec 2014 17:20:31 GMT',
                 'User-Agent' => 'qingstor-sdk-php/'.$GLOBALS['version'].'  (PHP v'.phpversion().'; '.php_uname('s').')',
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
             ),
             $this->testBuilder->parsedHeaders
         );

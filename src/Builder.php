@@ -77,7 +77,7 @@ class Builder
             php_uname('s')
         );
         $this->parsedHeaders['Content-Type'] = isset($this->operation['Headers']['Content-Type']) ? $this->operation['Headers']['Content-Type'] : \GuzzleHttp\Psr7\mimetype_from_filename($this->parsedURL);
-        if($this->parsedHeaders['Content-Type'] === null){
+        if ($this->parsedHeaders['Content-Type'] === null) {
             $this->parsedHeaders['Content-Type'] = 'application/octet-stream';
         }
     }

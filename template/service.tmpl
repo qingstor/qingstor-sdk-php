@@ -49,13 +49,13 @@ class {{$service.Name | camelCase}}Service
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
      {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
      * @return response
@@ -64,26 +64,26 @@ class {{$service.Name | camelCase}}Service
         {{- if $hasInput}}$options=array(){{end -}})
     {
         $operation = array(
-            "Method" => "{{$operation.Request.Method}}",
-            "Uri" => "{{$operation.Request.URI}}",
-            "Headers" => array(
-                "Host" => $this->config->host,
+            'Method' => '{{$operation.Request.Method}}',
+            'Uri' => '{{$operation.Request.URI}}',
+            'Headers' => array(
+                'Host' => $this->config->host,
                 {{- range $id, $property := $operation.Request.Headers.Properties}}
                 '{{$property.Name}}' => isset($options['{{$property.ID}}'])?$options['{{$property.ID}}']:null,
                 {{- end}}
             ),
-            "Params" => array(
+            'Params' => array(
                 {{- range $id, $property := $operation.Request.Params.Properties}}
                 '{{$property.Name | snakeCase}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
                 {{- end}}
             ),
-            "Elements" => array(
+            'Elements' => array(
                 {{- range $id, $property := $operation.Request.Elements.Properties}}
                 '{{$property.Name}}' => isset($options['{{$property.ID | snakeCase}}'])?$options['{{$property.ID | snakeCase}}']:null,
                 {{- end}}
             ),
-            "Properties" => array(),
-            "Body" => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:""{{else}}null{{end}}
+            'Properties' => array(),
+            'Body' => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:''{{else}}null{{end}}
         );
         $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
@@ -101,13 +101,13 @@ class {{$service.Name | camelCase}}Service
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
      {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -128,13 +128,13 @@ class {{$service.Name | camelCase}}Service
      * @link {{$operation.DocumentationURL}} Documentation URL
      {{- end}}
      {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} "{{$property.ID}}" {{$property.Description}}
+     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
      * @return Signer
