@@ -15,11 +15,11 @@
 // | limitations under the License.
 // +-------------------------------------------------------------------------
 
-namespace QingStor\SDK\Builder;
+namespace QingStor\SDK;
 
 use GuzzleHttp\Psr7\Request;
 
-class Base
+class Builder
 {
     public $config = null;
     public $parsedURL = null;
@@ -39,10 +39,10 @@ class Base
     public function parse()
     {
         $this->parseRequestParams();
-        $this->parseRequestHeaders();
-        $this->parseRequestBody();
         $this->parseRequestProperties();
         $this->parseRequestURL();
+        $this->parseRequestBody();
+        $this->parseRequestHeaders();
         $this->request = new Request(
             $this->operation['Method'],
             $this->parsedURL,
@@ -76,6 +76,10 @@ class Base
             phpversion(),
             php_uname('s')
         );
+        $this->parsedHeaders['Content-Type'] = isset($this->operation['Headers']['Content-Type']) ? $this->operation['Headers']['Content-Type'] : \GuzzleHttp\Psr7\mimetype_from_filename($this->parsedURL);
+        if($this->parsedHeaders['Content-Type'] === null){
+            $this->parsedHeaders['Content-Type'] = 'application/octet-stream';
+        }
     }
 
     public function parseRequestBody()
@@ -100,6 +104,34 @@ class Base
 
     public function parseRequestURL()
     {
-        $this->parsedURL = $this->operation['Uri'];
+        $properties = $this->parsedProperties;
+        if (isset($properties['zone'])) {
+            $zone = $properties['zone'];
+        } else {
+            $zone = '';
+        }
+        $port = strval($this->config->port);
+        $endpoint = $this->config->protocol.'://'.$this->config->host.':'.$port;
+        if ($zone !== '') {
+            $endpoint = $this->config->protocol.'://'.$zone.'.'.$this->config->host.':'.$port;
+        }
+        $requestURI = $this->operation['Uri'];
+        if (count($properties)) {
+            foreach ($properties as $key => $value) {
+                $endpoint = str_replace('<'.$key.'>', $value, $endpoint);
+                $requestURI = str_replace('<'.$key.'>', $value, $requestURI);
+            }
+        }
+        $this->parsedURL = $endpoint.$requestURI;
+        if (count($this->parsedParams)) {
+            $paramsParts = array();
+            foreach ($this->parsedParams as $key => $value) {
+                $paramsParts[] = $key.'='.$value;
+            }
+            $joined = implode('&', $paramsParts);
+            if ($joined) {
+                $this->parsedURL = $this->parsedURL.'?'.$joined;
+            }
+        }
     }
 }
