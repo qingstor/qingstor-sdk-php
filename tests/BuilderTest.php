@@ -62,11 +62,11 @@ class BuilderTest extends TestCase
             'Properties' => array(
                 'zone' => 'pek3a',
                 'bucket-name' => 'test_bucket',
-                'object-key' => 'test_object',
+                'object-key' => 'test_object.json',
             ),
             'Body' => null,
         );
-        $this->testBuilder = new Builder\QingStor($this->testConfig, $this->testOperation);
+        $this->testBuilder = new Builder($this->testConfig, $this->testOperation);
     }
 
     public function test_parseRequestParams()
@@ -84,12 +84,15 @@ class BuilderTest extends TestCase
 
     public function test_parseRequestHeaders()
     {
+        $this->testBuilder->parseRequestProperties();
+        $this->testBuilder->parseRequestURL();
         $this->testBuilder->parseRequestHeaders();
         $this->assertEquals(
             array(
                 'Host' => 'pek3a.qingstor.com',
                 'Date' => 'Wed, 10 Dec 2014 17:20:31 GMT',
                 'User-Agent' => 'qingstor-sdk-php/'.$GLOBALS['version'].'  (PHP v'.phpversion().'; '.php_uname('s').')',
+                'Content-Type' => 'application/json'
             ),
             $this->testBuilder->parsedHeaders
         );
@@ -113,7 +116,7 @@ class BuilderTest extends TestCase
             array(
                 'zone' => 'pek3a',
                 'bucket-name' => 'test_bucket',
-                'object-key' => 'test_object',
+                'object-key' => 'test_object.json',
             ),
             $this->testBuilder->parsedProperties
         );
@@ -125,7 +128,7 @@ class BuilderTest extends TestCase
         $this->testBuilder->parseRequestURL();
 
         $this->assertEquals(
-            'https://pek3a.qingstor.com:443/test_bucket/test_object',
+            'https://pek3a.qingstor.com:443/test_bucket/test_object.json',
             $this->testBuilder->parsedURL
         );
     }
