@@ -206,7 +206,7 @@
      {{- if eq $belongs "Object"}}
      * @params string $object_key
      {{- end }}
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      * @throws \Exception
      */
     public function {{$opID | camelCase | lowerFirst}}(
@@ -222,9 +222,9 @@
         while(1){
             try {
                 $this->config->logger->info('Sending QingStor request: {{$opID | camelCase | lowerFirst}}');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {

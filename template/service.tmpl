@@ -23,6 +23,7 @@ namespace QingStor\SDK\Service;
 
 use QingStor\SDK\Signer;
 use QingStor\SDK\Builder;
+use QingStor\SDK\Unpacker;
 use QingStor\SDK\Exception;
 
 # {{$service.Name | camelCase}} provides {{$service.Name}} Service API (API Version {{$service.APIVersion}})
@@ -110,15 +111,15 @@ class {{$service.Name | camelCase}}Service
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      */
     public function {{$operation.ID | camelCase | lowerFirst}}(
 {{- if $hasInput}}$options=array(){{end -}})
     {
         $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request({{- if $hasInput}}$options{{end -}});
-        $response = $this->config->client->send(
+        $response = new Unpacker($this->config->client->send(
             $signer->sign()
-        );
+        ));
         return $response;
     }
 
