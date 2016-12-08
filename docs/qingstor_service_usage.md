@@ -13,9 +13,8 @@ use QingStor\SDK\Config;
 Initialize the QingStor service with a configuration
 
 ``` php
-$service = new QingStor(
-    configuration
-);
+$config = new Config('ACCESS_KEY_ID_EXAMPLE', 'SECRET_ACCESS_KEY_EXAMPLE')
+$service = new QingStor($config);
 ```
 
 List buckets
@@ -24,10 +23,13 @@ List buckets
 $res = $service->listBuckets();
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 
-// Print the response body.
-echo $res->getBody();
+// Print the buckets number.
+echo $res->count;
+
+//Print the buckets data.
+var_dump($res->buckets);
 ```
 
 Initialize a QingStor bucket
@@ -39,13 +41,13 @@ $bucket = $service->Bucket('test-bucket', 'pek3a')
 List objects in the bucket
 
 ``` php
-$res = bucket.listObjects()
+$res = $bucket.listObjects()
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 
 // Print the objects keys.
-echo count(json_decode($res->getBody(), true)['keys']);
+var_dump($res->keys);
 ```
 
 Set ACL of the bucket
@@ -53,7 +55,7 @@ Set ACL of the bucket
 ``` php
 $res = $bucket->putACL(
     array(
-        'acl => array(
+        'acl' => array(
             'grantee' => array(
                 'type' => 'user',
                 'ID' => 'usr-xxxxxxxx'
@@ -64,7 +66,7 @@ $res = $bucket->putACL(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 ```
 
 Put object
@@ -76,10 +78,10 @@ $res = $bucket->putObject(
     array(
         'body' => file_get_contents('/tmp/sdk_bin'),
     )
-)
+);
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 ```
 
 Delete object
@@ -91,7 +93,7 @@ $res = $bucket->deleteObject(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 ```
 
 Initialize Multipart Upload
@@ -102,11 +104,10 @@ $res = $bucket->initiateMultipartUpload(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 
 // Set and print the upload ID.
-$upload_id = json_decode($res->getBody(), true)['upload_id'];
-echo $upload_id;
+echo $res->{'upload_id'};
 ```
 
 Upload Multipart
@@ -122,7 +123,7 @@ $res = $bucket->uploadMultipart(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 
 $res = $bucket->uploadMultipart(
     'object_multipart',
@@ -134,7 +135,7 @@ $res = $bucket->uploadMultipart(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 
 $res = $bucket->uploadMultipart(
     'object_multipart',
@@ -146,7 +147,7 @@ $res = $bucket->uploadMultipart(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 ```
 
 Complete Multipart Upload
@@ -171,7 +172,7 @@ $res = $bucket->completeMultipartUpload(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 ```
 
 Abort Multipart Upload
@@ -185,5 +186,5 @@ $res = $bucket->abortMultipartUpload(
 );
 
 // Print the response statusCode.
-echo $res->getStatusCode();
+echo $res->statusCode;
 ```
