@@ -43,7 +43,7 @@ class BucketContext implements Context
         $this->test_service = new QingStor(
             $this->config
         );
-        $this->test_bucket = $this->test_service->Bucket($this->test_config['bucket_name'], 'pek3a');
+        $this->test_bucket = $this->test_service->Bucket($this->test_config['bucket_name'], $this->test_config['zone']);
     }
 
     // ----------------------------------------------------------------------------
@@ -56,7 +56,7 @@ class BucketContext implements Context
         $test_service = new QingStor(
             $config
         );
-        $test_bucket = $test_service->Bucket($test_config['bucket_name'], 'pek3a');
+        $test_bucket = $test_service->Bucket($test_config['bucket_name'], $test_config['zone']);
         $test_bucket->put();
     }
 
@@ -68,7 +68,7 @@ class BucketContext implements Context
         $test_service = new QingStor(
             $config
         );
-        $test_bucket = $test_service->Bucket($test_config['bucket_name'], 'pek3a');
+        $test_bucket = $test_service->Bucket($test_config['bucket_name'], $test_config['zone']);
         $test_bucket->delete();
     }
 
