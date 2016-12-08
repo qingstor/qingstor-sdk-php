@@ -169,7 +169,7 @@ class ObjectContext implements Context
             'test_object',
             time() + 10
         );
-        $this->res = new \QingStor\SDK\Builder($client->send($req));
+        $this->res = new \QingStor\SDK\Unpacker($client->send($req));
     }
 
     /**
