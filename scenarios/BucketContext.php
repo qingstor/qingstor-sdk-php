@@ -116,7 +116,7 @@ class BucketContext implements Context
      */
     public function putSameBucketAgainStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -132,7 +132,7 @@ class BucketContext implements Context
      */
     public function listObjectsStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -140,7 +140,7 @@ class BucketContext implements Context
      */
     public function listObjectsKeysCountIs($arg1)
     {
-        PHPUnit::assertGreaterThanOrEqual(intval($arg1), count(json_decode($this->res->getBody(), true)['keys']));
+        PHPUnit::assertGreaterThanOrEqual(intval($arg1), count($this->res->keys));
     }
 
     /**
@@ -156,7 +156,7 @@ class BucketContext implements Context
      */
     public function headBucketStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -181,11 +181,11 @@ class BucketContext implements Context
         $bucket_name = $this->test_config['bucket_name'];
         $zone = $this->test_config['zone'];
         $res0 = $this->test_bucket->putObject('object_0', array());
-        PHPUnit::assertEquals(201, $res0->getStatusCode());
+        PHPUnit::assertEquals(201, $res0->statusCode);
         $res1 = $this->test_bucket->putObject('object_1', array());
-        PHPUnit::assertEquals(201, $res1->getStatusCode());
+        PHPUnit::assertEquals(201, $res1->statusCode);
         $res2 = $this->test_bucket->putObject('object_2', array());
-        PHPUnit::assertEquals(201, $res2->getStatusCode());
+        PHPUnit::assertEquals(201, $res2->statusCode);
 
         $test_data = json_decode($string, true);
         $md5 = base64_encode(md5(json_encode(array(
@@ -206,7 +206,7 @@ class BucketContext implements Context
      */
     public function deleteMultipleObjectsCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -222,7 +222,7 @@ class BucketContext implements Context
      */
     public function getBucketStatisticsStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -230,7 +230,7 @@ class BucketContext implements Context
      */
     public function getBucketStatisticsStatusIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, json_decode($this->res->getBody(), true)['status']);
+        PHPUnit::assertEquals($arg1, $this->res->status);
     }
 
     // ----------------------------------------------------------------------------
@@ -252,7 +252,7 @@ class BucketContext implements Context
      */
     public function putBucketAclStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -268,7 +268,7 @@ class BucketContext implements Context
      */
     public function getBucketAclStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -277,7 +277,7 @@ class BucketContext implements Context
     public function getBucketAclShouldHaveGranteeName($arg1)
     {
         $ok = false;
-        foreach (json_decode($this->res->getBody(), true)['acl'] as $key => $value) {
+        foreach ($this->res->acl as $key => $value) {
             if ($value['grantee']['name'] === $arg1) {
                 $ok = true;
             }
@@ -305,7 +305,7 @@ class BucketContext implements Context
      */
     public function putBucketCorsStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -321,7 +321,7 @@ class BucketContext implements Context
      */
     public function getBucketCorsStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -330,7 +330,7 @@ class BucketContext implements Context
     public function getBucketCorsShouldHaveAllowedOrigin($arg1)
     {
         $ok = false;
-        foreach (json_decode($this->res->getBody(), true)['cors_rules'] as $key => $value) {
+        foreach ($this->res->cors_rules as $key => $value) {
             if ($value['allowed_origin'] === $arg1) {
                 $ok = true;
             }
@@ -351,7 +351,7 @@ class BucketContext implements Context
      */
     public function deleteBucketCorsStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     // ----------------------------------------------------------------------------
@@ -374,7 +374,7 @@ class BucketContext implements Context
      */
     public function putBucketExternalMirrorStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -390,7 +390,7 @@ class BucketContext implements Context
      */
     public function getBucketExternalMirrorStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -398,7 +398,7 @@ class BucketContext implements Context
      */
     public function getBucketExternalMirrorShouldHaveSourceSite($arg1)
     {
-        PHPUnit::assertEquals($arg1, json_decode($this->res->getBody(), true)['source_site']);
+        PHPUnit::assertEquals($arg1, $this->res->source_site);
     }
 
     /**
@@ -414,7 +414,7 @@ class BucketContext implements Context
      */
     public function deleteBucketExternalMirrorStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     // ----------------------------------------------------------------------------
@@ -440,7 +440,7 @@ class BucketContext implements Context
      */
     public function putBucketPolicyStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -456,7 +456,7 @@ class BucketContext implements Context
      */
     public function getBucketPolicyStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -465,7 +465,7 @@ class BucketContext implements Context
     public function getBucketPolicyShouldHaveReferer($arg1)
     {
         $ok = false;
-        foreach (json_decode($this->res->getBody(), true)['statement'] as $key => $statement) {
+        foreach ($this->res->statement as $key => $statement) {
             foreach ($statement['condition']['string_like']['Referer'] as $key => $referer) {
                 if ($referer === $arg1) {
                     $ok = true;
@@ -488,6 +488,6 @@ class BucketContext implements Context
      */
     public function deleteBucketPolicyStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 }

@@ -88,7 +88,7 @@ class ObjectContext implements Context
      */
     public function putObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -109,7 +109,7 @@ class ObjectContext implements Context
      */
     public function copyObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -130,7 +130,7 @@ class ObjectContext implements Context
      */
     public function moveObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -148,7 +148,7 @@ class ObjectContext implements Context
      */
     public function getObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -156,7 +156,7 @@ class ObjectContext implements Context
      */
     public function getObjectContentLengthIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, strlen($this->res->getBody()));
+        PHPUnit::assertEquals($arg1, strlen($this->res->body));
     }
 
     /**
@@ -169,7 +169,7 @@ class ObjectContext implements Context
             'test_object',
             time() + 10
         );
-        $this->res = $client->send($req);
+        $this->res = new \QingStor\SDK\Builder($client->send($req));
     }
 
     /**
@@ -177,7 +177,7 @@ class ObjectContext implements Context
      */
     public function getObjectWithQuerySignatureContentLengthIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, strlen($this->res->getBody()));
+        PHPUnit::assertEquals($arg1, strlen($this->res->body));
     }
 
     /**
@@ -193,7 +193,7 @@ class ObjectContext implements Context
      */
     public function headObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -215,7 +215,7 @@ class ObjectContext implements Context
      */
     public function optionsObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -231,7 +231,7 @@ class ObjectContext implements Context
      */
     public function deleteObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -247,7 +247,7 @@ class ObjectContext implements Context
      */
     public function deleteTheMoveObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     // ----------------------------------------------------------------------------
@@ -272,7 +272,7 @@ class ObjectContext implements Context
      */
     public function initiateMultipartUploadStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, self::$initiate_multipart_upload_output->getStatusCode());
+        PHPUnit::assertEquals($arg1, self::$initiate_multipart_upload_output->statusCode);
     }
 
     /**
@@ -284,7 +284,7 @@ class ObjectContext implements Context
         $this->res = self::$test_bucket->uploadMultipart(
             'test_object_multipart',
             array(
-                'upload_id' => json_decode(self::$initiate_multipart_upload_output->getBody(), true)['upload_id'],
+                'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 0,
                 'body' => file_get_contents('/tmp/sdk_bin_part_0'),
             )
@@ -297,7 +297,7 @@ class ObjectContext implements Context
      */
     public function uploadTheFirstPartStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -309,7 +309,7 @@ class ObjectContext implements Context
         $this->res = self::$test_bucket->uploadMultipart(
             'test_object_multipart',
             array(
-                'upload_id' => json_decode(self::$initiate_multipart_upload_output->getBody(), true)['upload_id'],
+                'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 1,
                 'body' => file_get_contents('/tmp/sdk_bin_part_1'),
             )
@@ -322,7 +322,7 @@ class ObjectContext implements Context
      */
     public function uploadTheSecondPartStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -334,7 +334,7 @@ class ObjectContext implements Context
         $this->res = self::$test_bucket->uploadMultipart(
             'test_object_multipart',
             array(
-                'upload_id' => json_decode(self::$initiate_multipart_upload_output->getBody(), true)['upload_id'],
+                'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 2,
                 'body' => file_get_contents('/tmp/sdk_bin_part_2'),
             )
@@ -347,7 +347,7 @@ class ObjectContext implements Context
      */
     public function uploadTheThirdPartStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     public static $complete_multipart_upload_output;
@@ -360,7 +360,7 @@ class ObjectContext implements Context
         self::$complete_multipart_upload_output = self::$test_bucket->listMultipart(
             'test_object_multipart',
             array(
-                'upload_id' => json_decode(self::$initiate_multipart_upload_output->getBody(), true)['upload_id'],
+                'upload_id' => self::$initiate_multipart_upload_output->upload_id,
             )
         );
     }
@@ -370,7 +370,7 @@ class ObjectContext implements Context
      */
     public function listMultipartStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, self::$complete_multipart_upload_output->getStatusCode());
+        PHPUnit::assertEquals($arg1, self::$complete_multipart_upload_output->statusCode);
     }
 
     /**
@@ -378,7 +378,7 @@ class ObjectContext implements Context
      */
     public function listMultipartObjectPartsCountIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, count(json_decode(self::$complete_multipart_upload_output->getBody(), true)['object_parts']));
+        PHPUnit::assertEquals($arg1, count(self::$complete_multipart_upload_output->object_parts));
     }
 
     /**
@@ -389,9 +389,9 @@ class ObjectContext implements Context
         $this->res = self::$test_bucket->completeMultipartUpload(
             'test_object_multipart',
             array(
-                'upload_id' => json_decode(self::$initiate_multipart_upload_output->getBody(), true)['upload_id'],
+                'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'etag' => '"4072783b8efb99a9e5817067d68f61c6"',
-                'object_parts' => json_decode(self::$complete_multipart_upload_output->getBody(), true)['object_parts'],
+                'object_parts' => self::$complete_multipart_upload_output->object_parts,
             )
         );
     }
@@ -401,7 +401,7 @@ class ObjectContext implements Context
      */
     public function completeMultipartUploadStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -412,7 +412,7 @@ class ObjectContext implements Context
         $this->res = self::$test_bucket->abortMultipartUpload(
             'test_object_multipart',
             array(
-                'upload_id' => json_decode(self::$initiate_multipart_upload_output->getBody(), true)['upload_id'],
+                'upload_id' => self::$initiate_multipart_upload_output->upload_id,
             )
         );
     }
@@ -422,7 +422,7 @@ class ObjectContext implements Context
      */
     public function abortMultipartUploadStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 
     /**
@@ -438,6 +438,6 @@ class ObjectContext implements Context
      */
     public function deleteTheMultipartObjectStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 }

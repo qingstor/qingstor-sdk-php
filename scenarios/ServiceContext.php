@@ -74,6 +74,6 @@ class ServiceContext implements Context
      */
     public function listBucketsStatusCodeIs($arg1)
     {
-        PHPUnit::assertEquals($arg1, $this->res->getStatusCode());
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
     }
 }
