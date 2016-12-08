@@ -2,7 +2,6 @@
   "name": "yunify/qingstor-sdk",
   "homepage": "https://www.qingstor.com",
   "description": "The official QingStor SDK for the PHP programming language.",
-  "version": "2.0.0-beta.4",
   "keywords": [
     "qingcloud",
     "yunify",
