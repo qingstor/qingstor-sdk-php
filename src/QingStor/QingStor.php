@@ -19,6 +19,7 @@ namespace QingStor\SDK\Service;
 
 use QingStor\SDK\Signer;
 use QingStor\SDK\Builder;
+use QingStor\SDK\Unpacker;
 
 // QingStor provides QingStor Service API (API Version 2016-01-06)
 
@@ -72,14 +73,14 @@ class QingStor
      *
      * @param string 'Location' Limits results to buckets that in the location
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      */
     public function listBuckets($options = array())
     {
         $signer = $this->listBucketsRequest($options);
-        $response = $this->config->client->send(
+        $response = new Unpacker($this->config->client->send(
             $signer->sign()
-        );
+        ));
 
         return $response;
     }

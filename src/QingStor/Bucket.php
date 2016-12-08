@@ -21,6 +21,7 @@ namespace QingStor\SDK\Service;
 use QingStor\SDK\Builder;
 use QingStor\SDK\Signer;
 use QingStor\SDK\Exception;
+use QingStor\SDK\Unpacker;
 
 class Bucket
 {
@@ -69,7 +70,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/delete.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -80,9 +81,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: delete');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -154,7 +155,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/delete_cors.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -165,9 +166,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: deleteCORS');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -239,7 +240,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/delete_external_mirror.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -250,9 +251,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: deleteExternalMirror');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -324,7 +325,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -335,9 +336,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: deletePolicy');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -420,7 +421,7 @@ class Bucket
      * @param array 'objects' A list of keys to delete
      * @param bool 'quiet' Whether to return the list of deleted objects
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -431,9 +432,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: deleteMultipleObjects');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -526,7 +527,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get_acl.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -537,9 +538,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: getACL');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -611,7 +612,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/get_cors.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -622,9 +623,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: getCORS');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -696,7 +697,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/get_external_mirror.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -707,9 +708,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: getExternalMirror');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -781,7 +782,7 @@ class Bucket
      *
      * @link https://https://docs.qingcloud.com/qingstor/api/bucket/policy/get_policy.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -792,9 +793,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: getPolicy');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -866,7 +867,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get_stats.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -877,9 +878,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: getStatistics');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -951,7 +952,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/head.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -962,9 +963,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: head');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1050,7 +1051,7 @@ class Bucket
      * @param string 'marker' Limit results to keys that start at this marker
      * @param string 'prefix' Limits results to keys that begin with the prefix
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1061,9 +1062,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: listObjects');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1140,7 +1141,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/put.html Documentation URL
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1151,9 +1152,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: put');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1230,7 +1231,7 @@ class Bucket
      *
      * @param array 'acl' Bucket ACL rules
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1241,9 +1242,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: putACL');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1386,7 +1387,7 @@ class Bucket
      *
      * @param array 'cors_rules' Bucket CORS rules
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1397,9 +1398,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: putCORS');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1503,7 +1504,7 @@ class Bucket
      *
      * @param string 'source_site' Source site url
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1514,9 +1515,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: putExternalMirror');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1602,7 +1603,7 @@ class Bucket
      *
      * @param array 'statement' Bucket policy statement
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1613,9 +1614,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: putPolicy');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1787,7 +1788,7 @@ class Bucket
      * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1798,9 +1799,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: abortMultipartUpload');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -1903,7 +1904,7 @@ class Bucket
      * @param array 'object_parts' Object parts
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -1914,9 +1915,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: completeMultipartUpload');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2013,7 +2014,7 @@ class Bucket
      * @link https://docs.qingcloud.com/qingstor/api/object/delete.html Documentation URL
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2024,9 +2025,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: deleteObject');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2126,7 +2127,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2137,9 +2138,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: getObject');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2245,7 +2246,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2256,9 +2257,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: headObject');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2354,7 +2355,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2365,9 +2366,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: initiateMultipartUpload');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2457,7 +2458,7 @@ class Bucket
      * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2468,9 +2469,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: listMultipart');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2566,7 +2567,7 @@ class Bucket
      * @param string 'Origin' Request origin
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2577,9 +2578,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: optionsObject');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2724,7 +2725,7 @@ class Bucket
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2735,9 +2736,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: putObject');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
@@ -2852,7 +2853,7 @@ class Bucket
      * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return Unpacker
      *
      * @throws \Exception
      */
@@ -2863,9 +2864,9 @@ class Bucket
         while (1) {
             try {
                 $this->config->logger->info('Sending QingStor request: uploadMultipart');
-                $response = $this->config->client->send(
+                $response = new Unpacker($this->config->client->send(
                     $signer->sign()
-                );
+                ));
             } catch (\Exception $e) {
                 $this->config->logger->error($e->getMessage());
                 if ($retries > 0) {
