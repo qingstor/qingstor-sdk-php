@@ -37,7 +37,6 @@ class Unpacker
                 $this->$key = $value[0];
             }
         }
-        $this->logger->debug('Parse QingStor response headers: '.var_dump($this));
     }
 
     public function unpackResponseBody()
@@ -53,6 +52,5 @@ class Unpacker
         } else {
             $this->body = $body;
         }
-        $this->logger->debug('Parse QingStor response body: '.var_dump($this));
     }
 }
