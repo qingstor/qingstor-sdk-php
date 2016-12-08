@@ -2651,6 +2651,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param timestamp 'X-QS-Fetch-If-Unmodified-Since' Check whether fetch target object has not been modified
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      *
@@ -2678,6 +2679,7 @@ class Bucket
                 'X-QS-Encryption-Customer-Algorithm' => isset($options['X-QS-Encryption-Customer-Algorithm']) ? $options['X-QS-Encryption-Customer-Algorithm'] : null,
                 'X-QS-Encryption-Customer-Key' => isset($options['X-QS-Encryption-Customer-Key']) ? $options['X-QS-Encryption-Customer-Key'] : null,
                 'X-QS-Encryption-Customer-Key-MD5' => isset($options['X-QS-Encryption-Customer-Key-MD5']) ? $options['X-QS-Encryption-Customer-Key-MD5'] : null,
+                'X-QS-Fetch-If-Unmodified-Since' => isset($options['X-QS-Fetch-If-Unmodified-Since']) ? $options['X-QS-Fetch-If-Unmodified-Since'] : null,
                 'X-QS-Fetch-Source' => isset($options['X-QS-Fetch-Source']) ? $options['X-QS-Fetch-Source'] : null,
                 'X-QS-Move-Source' => isset($options['X-QS-Move-Source']) ? $options['X-QS-Move-Source'] : null,
             ),
@@ -2721,6 +2723,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param timestamp 'X-QS-Fetch-If-Unmodified-Since' Check whether fetch target object has not been modified
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      * @params string $object_key
@@ -2773,6 +2776,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param timestamp 'X-QS-Fetch-If-Unmodified-Since' Check whether fetch target object has not been modified
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      *
