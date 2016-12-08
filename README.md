@@ -41,6 +41,7 @@ $config = new Config('ACCESS_KEY_ID_EXAMPLE','SECRET_ACCESS_KEY_EXAMPLE');
 $service = new QingStor($config);
 $bucket = $service->Bucket('test_bucket', 'pek3a');
 $res = $bucket->listObjects();
+var_dump($res->keys);
 ```
 
 ## Reference Documentations
