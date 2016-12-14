@@ -22,13 +22,7 @@ use GuzzleHttp\Psr7\Request;
 class Builder
 {
     public $config = null;
-    public $parsedURL = null;
-    public $parsedParams = null;
-    public $parsedHeaders = null;
-    public $parsedProperties = null;
-    public $parsedBody = null;
     public $operation = null;
-    public $request;
 
     public function __construct($config, $operation)
     {
@@ -38,73 +32,79 @@ class Builder
 
     public function parse()
     {
-        $this->parseRequestParams();
-        $this->parseRequestProperties();
-        $this->parseRequestURL();
-        $this->parseRequestBody();
-        $this->parseRequestHeaders();
-        $this->request = new Request(
+        $request = new Request(
             $this->operation['Method'],
-            $this->parsedURL,
-            $this->parsedHeaders,
-            $this->parsedBody
+            $this->parseRequestURL(),
+            $this->parseRequestHeaders(),
+            $this->parseRequestBody()
         );
 
-        return $this->request;
+        return $request;
     }
 
     public function parseRequestParams()
     {
+        $parsedParams = null;
         foreach ($this->operation['Params'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
-                $this->parsedParams[$key] = $value;
+                $parsedParams[$key] = $value;
             }
         }
+
+        return $parsedParams;
     }
 
     public function parseRequestHeaders()
     {
+        $parsedHeaders = null;
         foreach ($this->operation['Headers'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
-                $this->parsedHeaders[$key] = $value;
+                $parsedHeaders[$key] = $value;
             }
         }
-        $this->parsedHeaders['Date'] = isset($this->operation['Headers']['Date']) ? $this->operation['Headers']['Date'] : gmdate('D, d M Y H:i:s T');
-        $this->parsedHeaders['User-Agent'] = sprintf(
+        $parsedHeaders['Date'] = isset($this->operation['Headers']['Date']) ? $this->operation['Headers']['Date'] : gmdate('D, d M Y H:i:s T');
+        $parsedHeaders['User-Agent'] = sprintf(
             'qingstor-sdk-php/%s  (PHP v%s; %s)',
             $GLOBALS['version'],
             phpversion(),
             php_uname('s')
         );
-        $this->parsedHeaders['Content-Type'] = isset($this->operation['Headers']['Content-Type']) ? $this->operation['Headers']['Content-Type'] : \GuzzleHttp\Psr7\mimetype_from_filename($this->parsedURL);
-        if ($this->parsedHeaders['Content-Type'] === null) {
-            $this->parsedHeaders['Content-Type'] = 'application/octet-stream';
+        $filename = explode('?', $this->parseRequestURL())[0];
+        $parsedHeaders['Content-Type'] = isset($this->operation['Headers']['Content-Type']) ? $this->operation['Headers']['Content-Type'] : \GuzzleHttp\Psr7\mimetype_from_filename($filename);
+        if ($parsedHeaders['Content-Type'] === null) {
+            $parsedHeaders['Content-Type'] = 'application/octet-stream';
         }
+
+        return $parsedHeaders;
     }
 
     public function parseRequestBody()
     {
+        $parsedBody = null;
         if (!empty($this->operation['Body'])) {
-            $this->parsedBody = $this->operation['Body'];
-            $this->parsedHeaders['Content-Length'] = strlen($this->parsedBody);
+            $parsedBody = $this->operation['Body'];
         } elseif (!empty($this->operation['Elements'])) {
-            $this->parsedBody = json_encode($this->operation['Elements']);
-            $this->parsedHeaders['Content-Length'] = strlen($this->parsedBody);
+            $parsedBody = json_encode($this->operation['Elements']);
         }
+
+        return $parsedBody;
     }
 
     public function parseRequestProperties()
     {
+        $parsedProperties = null;
         foreach ($this->operation['Properties'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
-                $this->parsedProperties[$key] = $value;
+                $parsedProperties[$key] = $value;
             }
         }
+
+        return $parsedProperties;
     }
 
     public function parseRequestURL()
     {
-        $properties = $this->parsedProperties;
+        $properties = $this->parseRequestProperties();
         if (isset($properties['zone'])) {
             $zone = $properties['zone'];
         } else {
@@ -122,16 +122,19 @@ class Builder
                 $requestURI = str_replace('<'.$key.'>', $value, $requestURI);
             }
         }
-        $this->parsedURL = $endpoint.$requestURI;
-        if (count($this->parsedParams)) {
+        $parsedURL = $endpoint.$requestURI;
+        $params = $this->parseRequestParams();
+        if (count($params)) {
             $paramsParts = array();
-            foreach ($this->parsedParams as $key => $value) {
+            foreach ($params as $key => $value) {
                 $paramsParts[] = $key.'='.$value;
             }
             $joined = implode('&', $paramsParts);
             if ($joined) {
-                $this->parsedURL = $this->parsedURL.'?'.$joined;
+                $parsedURL = $parsedURL.'?'.$joined;
             }
         }
+
+        return $parsedURL;
     }
 }
