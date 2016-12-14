@@ -24,7 +24,7 @@
   },
   "require": {
     "guzzlehttp/guzzle": "^6.2",
-    "katzgrau/klogger": "dev-master",
+    "katzgrau/klogger": "^1.2.1",
     "mustangostang/spyc": "^0.6.1"
   },
   "require-dev": {
