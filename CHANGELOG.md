@@ -15,6 +15,4 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added
 - Provide Official Qingstor SDK for PHP
 
-
-
 [2.0.1]: https://github.com/yunify/qingstor-sdk-php/compare/2.0.0...2.0.1
