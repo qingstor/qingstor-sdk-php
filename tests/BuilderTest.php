@@ -71,22 +71,20 @@ class BuilderTest extends TestCase
 
     public function test_parseRequestParams()
     {
-        $this->testBuilder->parseRequestParams();
+        $parsedParams = $this->testBuilder->parseRequestParams();
 
         $this->assertEquals(
             array(
                 'test_params_1' => 'test_val',
                 'test_params_2' => 'test_val',
             ),
-            $this->testBuilder->parsedParams
+            $parsedParams
         );
     }
 
     public function test_parseRequestHeaders()
     {
-        $this->testBuilder->parseRequestProperties();
-        $this->testBuilder->parseRequestURL();
-        $this->testBuilder->parseRequestHeaders();
+        $parsedHeaders = $this->testBuilder->parseRequestHeaders();
         $this->assertEquals(
             array(
                 'Host' => 'pek3a.qingstor.com',
@@ -94,23 +92,23 @@ class BuilderTest extends TestCase
                 'User-Agent' => 'qingstor-sdk-php/'.$GLOBALS['version'].'  (PHP v'.phpversion().'; '.php_uname('s').')',
                 'Content-Type' => 'application/json',
             ),
-            $this->testBuilder->parsedHeaders
+            $parsedHeaders
         );
     }
 
     public function test_parseRequestBody()
     {
-        $this->testBuilder->parseRequestBody();
+        $parsedBody = $this->testBuilder->parseRequestBody();
 
         $this->assertEquals(
             '{"test_elements_1":"test_val","test_elements_2":"test_val","test_elements_empty":""}',
-            $this->testBuilder->parsedBody
+            $parsedBody
         );
     }
 
     public function test_parseRequestProperties()
     {
-        $this->testBuilder->parseRequestProperties();
+        $parsedProperties = $this->testBuilder->parseRequestProperties();
 
         $this->assertEquals(
             array(
@@ -118,18 +116,17 @@ class BuilderTest extends TestCase
                 'bucket-name' => 'test_bucket',
                 'object-key' => 'test_object.json',
             ),
-            $this->testBuilder->parsedProperties
+            $parsedProperties
         );
     }
 
     public function test_parseRequestURL()
     {
-        $this->testBuilder->parseRequestProperties();
-        $this->testBuilder->parseRequestURL();
+        $parsedURL = $this->testBuilder->parseRequestURL();
 
         $this->assertEquals(
-            'https://pek3a.qingstor.com:443/test_bucket/test_object.json',
-            $this->testBuilder->parsedURL
+            'https://pek3a.qingstor.com:443/test_bucket/test_object.json?test_params_1=test_val&test_params_2=test_val',
+            $parsedURL
         );
     }
 }
