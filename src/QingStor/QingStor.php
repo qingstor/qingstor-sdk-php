@@ -42,6 +42,7 @@ class QingStor
     public function listBucketsRequest($options = array())
     {
         $operation = array(
+            'API' => 'ListBuckets',
             'Method' => 'GET',
             'Uri' => '/',
             'Headers' => array(
