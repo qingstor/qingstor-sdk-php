@@ -19,90 +19,93 @@
     {{$opID := replace $operation.ID "Bucket" "" -1}}
     public function {{$opID | camelCase | lowerFirst}}Validate($operation)
     {
-    {{- $i := passThrough "operation['Params']" $request.Params $customizedTypes}}
+    {{- $i := passThrough "operation['Params']" $operation $request.Params $customizedTypes}}
     {{- template "RenderCustomizedTypeValidation" $i}}
-    {{- $i := passThrough "operation['Headers']" $request.Headers $customizedTypes}}
+    {{- $i := passThrough "operation['Headers']" $operation $request.Headers $customizedTypes}}
     {{- template "RenderCustomizedTypeValidation" $i}}
-    {{- $i := passThrough "operation['Elements']" $request.Elements $customizedTypes}}
+    {{- $i := passThrough "operation['Elements']" $operation $request.Elements $customizedTypes}}
     {{- template "RenderCustomizedTypeValidation" $i}}
     }
 {{- end}}
 
 {{- define "RenderCustomizedTypeValidation"}}
     {{- $prefix := index . 0}}
-    {{- $customizedType := index . 1}}
-    {{- $customizedTypes := index . 2}}
+    {{- $operation := index . 1}}
+    {{- $customizedType := index . 2}}
+    {{- $customizedTypes := index . 3}}
 
     {{- range $_, $property := $customizedType.Properties}}
-        {{- if eq $property.Type "object"}}
-        if(!isset(${{$prefix}}['{{$property.ID}}'])
-            ||(${{$prefix}}['{{$property.ID}}'] ===''
-                || ${{$prefix}}['{{$property.ID}}'] === array()
-                || ${{$prefix}}['{{$property.ID}}'] === null
-               )
-        ){
-        {{- $nextPrefix := printf "%s[\"%s\"]" $prefix $property.ID}}
-        {{- $nextCustomizedType := index $customizedTypes $property.ExtraType}}
-        {{- $x := passThrough $nextPrefix $nextCustomizedType $customizedTypes}}
-        {{- template "RenderCustomizedTypeValidation" $x}}
-        }
-        {{- if $property.IsRequired }}
-        if(!isset(${{$prefix}}['{{$property.ID}}'])) {
-            throw new Exception\ParameterRequiredException('{{$property.ID}}', '{{$customizedType.ID}}');
-        }
-    {{- end}}
-    {{- else if eq $property.Type "array"}}
-        {{- if $property.IsRequired}}
-        if (!isset(${{$prefix}}['{{$property.ID}}'])
-            || (${{$prefix}}['{{$property.ID}}'] ===''
-                || ${{$prefix}}['{{$property.ID}}'] === array()
-                || ${{$prefix}}['{{$property.ID}}'] === null
-                )
-        ) {
-            throw new Exception\ParameterRequiredException('{{$property.ID}}', '{{$customizedType.ID}}');
-        }
-    {{- end}}
-    {{- $isNotString := ne $property.ExtraType "string"}}
-    {{- $isNotInteger := ne $property.ExtraType "integer"}}
-    {{- $isNotTimestamp := ne $property.ExtraType "timestamp"}}
-    {{- if and $isNotString $isNotInteger $isNotTimestamp}}
-        foreach(${{$prefix}}['{{$property.ID}}'] as $key) {
-            {{- $nextCustomizedType := index $customizedTypes $property.ExtraType}}
-            {{- $key := passThrough "key" $nextCustomizedType $customizedTypes}}
-            {{- template "RenderCustomizedTypeValidation" $key}}
-        }
-    {{- end}}
-    {{- else}}
-    {{- $isContentLength := eq $property.ID "Content-Length"}}
-    {{- if not $isContentLength}}
-    {{- if $property.IsRequired}}
-    if(!isset(${{$prefix}}['{{$property.ID}}'])
-        ||(${{$prefix}}['{{$property.ID}}'] ===''
-        || ${{$prefix}}['{{$property.ID}}'] === array()
-        || ${{$prefix}}['{{$property.ID}}'] === null
-    )){
-        throw new Exception\ParameterRequiredException('{{$property.ID}}', '{{$customizedType.ID}}');
-    }
-    {{- end}}
-    {{- if gt ($property.Enum | len) 0}}
-    if(!isset(${{$prefix}}['{{$property.ID}}'])
-        || (${{$prefix}}['{{$property.ID}}'] ===''
-            || ${{$prefix}}['{{$property.ID}}'] === array()
-            || ${{$prefix}}['{{$property.ID}}'] === null
-            )
-        ){
-        ${{$property.ID | snakeCase}}_valid_values = array({{$property.Enum | commaConnectedWithQuote}});
-        if(in_array(${{$prefix}}['{{$property.ID}}'], ${{$property.ID | snakeCase}}_valid_values)){
-            throw new Exception\ParameterValueNotAllowedException(
-                '{{$property.ID}}',
-                ${{$prefix}}['{{$property.ID}}'],
-                ${{$property.ID | snakeCase}}_valid_values
-            );
-        }
-    }
-    {{- end}}
-    {{- end}}
-    {{- end}}
+      {{if or (ne $operation.ID "DeleteMultipleObjects") (ne $property.ID "Content-MD5") -}}
+          {{- if eq $property.Type "object"}}
+          if(!isset(${{$prefix}}['{{$property.ID}}'])
+              ||(${{$prefix}}['{{$property.ID}}'] ===''
+                  || ${{$prefix}}['{{$property.ID}}'] === array()
+                  || ${{$prefix}}['{{$property.ID}}'] === null
+                 )
+          ){
+          {{- $nextPrefix := printf "%s[\"%s\"]" $prefix $property.ID}}
+          {{- $nextCustomizedType := index $customizedTypes $property.ExtraType}}
+          {{- $x := passThrough $nextPrefix $operation $nextCustomizedType $customizedTypes}}
+          {{- template "RenderCustomizedTypeValidation" $x}}
+          }
+          {{- if $property.IsRequired }}
+          if(!isset(${{$prefix}}['{{$property.ID}}'])) {
+              throw new Exception\ParameterRequiredException('{{$property.ID}}', '{{$customizedType.ID}}');
+          }
+      {{- end}}
+      {{- else if eq $property.Type "array"}}
+          {{- if $property.IsRequired}}
+          if (!isset(${{$prefix}}['{{$property.ID}}'])
+              || (${{$prefix}}['{{$property.ID}}'] ===''
+                  || ${{$prefix}}['{{$property.ID}}'] === array()
+                  || ${{$prefix}}['{{$property.ID}}'] === null
+                  )
+          ) {
+              throw new Exception\ParameterRequiredException('{{$property.ID}}', '{{$customizedType.ID}}');
+          }
+      {{- end}}
+      {{- $isNotString := ne $property.ExtraType "string"}}
+      {{- $isNotInteger := ne $property.ExtraType "integer"}}
+      {{- $isNotTimestamp := ne $property.ExtraType "timestamp"}}
+      {{- if and $isNotString $isNotInteger $isNotTimestamp}}
+          foreach(${{$prefix}}['{{$property.ID}}'] as $key) {
+              {{- $nextCustomizedType := index $customizedTypes $property.ExtraType}}
+              {{- $key := passThrough "key" $operation $nextCustomizedType $customizedTypes}}
+              {{- template "RenderCustomizedTypeValidation" $key}}
+          }
+      {{- end}}
+      {{- else}}
+      {{- $isContentLength := eq $property.ID "Content-Length"}}
+      {{- if not $isContentLength}}
+      {{- if $property.IsRequired}}
+      if(!isset(${{$prefix}}['{{$property.ID}}'])
+          ||(${{$prefix}}['{{$property.ID}}'] ===''
+          || ${{$prefix}}['{{$property.ID}}'] === array()
+          || ${{$prefix}}['{{$property.ID}}'] === null
+      )){
+          throw new Exception\ParameterRequiredException('{{$property.ID}}', '{{$customizedType.ID}}');
+      }
+      {{- end}}
+      {{- if gt ($property.Enum | len) 0}}
+      if(!isset(${{$prefix}}['{{$property.ID}}'])
+          || (${{$prefix}}['{{$property.ID}}'] ===''
+              || ${{$prefix}}['{{$property.ID}}'] === array()
+              || ${{$prefix}}['{{$property.ID}}'] === null
+              )
+          ){
+          ${{$property.ID | snakeCase}}_valid_values = array({{$property.Enum | commaConnectedWithQuote}});
+          if(in_array(${{$prefix}}['{{$property.ID}}'], ${{$property.ID | snakeCase}}_valid_values)){
+              throw new Exception\ParameterValueNotAllowedException(
+                  '{{$property.ID}}',
+                  ${{$prefix}}['{{$property.ID}}'],
+                  ${{$property.ID | snakeCase}}_valid_values
+              );
+          }
+      }
+      {{- end}}
+      {{- end}}
+      {{- end}}
+      {{- end}}
     {{- end}}
 {{- end}}
 
@@ -152,7 +155,7 @@
             ),
             'Params' => array(
                 {{- range $id, $property := $operation.Request.Params.Properties}}
-                '{{$property.Name | snakeCase}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
+                '{{$property.Name}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
                 {{- end}}
             ),
             'Elements' => array(

@@ -474,19 +474,12 @@ class Bucket
 
     public function deleteMultipleObjectsValidate($operation)
     {
-        if (!isset($operation['Headers']['Content-MD5'])
-        || ($operation['Headers']['Content-MD5'] === ''
-        || $operation['Headers']['Content-MD5'] === array()
-        || $operation['Headers']['Content-MD5'] === null
-    )) {
-            throw new Exception\ParameterRequiredException('Content-MD5', 'DeleteMultipleObjectsInput');
-        }
         if (!isset($operation['Elements']['objects'])
-            || ($operation['Elements']['objects'] === ''
-                || $operation['Elements']['objects'] === array()
-                || $operation['Elements']['objects'] === null
-                )
-        ) {
+              || ($operation['Elements']['objects'] === ''
+                  || $operation['Elements']['objects'] === array()
+                  || $operation['Elements']['objects'] === null
+                  )
+          ) {
             throw new Exception\ParameterRequiredException('objects', 'DeleteMultipleObjectsInput');
         }
         foreach ($operation['Elements']['objects'] as $key) {
@@ -1292,66 +1285,67 @@ class Bucket
     public function putACLValidate($operation)
     {
         if (!isset($operation['Elements']['acl'])
-            || ($operation['Elements']['acl'] === ''
-                || $operation['Elements']['acl'] === array()
-                || $operation['Elements']['acl'] === null
-                )
-        ) {
+              || ($operation['Elements']['acl'] === ''
+                  || $operation['Elements']['acl'] === array()
+                  || $operation['Elements']['acl'] === null
+                  )
+          ) {
             throw new Exception\ParameterRequiredException('acl', 'PutBucketACLInput');
         }
         foreach ($operation['Elements']['acl'] as $key) {
             if (!isset($key['grantee'])
-            || ($key['grantee'] === ''
-                || $key['grantee'] === array()
-                || $key['grantee'] === null
-               )
-        ) {
+              || ($key['grantee'] === ''
+                  || $key['grantee'] === array()
+                  || $key['grantee'] === null
+                 )
+          ) {
                 if (!isset($key['grantee']['type'])
-        || ($key['grantee']['type'] === ''
-        || $key['grantee']['type'] === array()
-        || $key['grantee']['type'] === null
-    )) {
+          || ($key['grantee']['type'] === ''
+          || $key['grantee']['type'] === array()
+          || $key['grantee']['type'] === null
+      )) {
                     throw new Exception\ParameterRequiredException('type', 'grantee');
                 }
                 if (!isset($key['grantee']['type'])
-        || ($key['grantee']['type'] === ''
-            || $key['grantee']['type'] === array()
-            || $key['grantee']['type'] === null
-            )
-        ) {
+          || ($key['grantee']['type'] === ''
+              || $key['grantee']['type'] === array()
+              || $key['grantee']['type'] === null
+              )
+          ) {
                     $type_valid_values = array('user', 'group');
                     if (in_array($key['grantee']['type'], $type_valid_values)) {
                         throw new Exception\ParameterValueNotAllowedException(
-                'type',
-                $key['grantee']['type'],
-                $type_valid_values
-            );
+                  'type',
+                  $key['grantee']['type'],
+                  $type_valid_values
+              );
                     }
                 }
             }
             if (!isset($key['grantee'])) {
                 throw new Exception\ParameterRequiredException('grantee', 'acl');
             }
+
             if (!isset($key['permission'])
-        || ($key['permission'] === ''
-        || $key['permission'] === array()
-        || $key['permission'] === null
-    )) {
+          || ($key['permission'] === ''
+          || $key['permission'] === array()
+          || $key['permission'] === null
+      )) {
                 throw new Exception\ParameterRequiredException('permission', 'acl');
             }
             if (!isset($key['permission'])
-        || ($key['permission'] === ''
-            || $key['permission'] === array()
-            || $key['permission'] === null
-            )
-        ) {
+          || ($key['permission'] === ''
+              || $key['permission'] === array()
+              || $key['permission'] === null
+              )
+          ) {
                 $permission_valid_values = array('READ', 'WRITE', 'FULL_CONTROL');
                 if (in_array($key['permission'], $permission_valid_values)) {
                     throw new Exception\ParameterValueNotAllowedException(
-                'permission',
-                $key['permission'],
-                $permission_valid_values
-            );
+                  'permission',
+                  $key['permission'],
+                  $permission_valid_values
+              );
                 }
             }
         }
@@ -1449,27 +1443,28 @@ class Bucket
     public function putCORSValidate($operation)
     {
         if (!isset($operation['Elements']['cors_rules'])
-            || ($operation['Elements']['cors_rules'] === ''
-                || $operation['Elements']['cors_rules'] === array()
-                || $operation['Elements']['cors_rules'] === null
-                )
-        ) {
+              || ($operation['Elements']['cors_rules'] === ''
+                  || $operation['Elements']['cors_rules'] === array()
+                  || $operation['Elements']['cors_rules'] === null
+                  )
+          ) {
             throw new Exception\ParameterRequiredException('cors_rules', 'PutBucketCORSInput');
         }
         foreach ($operation['Elements']['cors_rules'] as $key) {
             if (!isset($key['allowed_methods'])
-            || ($key['allowed_methods'] === ''
-                || $key['allowed_methods'] === array()
-                || $key['allowed_methods'] === null
-                )
-        ) {
+              || ($key['allowed_methods'] === ''
+                  || $key['allowed_methods'] === array()
+                  || $key['allowed_methods'] === null
+                  )
+          ) {
                 throw new Exception\ParameterRequiredException('allowed_methods', 'cors_rule');
             }
+
             if (!isset($key['allowed_origin'])
-        || ($key['allowed_origin'] === ''
-        || $key['allowed_origin'] === array()
-        || $key['allowed_origin'] === null
-    )) {
+          || ($key['allowed_origin'] === ''
+          || $key['allowed_origin'] === array()
+          || $key['allowed_origin'] === null
+      )) {
                 throw new Exception\ParameterRequiredException('allowed_origin', 'cors_rule');
             }
         }
@@ -1567,10 +1562,10 @@ class Bucket
     public function putExternalMirrorValidate($operation)
     {
         if (!isset($operation['Elements']['source_site'])
-        || ($operation['Elements']['source_site'] === ''
-        || $operation['Elements']['source_site'] === array()
-        || $operation['Elements']['source_site'] === null
-    )) {
+          || ($operation['Elements']['source_site'] === ''
+          || $operation['Elements']['source_site'] === array()
+          || $operation['Elements']['source_site'] === null
+      )) {
             throw new Exception\ParameterRequiredException('source_site', 'PutBucketExternalMirrorInput');
         }
     }
@@ -1667,107 +1662,116 @@ class Bucket
     public function putPolicyValidate($operation)
     {
         if (!isset($operation['Elements']['statement'])
-            || ($operation['Elements']['statement'] === ''
-                || $operation['Elements']['statement'] === array()
-                || $operation['Elements']['statement'] === null
-                )
-        ) {
+              || ($operation['Elements']['statement'] === ''
+                  || $operation['Elements']['statement'] === array()
+                  || $operation['Elements']['statement'] === null
+                  )
+          ) {
             throw new Exception\ParameterRequiredException('statement', 'PutBucketPolicyInput');
         }
         foreach ($operation['Elements']['statement'] as $key) {
             if (!isset($key['action'])
-            || ($key['action'] === ''
-                || $key['action'] === array()
-                || $key['action'] === null
-                )
-        ) {
+              || ($key['action'] === ''
+                  || $key['action'] === array()
+                  || $key['action'] === null
+                  )
+          ) {
                 throw new Exception\ParameterRequiredException('action', 'statement');
             }
+
             if (!isset($key['condition'])
-            || ($key['condition'] === ''
-                || $key['condition'] === array()
-                || $key['condition'] === null
-               )
-        ) {
+              || ($key['condition'] === ''
+                  || $key['condition'] === array()
+                  || $key['condition'] === null
+                 )
+          ) {
                 if (!isset($key['condition']['ip_address'])
-            || ($key['condition']['ip_address'] === ''
-                || $key['condition']['ip_address'] === array()
-                || $key['condition']['ip_address'] === null
-               )
-        ) {
+              || ($key['condition']['ip_address'] === ''
+                  || $key['condition']['ip_address'] === array()
+                  || $key['condition']['ip_address'] === null
+                 )
+          ) {
                 }
+
                 if (!isset($key['condition']['is_null'])
-            || ($key['condition']['is_null'] === ''
-                || $key['condition']['is_null'] === array()
-                || $key['condition']['is_null'] === null
-               )
-        ) {
+              || ($key['condition']['is_null'] === ''
+                  || $key['condition']['is_null'] === array()
+                  || $key['condition']['is_null'] === null
+                 )
+          ) {
                 }
+
                 if (!isset($key['condition']['not_ip_address'])
-            || ($key['condition']['not_ip_address'] === ''
-                || $key['condition']['not_ip_address'] === array()
-                || $key['condition']['not_ip_address'] === null
-               )
-        ) {
+              || ($key['condition']['not_ip_address'] === ''
+                  || $key['condition']['not_ip_address'] === array()
+                  || $key['condition']['not_ip_address'] === null
+                 )
+          ) {
                 }
+
                 if (!isset($key['condition']['string_like'])
-            || ($key['condition']['string_like'] === ''
-                || $key['condition']['string_like'] === array()
-                || $key['condition']['string_like'] === null
-               )
-        ) {
+              || ($key['condition']['string_like'] === ''
+                  || $key['condition']['string_like'] === array()
+                  || $key['condition']['string_like'] === null
+                 )
+          ) {
                 }
+
                 if (!isset($key['condition']['string_not_like'])
-            || ($key['condition']['string_not_like'] === ''
-                || $key['condition']['string_not_like'] === array()
-                || $key['condition']['string_not_like'] === null
-               )
-        ) {
+              || ($key['condition']['string_not_like'] === ''
+                  || $key['condition']['string_not_like'] === array()
+                  || $key['condition']['string_not_like'] === null
+                 )
+          ) {
                 }
             }
+
             if (!isset($key['effect'])
-        || ($key['effect'] === ''
-        || $key['effect'] === array()
-        || $key['effect'] === null
-    )) {
+          || ($key['effect'] === ''
+          || $key['effect'] === array()
+          || $key['effect'] === null
+      )) {
                 throw new Exception\ParameterRequiredException('effect', 'statement');
             }
             if (!isset($key['effect'])
-        || ($key['effect'] === ''
-            || $key['effect'] === array()
-            || $key['effect'] === null
-            )
-        ) {
+          || ($key['effect'] === ''
+              || $key['effect'] === array()
+              || $key['effect'] === null
+              )
+          ) {
                 $effect_valid_values = array('allow', 'deny');
                 if (in_array($key['effect'], $effect_valid_values)) {
                     throw new Exception\ParameterValueNotAllowedException(
-                'effect',
-                $key['effect'],
-                $effect_valid_values
-            );
+                  'effect',
+                  $key['effect'],
+                  $effect_valid_values
+              );
                 }
             }
+
             if (!isset($key['id'])
-        || ($key['id'] === ''
-        || $key['id'] === array()
-        || $key['id'] === null
-    )) {
+          || ($key['id'] === ''
+          || $key['id'] === array()
+          || $key['id'] === null
+      )) {
                 throw new Exception\ParameterRequiredException('id', 'statement');
             }
+
             if (!isset($key['resource'])
-            || ($key['resource'] === ''
-                || $key['resource'] === array()
-                || $key['resource'] === null
-                )
-        ) {
+              || ($key['resource'] === ''
+                  || $key['resource'] === array()
+                  || $key['resource'] === null
+                  )
+          ) {
                 throw new Exception\ParameterRequiredException('resource', 'statement');
             }
+
             if (!isset($key['user'])
-            || ($key['user'] === ''
-                || $key['user'] === array()
-                || $key['user'] === null
-                )
-        ) {
+              || ($key['user'] === ''
+                  || $key['user'] === array()
+                  || $key['user'] === null
+                  )
+          ) {
                 throw new Exception\ParameterRequiredException('user', 'statement');
             }
         }
@@ -1867,10 +1871,10 @@ class Bucket
     public function abortMultipartUploadValidate($operation)
     {
         if (!isset($operation['Params']['upload_id'])
-        || ($operation['Params']['upload_id'] === ''
-        || $operation['Params']['upload_id'] === array()
-        || $operation['Params']['upload_id'] === null
-    )) {
+          || ($operation['Params']['upload_id'] === ''
+          || $operation['Params']['upload_id'] === array()
+          || $operation['Params']['upload_id'] === null
+      )) {
             throw new Exception\ParameterRequiredException('upload_id', 'AbortMultipartUploadInput');
         }
     }
@@ -1989,18 +1993,19 @@ class Bucket
     public function completeMultipartUploadValidate($operation)
     {
         if (!isset($operation['Params']['upload_id'])
-        || ($operation['Params']['upload_id'] === ''
-        || $operation['Params']['upload_id'] === array()
-        || $operation['Params']['upload_id'] === null
-    )) {
+          || ($operation['Params']['upload_id'] === ''
+          || $operation['Params']['upload_id'] === array()
+          || $operation['Params']['upload_id'] === null
+      )) {
             throw new Exception\ParameterRequiredException('upload_id', 'CompleteMultipartUploadInput');
         }
+
         foreach ($operation['Elements']['object_parts'] as $key) {
             if (!isset($key['part_number'])
-        || ($key['part_number'] === ''
-        || $key['part_number'] === array()
-        || $key['part_number'] === null
-    )) {
+          || ($key['part_number'] === ''
+          || $key['part_number'] === array()
+          || $key['part_number'] === null
+      )) {
                 throw new Exception\ParameterRequiredException('part_number', 'object_part');
             }
         }
@@ -2134,12 +2139,12 @@ class Bucket
                 'X-QS-Encryption-Customer-Key-MD5' => isset($options['X-QS-Encryption-Customer-Key-MD5']) ? $options['X-QS-Encryption-Customer-Key-MD5'] : null,
             ),
             'Params' => array(
-                'response_cache_control' => isset($options['response-cache-control']) ? $options['response-cache-control'] : null,
-                'response_content_disposition' => isset($options['response-content-disposition']) ? $options['response-content-disposition'] : null,
-                'response_content_encoding' => isset($options['response-content-encoding']) ? $options['response-content-encoding'] : null,
-                'response_content_language' => isset($options['response-content-language']) ? $options['response-content-language'] : null,
-                'response_content_type' => isset($options['response-content-type']) ? $options['response-content-type'] : null,
-                'response_expires' => isset($options['response-expires']) ? $options['response-expires'] : null,
+                'response-cache-control' => isset($options['response-cache-control']) ? $options['response-cache-control'] : null,
+                'response-content-disposition' => isset($options['response-content-disposition']) ? $options['response-content-disposition'] : null,
+                'response-content-encoding' => isset($options['response-content-encoding']) ? $options['response-content-encoding'] : null,
+                'response-content-language' => isset($options['response-content-language']) ? $options['response-content-language'] : null,
+                'response-content-type' => isset($options['response-content-type']) ? $options['response-content-type'] : null,
+                'response-expires' => isset($options['response-expires']) ? $options['response-expires'] : null,
             ),
             'Elements' => array(
             ),
@@ -2569,10 +2574,10 @@ class Bucket
     public function listMultipartValidate($operation)
     {
         if (!isset($operation['Params']['upload_id'])
-        || ($operation['Params']['upload_id'] === ''
-        || $operation['Params']['upload_id'] === array()
-        || $operation['Params']['upload_id'] === null
-    )) {
+          || ($operation['Params']['upload_id'] === ''
+          || $operation['Params']['upload_id'] === array()
+          || $operation['Params']['upload_id'] === null
+      )) {
             throw new Exception\ParameterRequiredException('upload_id', 'ListMultipartInput');
         }
     }
@@ -2679,17 +2684,18 @@ class Bucket
     public function optionsObjectValidate($operation)
     {
         if (!isset($operation['Headers']['Access-Control-Request-Method'])
-        || ($operation['Headers']['Access-Control-Request-Method'] === ''
-        || $operation['Headers']['Access-Control-Request-Method'] === array()
-        || $operation['Headers']['Access-Control-Request-Method'] === null
-    )) {
+          || ($operation['Headers']['Access-Control-Request-Method'] === ''
+          || $operation['Headers']['Access-Control-Request-Method'] === array()
+          || $operation['Headers']['Access-Control-Request-Method'] === null
+      )) {
             throw new Exception\ParameterRequiredException('Access-Control-Request-Method', 'OptionsObjectInput');
         }
+
         if (!isset($operation['Headers']['Origin'])
-        || ($operation['Headers']['Origin'] === ''
-        || $operation['Headers']['Origin'] === array()
-        || $operation['Headers']['Origin'] === null
-    )) {
+          || ($operation['Headers']['Origin'] === ''
+          || $operation['Headers']['Origin'] === array()
+          || $operation['Headers']['Origin'] === null
+      )) {
             throw new Exception\ParameterRequiredException('Origin', 'OptionsObjectInput');
         }
     }
@@ -2975,17 +2981,18 @@ class Bucket
     public function uploadMultipartValidate($operation)
     {
         if (!isset($operation['Params']['part_number'])
-        || ($operation['Params']['part_number'] === ''
-        || $operation['Params']['part_number'] === array()
-        || $operation['Params']['part_number'] === null
-    )) {
+          || ($operation['Params']['part_number'] === ''
+          || $operation['Params']['part_number'] === array()
+          || $operation['Params']['part_number'] === null
+      )) {
             throw new Exception\ParameterRequiredException('part_number', 'UploadMultipartInput');
         }
+
         if (!isset($operation['Params']['upload_id'])
-        || ($operation['Params']['upload_id'] === ''
-        || $operation['Params']['upload_id'] === array()
-        || $operation['Params']['upload_id'] === null
-    )) {
+          || ($operation['Params']['upload_id'] === ''
+          || $operation['Params']['upload_id'] === array()
+          || $operation['Params']['upload_id'] === null
+      )) {
             throw new Exception\ParameterRequiredException('upload_id', 'UploadMultipartInput');
         }
     }

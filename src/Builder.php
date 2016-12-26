@@ -28,10 +28,12 @@ class Builder
     {
         $this->config = $config;
         $this->operation = $operation;
+        $this->logger = Logger::getInstance();
     }
 
     public function parse()
     {
+        $this->logger->debug('RequestURL'.': '.$this->parseRequestURL());
         $request = new Request(
             $this->operation['Method'],
             $this->parseRequestURL(),
@@ -48,6 +50,7 @@ class Builder
         foreach ($this->operation['Params'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
                 $parsedParams[$key] = $value;
+                $this->logger->debug($key.': '.$value);
             }
         }
 
@@ -60,22 +63,27 @@ class Builder
         foreach ($this->operation['Headers'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
                 $parsedHeaders[$key] = $value;
+                $this->logger->debug($key.': '.$value);
             }
         }
         $parsedHeaders['Date'] = isset($this->operation['Headers']['Date']) ? $this->operation['Headers']['Date'] : gmdate('D, d M Y H:i:s T');
+        $this->logger->debug('Date'.': '.$parsedHeaders['Date']);
         $parsedHeaders['User-Agent'] = sprintf(
             'qingstor-sdk-php/%s  (PHP v%s; %s)',
             $GLOBALS['version'],
             phpversion(),
             php_uname('s')
         );
+        $this->logger->debug('User-Agent'.': '.$parsedHeaders['User-Agent']);
         $filename = explode('?', $this->parseRequestURL())[0];
         $parsedHeaders['Content-Type'] = isset($this->operation['Headers']['Content-Type']) ? $this->operation['Headers']['Content-Type'] : \GuzzleHttp\Psr7\mimetype_from_filename($filename);
         if ($parsedHeaders['Content-Type'] === null) {
             $parsedHeaders['Content-Type'] = 'application/octet-stream';
         }
+        $this->logger->debug('Content-Type'.': '.$parsedHeaders['Content-Type']);
         if ($this->operation['API'] === 'DeleteMultipleObjects') {
-            $parsedHeaders['Content-MD5'] = base64_encode(md5($this->parseRequestBody()));
+            $parsedHeaders['Content-MD5'] = base64_encode(md5($this->parseRequestBody(), true));
+            $this->logger->debug('Content-MD5'.': '.$parsedHeaders['Content-MD5']);
         }
 
         return $parsedHeaders;
@@ -99,6 +107,7 @@ class Builder
         foreach ($this->operation['Properties'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
                 $parsedProperties[$key] = $value;
+                $this->logger->debug($key.': '.$value);
             }
         }
 
@@ -130,7 +139,7 @@ class Builder
         if (count($params)) {
             $paramsParts = array();
             foreach ($params as $key => $value) {
-                $paramsParts[] = $key.'='.$value;
+                $paramsParts[] = $key.'='.urlencode($value);
             }
             $joined = implode('&', $paramsParts);
             if ($joined) {
