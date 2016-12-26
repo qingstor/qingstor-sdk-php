@@ -101,7 +101,7 @@ class Signer
             $values = explode('=', $values);
             if ($this->isSubResource($values[0])) {
                 if (count($values) > 1) {
-                    $keys[] = $values[0].'='.urlencode($values[1]);
+                    $keys[] = $values[0].'='.urldecode($values[1]);
                 } else {
                     $keys[] = $values[0];
                 }
@@ -125,7 +125,7 @@ class Signer
             .$this->getCanonicalizedHeaders()
             .$this->getCanonicalizedResource();
         $this->logger->debug($string_to_sign);
-        $sign = hash_hmac('sha256', $string_to_sign, $this->keysecret, $raw_output = true);
+        $sign = hash_hmac('sha256', $string_to_sign, $this->keysecret, true);
         $sign_b64 = base64_encode($sign);
         $this->logger->debug($sign_b64);
 
@@ -160,6 +160,12 @@ class Signer
             'stats',
             'upload_id',
             'uploads',
+            'response-expires',
+            'response-cache-control',
+            'response-content-type',
+            'response-content-language',
+            'response-content-encoding',
+            'response-content-disposition',
         );
 
         return in_array($key, $keysMap);

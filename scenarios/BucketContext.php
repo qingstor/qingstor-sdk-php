@@ -188,15 +188,10 @@ class BucketContext implements Context
         PHPUnit::assertEquals(201, $res2->statusCode);
 
         $test_data = json_decode($string, true);
-        $md5 = base64_encode(md5(json_encode(array(
-            'objects' => $test_data['objects'],
-            'quiet' => $test_data['quiet'],
-        )), true));
         $this->res = $this->test_bucket->deleteMultipleObjects(
             array(
                 'objects' => $test_data['objects'],
                 'quiet' => $test_data['quiet'],
-                'Content-MD5' => $md5,
             )
         );
     }

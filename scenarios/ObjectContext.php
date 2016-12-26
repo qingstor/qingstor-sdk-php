@@ -181,6 +181,27 @@ class ObjectContext implements Context
     }
 
     /**
+     * @When get object with content type :arg1
+     */
+    public function getObjectWithContentType($arg1)
+    {
+        $this->res = self::$test_bucket->getObject(
+            'test_object',
+            array(
+                'response-content-type' => $arg1,
+            )
+        );
+    }
+
+    /**
+     * @Then get object content type is :arg1
+     */
+    public function getObjectContentTypeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->{'Content-Type'});
+    }
+
+    /**
      * @When head object
      */
     public function headObject()
