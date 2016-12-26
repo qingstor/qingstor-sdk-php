@@ -41,6 +41,7 @@ class Bucket
     public function deleteRequest()
     {
         $operation = array(
+            'API' => 'DeleteBucket',
             'Method' => 'DELETE',
             'Uri' => '/<bucket-name>',
             'Headers' => array(
@@ -126,6 +127,7 @@ class Bucket
     public function deleteCORSRequest()
     {
         $operation = array(
+            'API' => 'DeleteBucketCORS',
             'Method' => 'DELETE',
             'Uri' => '/<bucket-name>?cors',
             'Headers' => array(
@@ -211,6 +213,7 @@ class Bucket
     public function deleteExternalMirrorRequest()
     {
         $operation = array(
+            'API' => 'DeleteBucketExternalMirror',
             'Method' => 'DELETE',
             'Uri' => '/<bucket-name>?mirror',
             'Headers' => array(
@@ -296,6 +299,7 @@ class Bucket
     public function deletePolicyRequest()
     {
         $operation = array(
+            'API' => 'DeleteBucketPolicy',
             'Method' => 'DELETE',
             'Uri' => '/<bucket-name>?policy',
             'Headers' => array(
@@ -385,6 +389,7 @@ class Bucket
     public function deleteMultipleObjectsRequest($options = array())
     {
         $operation = array(
+            'API' => 'DeleteMultipleObjects',
             'Method' => 'POST',
             'Uri' => '/<bucket-name>?delete',
             'Headers' => array(
@@ -498,6 +503,7 @@ class Bucket
     public function getACLRequest()
     {
         $operation = array(
+            'API' => 'GetBucketACL',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>?acl',
             'Headers' => array(
@@ -583,6 +589,7 @@ class Bucket
     public function getCORSRequest()
     {
         $operation = array(
+            'API' => 'GetBucketCORS',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>?cors',
             'Headers' => array(
@@ -668,6 +675,7 @@ class Bucket
     public function getExternalMirrorRequest()
     {
         $operation = array(
+            'API' => 'GetBucketExternalMirror',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>?mirror',
             'Headers' => array(
@@ -753,6 +761,7 @@ class Bucket
     public function getPolicyRequest()
     {
         $operation = array(
+            'API' => 'GetBucketPolicy',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>?policy',
             'Headers' => array(
@@ -838,6 +847,7 @@ class Bucket
     public function getStatisticsRequest()
     {
         $operation = array(
+            'API' => 'GetBucketStatistics',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>?stats',
             'Headers' => array(
@@ -923,6 +933,7 @@ class Bucket
     public function headRequest()
     {
         $operation = array(
+            'API' => 'HeadBucket',
             'Method' => 'HEAD',
             'Uri' => '/<bucket-name>',
             'Headers' => array(
@@ -1013,6 +1024,7 @@ class Bucket
     public function listObjectsRequest($options = array())
     {
         $operation = array(
+            'API' => 'ListObjects',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>',
             'Headers' => array(
@@ -1112,6 +1124,7 @@ class Bucket
     public function putRequest()
     {
         $operation = array(
+            'API' => 'PutBucket',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>',
             'Headers' => array(
@@ -1199,6 +1212,7 @@ class Bucket
     public function putACLRequest($options = array())
     {
         $operation = array(
+            'API' => 'PutBucketACL',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>?acl',
             'Headers' => array(
@@ -1355,6 +1369,7 @@ class Bucket
     public function putCORSRequest($options = array())
     {
         $operation = array(
+            'API' => 'PutBucketCORS',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>?cors',
             'Headers' => array(
@@ -1472,6 +1487,7 @@ class Bucket
     public function putExternalMirrorRequest($options = array())
     {
         $operation = array(
+            'API' => 'PutBucketExternalMirror',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>?mirror',
             'Headers' => array(
@@ -1571,6 +1587,7 @@ class Bucket
     public function putPolicyRequest($options = array())
     {
         $operation = array(
+            'API' => 'PutBucketPolicy',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>?policy',
             'Headers' => array(
@@ -1672,10 +1689,24 @@ class Bucket
                 || $key['condition'] === null
                )
         ) {
+                if (!isset($key['condition']['ip_address'])
+            || ($key['condition']['ip_address'] === ''
+                || $key['condition']['ip_address'] === array()
+                || $key['condition']['ip_address'] === null
+               )
+        ) {
+                }
                 if (!isset($key['condition']['is_null'])
             || ($key['condition']['is_null'] === ''
                 || $key['condition']['is_null'] === array()
                 || $key['condition']['is_null'] === null
+               )
+        ) {
+                }
+                if (!isset($key['condition']['not_ip_address'])
+            || ($key['condition']['not_ip_address'] === ''
+                || $key['condition']['not_ip_address'] === array()
+                || $key['condition']['not_ip_address'] === null
                )
         ) {
                 }
@@ -1754,6 +1785,7 @@ class Bucket
     public function abortMultipartUploadRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'AbortMultipartUpload',
             'Method' => 'DELETE',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -1860,6 +1892,7 @@ class Bucket
     public function completeMultipartUploadRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'CompleteMultipartUpload',
             'Method' => 'POST',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -1983,6 +2016,7 @@ class Bucket
     public function deleteObjectRequest($object_key)
     {
         $operation = array(
+            'API' => 'DeleteObject',
             'Method' => 'DELETE',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -2073,12 +2107,19 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'response-cache-control' Specified the Cache-Control response header
+     * @param string 'response-content-disposition' Specified the Content-Disposition response header
+     * @param string 'response-content-encoding' Specified the Content-Encoding response header
+     * @param string 'response-content-language' Specified the Content-Language response header
+     * @param string 'response-content-type' Specified the Content-Type response header
+     * @param string 'response-expires' Specified the Expires response header
      *
      * @return Signer
      */
     public function getObjectRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'GetObject',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -2093,6 +2134,12 @@ class Bucket
                 'X-QS-Encryption-Customer-Key-MD5' => isset($options['X-QS-Encryption-Customer-Key-MD5']) ? $options['X-QS-Encryption-Customer-Key-MD5'] : null,
             ),
             'Params' => array(
+                'response_cache_control' => isset($options['response-cache-control']) ? $options['response-cache-control'] : null,
+                'response_content_disposition' => isset($options['response-content-disposition']) ? $options['response-content-disposition'] : null,
+                'response_content_encoding' => isset($options['response-content-encoding']) ? $options['response-content-encoding'] : null,
+                'response_content_language' => isset($options['response-content-language']) ? $options['response-content-language'] : null,
+                'response_content_type' => isset($options['response-content-type']) ? $options['response-content-type'] : null,
+                'response_expires' => isset($options['response-expires']) ? $options['response-expires'] : null,
             ),
             'Elements' => array(
             ),
@@ -2125,6 +2172,12 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'response-cache-control' Specified the Cache-Control response header
+     * @param string 'response-content-disposition' Specified the Content-Disposition response header
+     * @param string 'response-content-encoding' Specified the Content-Encoding response header
+     * @param string 'response-content-language' Specified the Content-Language response header
+     * @param string 'response-content-type' Specified the Content-Type response header
+     * @param string 'response-expires' Specified the Expires response header
      * @params string $object_key
      *
      * @return Unpacker
@@ -2168,6 +2221,12 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'response-cache-control' Specified the Cache-Control response header
+     * @param string 'response-content-disposition' Specified the Content-Disposition response header
+     * @param string 'response-content-encoding' Specified the Content-Encoding response header
+     * @param string 'response-content-language' Specified the Content-Language response header
+     * @param string 'response-content-type' Specified the Content-Type response header
+     * @param string 'response-expires' Specified the Expires response header
      *
      * @return Signer
      */
@@ -2200,6 +2259,7 @@ class Bucket
     public function headObjectRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'HeadObject',
             'Method' => 'HEAD',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -2315,6 +2375,7 @@ class Bucket
     public function initiateMultipartUploadRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'InitiateMultipartUpload',
             'Method' => 'POST',
             'Uri' => '/<bucket-name>/<object-key>?uploads',
             'Headers' => array(
@@ -2420,6 +2481,7 @@ class Bucket
     public function listMultipartRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'ListMultipart',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -2529,6 +2591,7 @@ class Bucket
     public function optionsObjectRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'OptionsObject',
             'Method' => 'OPTIONS',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -2660,6 +2723,7 @@ class Bucket
     public function putObjectRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'PutObject',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
@@ -2811,6 +2875,7 @@ class Bucket
     public function uploadMultipartRequest($object_key, $options = array())
     {
         $operation = array(
+            'API' => 'UploadMultipart',
             'Method' => 'PUT',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
