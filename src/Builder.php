@@ -74,6 +74,9 @@ class Builder
         if ($parsedHeaders['Content-Type'] === null) {
             $parsedHeaders['Content-Type'] = 'application/octet-stream';
         }
+        if ($this->operation['API'] === 'DeleteMultipleObjects') {
+            $parsedHeaders['Content-MD5'] = base64_encode(md5($this->parseRequestBody()));
+        }
 
         return $parsedHeaders;
     }
