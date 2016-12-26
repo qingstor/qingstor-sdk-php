@@ -65,6 +65,7 @@ class {{$service.Name | camelCase}}Service
         {{- if $hasInput}}$options=array(){{end -}})
     {
         $operation = array(
+            'API' => '{{$operation.ID}}',
             'Method' => '{{$operation.Request.Method}}',
             'Uri' => '{{$operation.Request.URI}}',
             'Headers' => array(
