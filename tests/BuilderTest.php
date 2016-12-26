@@ -42,6 +42,7 @@ class BuilderTest extends TestCase
             )
         );
         $this->testOperation = array(
+            'API' => 'Test',
             'Method' => 'GET',
             'Uri' => '/<bucket-name>/<object-key>',
             'Headers' => array(
