@@ -6,8 +6,8 @@
     }
   ],
   "require-dev": {
-    "yunify/qingstor-sdk": "dev-master",
-    "katzgrau/klogger": "dev-master",
+    "yunify/qingstor-sdk": "dev-develope",
+    "katzgrau/klogger": "^1.2.1",
     "behat/behat": "^3.2",
     "PHPUnit/PHPUnit": "^5.6"
   }
