@@ -81,12 +81,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: delete');
+                $GLOBALS['logger']->info('Sending QingStor request: delete');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -167,12 +167,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: deleteCORS');
+                $GLOBALS['logger']->info('Sending QingStor request: deleteCORS');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -253,12 +253,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: deleteExternalMirror');
+                $GLOBALS['logger']->info('Sending QingStor request: deleteExternalMirror');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -339,12 +339,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: deletePolicy');
+                $GLOBALS['logger']->info('Sending QingStor request: deletePolicy');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -436,12 +436,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: deleteMultipleObjects');
+                $GLOBALS['logger']->info('Sending QingStor request: deleteMultipleObjects');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -536,12 +536,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: getACL');
+                $GLOBALS['logger']->info('Sending QingStor request: getACL');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -622,12 +622,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: getCORS');
+                $GLOBALS['logger']->info('Sending QingStor request: getCORS');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -708,12 +708,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: getExternalMirror');
+                $GLOBALS['logger']->info('Sending QingStor request: getExternalMirror');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -794,12 +794,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: getPolicy');
+                $GLOBALS['logger']->info('Sending QingStor request: getPolicy');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -880,12 +880,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: getStatistics');
+                $GLOBALS['logger']->info('Sending QingStor request: getStatistics');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -966,12 +966,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: head');
+                $GLOBALS['logger']->info('Sending QingStor request: head');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1066,12 +1066,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: listObjects');
+                $GLOBALS['logger']->info('Sending QingStor request: listObjects');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1157,12 +1157,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: put');
+                $GLOBALS['logger']->info('Sending QingStor request: put');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1248,12 +1248,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: putACL');
+                $GLOBALS['logger']->info('Sending QingStor request: putACL');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1406,12 +1406,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: putCORS');
+                $GLOBALS['logger']->info('Sending QingStor request: putCORS');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1525,12 +1525,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: putExternalMirror');
+                $GLOBALS['logger']->info('Sending QingStor request: putExternalMirror');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1625,12 +1625,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: putPolicy');
+                $GLOBALS['logger']->info('Sending QingStor request: putPolicy');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1834,12 +1834,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: abortMultipartUpload');
+                $GLOBALS['logger']->info('Sending QingStor request: abortMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -1951,12 +1951,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: completeMultipartUpload');
+                $GLOBALS['logger']->info('Sending QingStor request: completeMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2063,12 +2063,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: deleteObject');
+                $GLOBALS['logger']->info('Sending QingStor request: deleteObject');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2195,12 +2195,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: getObject');
+                $GLOBALS['logger']->info('Sending QingStor request: getObject');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2321,12 +2321,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: headObject');
+                $GLOBALS['logger']->info('Sending QingStor request: headObject');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2431,12 +2431,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: initiateMultipartUpload');
+                $GLOBALS['logger']->info('Sending QingStor request: initiateMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2535,12 +2535,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: listMultipart');
+                $GLOBALS['logger']->info('Sending QingStor request: listMultipart');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2645,12 +2645,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: optionsObject');
+                $GLOBALS['logger']->info('Sending QingStor request: optionsObject');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2808,12 +2808,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: putObject');
+                $GLOBALS['logger']->info('Sending QingStor request: putObject');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {
@@ -2938,12 +2938,12 @@ class Bucket
         $retries = $this->config->connection_retries;
         while (1) {
             try {
-                $this->config->logger->info('Sending QingStor request: uploadMultipart');
+                $GLOBALS['logger']->info('Sending QingStor request: uploadMultipart');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {

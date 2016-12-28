@@ -17,6 +17,7 @@
 
 namespace QingStor\SDK\Test;
 
+use QingStor\SDK\Config;
 use QingStor\SDK\Signer;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Psr7\Request;
@@ -30,6 +31,7 @@ class SignerTest extends TestCase
 
     public function setUp()
     {
+        $this->testConfig = new Config();
         $this->testKeyid = 'QYACCESSKEYIDEXAMPLE';
         $this->testKeysecret = 'SECRETACCESSKEY';
         $this->testRequest = new Request(
