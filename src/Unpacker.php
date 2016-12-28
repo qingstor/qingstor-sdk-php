@@ -23,7 +23,6 @@ class Unpacker
     {
         $this->res = $res;
         $this->statusCode = $res->getStatusCode();
-        $this->logger = Logger::getInstance();
         $this->unpackResponseHeaders();
         $this->unpackResponseBody();
     }

@@ -50,7 +50,7 @@ class Config
             $this->access_key_id = $access_key_id;
             $this->secret_access_key = $secret_access_key;
         }
-        $this->logger = Logger::getInstance($this->log_level);
+        $GLOBALS['logger'] = Logger::getInstance($this->log_level);
     }
 
     public function getUserConfigFilePath()

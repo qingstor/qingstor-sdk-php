@@ -225,12 +225,12 @@
         $retries = $this->config->connection_retries;
         while(1){
             try {
-                $this->config->logger->info('Sending QingStor request: {{$opID | camelCase | lowerFirst}}');
+                $GLOBALS['logger']->info('Sending QingStor request: {{$opID | camelCase | lowerFirst}}');
                 $response = new Unpacker($this->config->client->send(
                     $signer->sign()
                 ));
             } catch (\Exception $e) {
-                $this->config->logger->error($e->getMessage());
+                $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
                     $retries -= 1;
                 } else {

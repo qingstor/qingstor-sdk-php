@@ -31,7 +31,6 @@ class Signer
         $this->req = $req;
         $this->keyid = $keyid;
         $this->keysecret = $keysecret;
-        $this->logger = Logger::getInstance();
     }
 
     public function sign()
@@ -124,10 +123,10 @@ class Signer
             .$this->getDate()."\n"
             .$this->getCanonicalizedHeaders()
             .$this->getCanonicalizedResource();
-        $this->logger->debug($string_to_sign);
+        $GLOBALS['logger']->debug($string_to_sign);
         $sign = hash_hmac('sha256', $string_to_sign, $this->keysecret, true);
         $sign_b64 = base64_encode($sign);
-        $this->logger->debug($sign_b64);
+        $GLOBALS['logger']->debug($sign_b64);
 
         return $sign_b64;
     }
@@ -140,10 +139,10 @@ class Signer
             .$expires."\n"
             .$this->getCanonicalizedHeaders()
             .$this->getCanonicalizedResource();
-        $this->logger->debug($string_to_sign);
+        $GLOBALS['logger']->debug($string_to_sign);
         $sign = hash_hmac('sha256', $string_to_sign, $this->keysecret, true);
         $sign_b64 = urlencode(base64_encode($sign));
-        $this->logger->debug($sign_b64);
+        $GLOBALS['logger']->debug($sign_b64);
 
         return $sign_b64;
     }
