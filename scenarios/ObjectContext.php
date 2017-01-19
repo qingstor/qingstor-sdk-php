@@ -77,7 +77,7 @@ class ObjectContext implements Context
         $this->res = self::$test_bucket->putObject(
             $arg1,
             array(
-                'body' => file_get_contents('/tmp/sdk_bin'),
+                'body' => fopen('/tmp/sdk_bin', 'r'),
             )
         );
         exec('rm -f /tmp/sdk_bin');
@@ -307,7 +307,7 @@ class ObjectContext implements Context
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 0,
-                'body' => file_get_contents('/tmp/sdk_bin_part_0'),
+                'body' => fopen('/tmp/sdk_bin_part_0', 'r'),
             )
         );
         exec('rm -f /tmp/sdk_bin_part_0');
@@ -332,7 +332,7 @@ class ObjectContext implements Context
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 1,
-                'body' => file_get_contents('/tmp/sdk_bin_part_1'),
+                'body' => fopen('/tmp/sdk_bin_part_1', 'r'),
             )
         );
         exec('rm -f /tmp/sdk_bin_part_1');
@@ -357,7 +357,7 @@ class ObjectContext implements Context
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 2,
-                'body' => file_get_contents('/tmp/sdk_bin_part_2'),
+                'body' => fopen('/tmp/sdk_bin_part_2', 'r'),
             )
         );
         exec('rm -f /tmp/sdk_bin_part_2');
