@@ -129,8 +129,8 @@ class Builder
         $requestURI = $this->operation['Uri'];
         if (count($properties)) {
             foreach ($properties as $key => $value) {
-                $endpoint = str_replace('<'.$key.'>', $value, $endpoint);
-                $requestURI = str_replace('<'.$key.'>', $value, $requestURI);
+                $endpoint = str_replace('<'.$key.'>', urlencode($value), $endpoint);
+                $requestURI = str_replace('<'.$key.'>', urlencode($value), $requestURI);
             }
         }
         $parsedURL = $endpoint.$requestURI;

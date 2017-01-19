@@ -52,18 +52,18 @@ class BuilderTest extends TestCase
             ),
             'Params' => array(
                 'test_params_1' => 'test_val',
-                'test_params_2' => 'test_val',
+                'test_params_2' => '中文测试',
                 'test_params_empty' => '',
             ),
             'Elements' => array(
                 'test_elements_1' => 'test_val',
-                'test_elements_2' => 'test_val',
+                'test_elements_2' => '中文测试',
                 'test_elements_empty' => '',
             ),
             'Properties' => array(
                 'zone' => 'pek3a',
                 'bucket-name' => 'test_bucket',
-                'object-key' => 'test_object.json',
+                'object-key' => '中文测试.json',
             ),
             'Body' => null,
         );
@@ -77,7 +77,7 @@ class BuilderTest extends TestCase
         $this->assertEquals(
             array(
                 'test_params_1' => 'test_val',
-                'test_params_2' => 'test_val',
+                'test_params_2' => '中文测试',
             ),
             $parsedParams
         );
@@ -102,7 +102,7 @@ class BuilderTest extends TestCase
         $parsedBody = $this->testBuilder->parseRequestBody();
 
         $this->assertEquals(
-            '{"test_elements_1":"test_val","test_elements_2":"test_val","test_elements_empty":""}',
+            '{"test_elements_1":"test_val","test_elements_2":"\u4e2d\u6587\u6d4b\u8bd5","test_elements_empty":""}',
             $parsedBody
         );
     }
@@ -115,7 +115,7 @@ class BuilderTest extends TestCase
             array(
                 'zone' => 'pek3a',
                 'bucket-name' => 'test_bucket',
-                'object-key' => 'test_object.json',
+                'object-key' => '中文测试.json',
             ),
             $parsedProperties
         );
@@ -126,7 +126,7 @@ class BuilderTest extends TestCase
         $parsedURL = $this->testBuilder->parseRequestURL();
 
         $this->assertEquals(
-            'https://pek3a.qingstor.com:443/test_bucket/test_object.json?test_params_1=test_val&test_params_2=test_val',
+            'https://pek3a.qingstor.com:443/test_bucket/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95.json?test_params_1=test_val&test_params_2=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95',
             $parsedURL
         );
     }
