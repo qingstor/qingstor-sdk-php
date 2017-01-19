@@ -31,13 +31,13 @@ class QingStor
     }
 
     /**
-     * listBuckets: Retrieve the bucket list.
+     * listBucketsRequest: Build Lists's request.
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
      * @param string 'Location' Limits results to buckets that in the location
      *
-     * @return response
+     * @return Signer
      */
     public function listBucketsRequest($options = array())
     {
@@ -56,6 +56,7 @@ class QingStor
             'Properties' => array(),
             'Body' => null,
         );
+        $this->listsValidate($operation);
         $builder = new Builder($this->config, $operation);
         $request = $builder->parse();
         $signer = new Signer(
@@ -75,19 +76,35 @@ class QingStor
      * @param string 'Location' Limits results to buckets that in the location
      *
      * @return Unpacker
+     *
+     * @throws \Exception
      */
     public function listBuckets($options = array())
     {
         $signer = $this->listBucketsRequest($options);
-        $response = new Unpacker($this->config->client->send(
-            $signer->sign()
-        ));
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: lists');
+                $response = new Unpacker($this->config->client->send(
+                    $signer->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
 
         return $response;
     }
 
     /**
-     * listBucketsQuery: ListBuckets's Query Sign Way.
+     * listBucketsQuery: listBuckets's Query Sign Way.
      *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
      *
@@ -100,6 +117,10 @@ class QingStor
         $signer = $this->listBucketsRequest($options);
 
         return $signer->query_sign($expires);
+    }
+
+    public function listsValidate($operation)
+    {
     }
 
     public function Bucket($bucket_name, $zone)

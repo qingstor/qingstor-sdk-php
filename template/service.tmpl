@@ -19,6 +19,7 @@
 {{- $capsule := . -}}
 {{- $service := .Data.Service -}}
 {{- $subServices := .Data.SubServices -}}
+{{$customizedTypes := .Data.CustomizedTypes}}
 namespace QingStor\SDK\Service;
 
 use QingStor\SDK\Signer;
@@ -36,117 +37,9 @@ class {{$service.Name | camelCase}}Service
         $this->config = $config;
     }
 
-    {{range $_, $operation := $service.Operations}}
-
-    {{- $hasParams := gt (len $operation.Request.Params.Properties) 0}}
-    {{- $hasHeaders := gt (len $operation.Request.Headers.Properties) 0}}
-    {{- $hasElements := gt (len $operation.Request.Elements.Properties) 0}}
-    {{- $hasStringBody := eq $operation.Request.Body.Type "string"}}
-    {{- $hasBinaryBody := eq $operation.Request.Body.Type "binary"}}
-    {{- $hasInput := or $hasParams $hasHeaders $hasElements $hasStringBody $hasBinaryBody}}
-    /**
-     * {{$operation.ID | camelCase | lowerFirst}}: {{$operation.Description}}
-     {{- if $operation.DocumentationURL}}
-     * @link {{$operation.DocumentationURL}} Documentation URL
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     *
-     * @return response
-     */
-    public function {{$operation.ID | camelCase | lowerFirst}}Request(
-        {{- if $hasInput}}$options=array(){{end -}})
-    {
-        $operation = array(
-            'API' => '{{$operation.ID}}',
-            'Method' => '{{$operation.Request.Method}}',
-            'Uri' => '{{$operation.Request.URI}}',
-            'Headers' => array(
-                'Host' => $this->config->host,
-                {{- range $id, $property := $operation.Request.Headers.Properties}}
-                '{{$property.Name}}' => isset($options['{{$property.ID}}'])?$options['{{$property.ID}}']:null,
-                {{- end}}
-            ),
-            'Params' => array(
-                {{- range $id, $property := $operation.Request.Params.Properties}}
-                '{{$property.Name | snakeCase}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
-                {{- end}}
-            ),
-            'Elements' => array(
-                {{- range $id, $property := $operation.Request.Elements.Properties}}
-                '{{$property.Name}}' => isset($options['{{$property.ID | snakeCase}}'])?$options['{{$property.ID | snakeCase}}']:null,
-                {{- end}}
-            ),
-            'Properties' => array(),
-            'Body' => {{if eq $operation.Request.Body.Type "binary"}}isset($options['body'])?$options['body']:''{{else}}null{{end}}
-        );
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
-        return $signer;
-    }
-
-    /**
-     * {{$operation.ID | camelCase | lowerFirst}}: {{$operation.Description}}
-     {{- if $operation.DocumentationURL}}
-     * @link {{$operation.DocumentationURL}} Documentation URL
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     *
-     * @return Unpacker
-     */
-    public function {{$operation.ID | camelCase | lowerFirst}}(
-{{- if $hasInput}}$options=array(){{end -}})
-    {
-        $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request({{- if $hasInput}}$options{{end -}});
-        $response = new Unpacker($this->config->client->send(
-            $signer->sign()
-        ));
-        return $response;
-    }
-
-    /**
-     * {{$operation.ID | camelCase | lowerFirst}}Query: {{$operation.ID | camelCase}}'s Query Sign Way
-     {{- if $operation.DocumentationURL}}
-     * @link {{$operation.DocumentationURL}} Documentation URL
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Headers.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Params.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     {{- range $id, $property := $operation.Request.Elements.Properties}}
-     * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
-     {{- end}}
-     *
-     * @return Signer
-     */
-    public function {{$operation.ID | camelCase | lowerFirst}}Query($expires {{- if $hasInput}}, $options=array(){{end -}})
-    {
-        $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request({{- if $hasInput}}$options{{end -}});
-        return $signer->query_sign($expires);
-    }
-    {{end}}
+    {{- range $_, $operation := $service.Operations}}
+    {{- template "RenderOperation" passThrough $service.Name $operation $customizedTypes}}
+    {{- end}}
 
     public function Bucket($bucket_name, $zone)
     {
