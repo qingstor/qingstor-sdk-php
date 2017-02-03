@@ -119,7 +119,7 @@ class QingStor
         return $signer->query_sign($expires);
     }
 
-    public function listsValidate($operation)
+    public function listBucketsValidate($operation)
     {
     }
 

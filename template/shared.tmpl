@@ -1,14 +1,14 @@
 {{define "SubServiceInitParams"}}
-    {{- $customizedType := . }}
-    {{- $firstPropertyID := $customizedType | firstPropertyIDInCustomizedType }}
-    {{- range $_, $property := $customizedType.Properties }}
+    {{- $customizedType := .}}
+    {{- $firstPropertyID := $customizedType | firstPropertyIDInCustomizedType}}
+    {{- range $_, $property := $customizedType.Properties}}
         {{- if ne $property.ID $firstPropertyID }},{{- end -}}
         {{- if ne $property.ID "zone" -}}
         ${{$property.ID | snakeCase}}
         {{- else -}}
         $zone = ''
         {{- end -}}
-    {{- end }}
+    {{- end}}
 {{end}}
 
 {{- define "RenderInputValidation"}}
@@ -17,7 +17,12 @@
     {{- $request := $operation.Request}}
     {{- $customizedTypes := index . 2}}
     {{$opID := replace $operation.ID "Bucket" "" -1}}
+    {{- if ne $belongs "QingStor"}}
     public function {{$opID | camelCase | lowerFirst}}Validate($operation)
+    {{- end}}
+    {{- if eq $belongs "QingStor"}}
+    public function {{$operation.ID | camelCase | lowerFirst}}Validate($operation)
+    {{- end}}
     {
     {{- $i := passThrough "operation['Params']" $operation $request.Params $customizedTypes}}
     {{- template "RenderCustomizedTypeValidation" $i}}
@@ -35,7 +40,7 @@
     {{- $customizedTypes := index . 3}}
 
     {{- range $_, $property := $customizedType.Properties}}
-      {{if or (ne $operation.ID "DeleteMultipleObjects") (ne $property.ID "Content-MD5") }}
+      {{if or (ne $operation.ID "DeleteMultipleObjects") (ne $property.ID "Content-MD5")}}
           {{- if eq $property.Type "object"}}
           if(!isset(${{$prefix}}['{{$property.ID}}'])
               ||(${{$prefix}}['{{$property.ID}}'] ===''
