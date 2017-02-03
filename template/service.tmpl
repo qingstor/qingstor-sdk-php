@@ -38,7 +38,7 @@ class {{$service.Name | camelCase}}Service
     }
 
     {{- range $_, $operation := $service.Operations}}
-    {{- template "RenderOperation" passThrough $service.Name $operation $customizedTypes}}
+        {{- template "RenderOperation" passThrough $service.Name $operation $customizedTypes}}
     {{- end}}
 
     public function Bucket($bucket_name, $zone)
