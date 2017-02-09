@@ -17,30 +17,65 @@
 
 namespace QingStor\SDK;
 
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Psr7\Request as PsrRequest;
 
-class Signer
+class Request
 {
-    public $req;
-    public $keyid;
-    public $keysecret;
+    public $req = null;
+    public $config = null;
+    public $access_key_id;
+    public $secret_access_key;
     public $logger;
 
-    public function __construct(Request $req, $keyid, $keysecret)
+    public function __construct($config, $operation)
     {
-        $this->req = $req;
-        $this->keyid = $keyid;
-        $this->keysecret = $keysecret;
+        $this->config = $config;
+        $builder = new Builder($config, $operation);
+        $this->req = $builder->parse();
+        $this->access_key_id = $config->access_key_id;
+        $this->secret_access_key = $config->secret_access_key;
+    }
+
+    private function handler(PsrRequest $req)
+    {
+        $version = (string) ClientInterface::VERSION;
+        if ($version[0] === '5') {
+            return $this->createGuzzleRequest($req);
+        } elseif ($version[0] === '6') {
+            return $req;
+        } else {
+            throw new \RuntimeException('Unknown Guzzle version: '.$version);
+        }
+    }
+
+    private function createGuzzleRequest(PsrRequest $req)
+    {
+        $request = $this->config->client->createRequest(
+            $req->getMethod(),
+            $req->getUri(),
+            ['exceptions' => false]
+        );
+        $body = $req->getBody();
+        if ($body->getSize() === 0) {
+            $request->setBody(null);
+        } else {
+            $request->setBody(Stream::factory($body));
+        }
+        $request->setHeaders($req->getHeaders());
+
+        return $request;
     }
 
     public function sign()
     {
         $req = $this->req->withHeader(
             'Authorization',
-            'QS '.$this->keyid.':'.$this->getAuthorization()
+            'QS '.$this->access_key_id.':'.$this->getAuthorization()
         );
 
-        return $req;
+        return $this->handler($req);
     }
 
     public function query_sign($expires)
@@ -48,12 +83,12 @@ class Signer
         $req = $this->req->withUri(
             $this->req->getUri()->withQuery(
                 'signature='.$this->getQuerySignature($expires)
-                .'&'.'access_key_id='.$this->keyid
+                .'&'.'access_key_id='.$this->access_key_id
                 .'&'.'expires='.$expires
             )
         );
 
-        return $req;
+        return $this->handler($req);
     }
 
     public function getContentMD5()
@@ -124,7 +159,7 @@ class Signer
             .$this->getCanonicalizedHeaders()
             .$this->getCanonicalizedResource();
         $GLOBALS['logger']->debug($string_to_sign);
-        $sign = hash_hmac('sha256', $string_to_sign, $this->keysecret, true);
+        $sign = hash_hmac('sha256', $string_to_sign, $this->secret_access_key, true);
         $sign_b64 = base64_encode($sign);
         $GLOBALS['logger']->debug($sign_b64);
 
@@ -140,7 +175,7 @@ class Signer
             .$this->getCanonicalizedHeaders()
             .$this->getCanonicalizedResource();
         $GLOBALS['logger']->debug($string_to_sign);
-        $sign = hash_hmac('sha256', $string_to_sign, $this->keysecret, true);
+        $sign = hash_hmac('sha256', $string_to_sign, $this->secret_access_key, true);
         $sign_b64 = urlencode(base64_encode($sign));
         $GLOBALS['logger']->debug($sign_b64);
 
