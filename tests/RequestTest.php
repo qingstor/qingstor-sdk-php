@@ -18,11 +18,10 @@
 namespace QingStor\SDK\Test;
 
 use QingStor\SDK\Config;
-use QingStor\SDK\Signer;
+use QingStor\SDK\Request;
 use PHPUnit\Framework\TestCase;
-use GuzzleHttp\Psr7\Request;
 
-class SignerTest extends TestCase
+class RequestTest extends TestCase
 {
     private $testRequest;
     private $testSigner;
@@ -31,24 +30,39 @@ class SignerTest extends TestCase
 
     public function setUp()
     {
-        $this->testConfig = new Config();
-        $this->testKeyid = 'QYACCESSKEYIDEXAMPLE';
-        $this->testKeysecret = 'SECRETACCESSKEY';
-        $this->testRequest = new Request(
-            'PUT',
-            '/mybucket/photo.jpeg?acl=d&a=b&e=f&uploads',
-            [
-                'Content-MD5' => '4gJE4saaMU4BqNR0kLY+lw==',
-                'Content-Type' => 'image/jpeg',
+        $this->testConfig = new Config('QYACCESSKEYIDEXAMPLE', 'SECRETACCESSKEY');
+        $this->testOperation = array(
+            'API' => 'Test',
+            'Method' => 'GET',
+            'Uri' => '/<bucket-name>/<object-key>',
+            'Headers' => array(
+                'Host' => 'pek3a.qingstor.com',
                 'Date' => 'Wed, 10 Dec 2014 17:20:31 GMT',
-                'x-qs-date' => 'Wed, 10 Dec 2014 17:20:31 GMT',
+                'test_empty_header' => '',
+                'Content-MD5' => '4gJE4saaMU4BqNR0kLY+lw==',
                 'x-qs-copy-source' => '/mybucket/music.mp3',
-            ]
+                'x-qs-date' => 'Wed, 10 Dec 2014 17:20:31 GMT',
+            ),
+            'Params' => array(
+                'test_params_1' => 'test_val',
+                'test_params_2' => '中文测试',
+                'test_params_empty' => '',
+            ),
+            'Elements' => array(
+                'test_elements_1' => 'test_val',
+                'test_elements_2' => '中文测试',
+                'test_elements_empty' => '',
+            ),
+            'Properties' => array(
+                'zone' => 'pek3a',
+                'bucket-name' => 'test_bucket',
+                'object-key' => '中文测试.jpg',
+            ),
+            'Body' => null,
         );
-        $this->testSigner = new Signer(
-            $this->testRequest,
-            $this->testKeyid,
-            $this->testKeysecret
+        $this->testSigner = new Request(
+            $this->testConfig,
+            $this->testOperation
         );
     }
 
@@ -87,7 +101,7 @@ class SignerTest extends TestCase
     public function test_getCanonicalizedResource()
     {
         $this->assertEquals(
-            '/mybucket/photo.jpeg?acl=d&uploads',
+            '/test_bucket/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95.jpg',
             $this->testSigner->getCanonicalizedResource()
         );
     }
@@ -95,7 +109,7 @@ class SignerTest extends TestCase
     public function test_getAuthorization()
     {
         $this->assertEquals(
-            '11CbEGeL5QmOgmk5qXF86QzhFC0B1HKa+onubF7dPaw=',
+            'Wc+HQc/7WIL7aeK+II1FRW/3cTNiJFlWWnipXjfmeUQ=',
             $this->testSigner->getAuthorization()
         );
     }
