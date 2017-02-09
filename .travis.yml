@@ -1,7 +1,17 @@
 language: php
-php:
-  - '5.6'
-  - '7.0'
 
-install: composer install
+matrix:
+  include:
+    - php: 7.0
+      env: GUZZLE_VERSION="6.2.2"
+    - php: 5.6
+      env: GUZZLE_VERSION="5.3.1"
+    - php: 7.0
+      env: GUZZLE_VERSION="5.3.1"
+    - php: 5.6
+      env: GUZZLE_VERSION="6.2.2"
+
+install:
+  - composer require guzzlehttp/guzzle:${GUZZLE_VERSION}
+  - composer install
 script: php vendor/phpunit/phpunit/phpunit --no-configuration tests
