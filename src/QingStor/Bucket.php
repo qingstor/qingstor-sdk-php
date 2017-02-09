@@ -18,8 +18,7 @@
 
 namespace QingStor\SDK\Service;
 
-use QingStor\SDK\Builder;
-use QingStor\SDK\Signer;
+use QingStor\SDK\Request;
 use QingStor\SDK\Exception;
 use QingStor\SDK\Unpacker;
 
@@ -36,7 +35,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/delete.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteRequest()
     {
@@ -55,15 +54,9 @@ class Bucket
             'Body' => null,
         );
         $this->deleteValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -77,13 +70,13 @@ class Bucket
      */
     public function delete()
     {
-        $signer = $this->deleteRequest();
+        $req = $this->deleteRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: delete');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -104,13 +97,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/delete.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteQuery($expires)
     {
-        $signer = $this->deleteRequest();
+        $req = $this->deleteRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function deleteValidate($operation)
@@ -122,7 +115,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/delete_cors.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteCORSRequest()
     {
@@ -141,15 +134,9 @@ class Bucket
             'Body' => null,
         );
         $this->deleteCORSValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -163,13 +150,13 @@ class Bucket
      */
     public function deleteCORS()
     {
-        $signer = $this->deleteCORSRequest();
+        $req = $this->deleteCORSRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteCORS');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -190,13 +177,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/delete_cors.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteCORSQuery($expires)
     {
-        $signer = $this->deleteCORSRequest();
+        $req = $this->deleteCORSRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function deleteCORSValidate($operation)
@@ -208,7 +195,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/delete_external_mirror.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteExternalMirrorRequest()
     {
@@ -227,15 +214,9 @@ class Bucket
             'Body' => null,
         );
         $this->deleteExternalMirrorValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -249,13 +230,13 @@ class Bucket
      */
     public function deleteExternalMirror()
     {
-        $signer = $this->deleteExternalMirrorRequest();
+        $req = $this->deleteExternalMirrorRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteExternalMirror');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -276,13 +257,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/delete_external_mirror.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteExternalMirrorQuery($expires)
     {
-        $signer = $this->deleteExternalMirrorRequest();
+        $req = $this->deleteExternalMirrorRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function deleteExternalMirrorValidate($operation)
@@ -294,7 +275,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deletePolicyRequest()
     {
@@ -313,15 +294,9 @@ class Bucket
             'Body' => null,
         );
         $this->deletePolicyValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -335,13 +310,13 @@ class Bucket
      */
     public function deletePolicy()
     {
-        $signer = $this->deletePolicyRequest();
+        $req = $this->deletePolicyRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deletePolicy');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -362,13 +337,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deletePolicyQuery($expires)
     {
-        $signer = $this->deletePolicyRequest();
+        $req = $this->deletePolicyRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function deletePolicyValidate($operation)
@@ -384,7 +359,7 @@ class Bucket
      * @param array 'objects' A list of keys to delete
      * @param bool 'quiet' Whether to return the list of deleted objects
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteMultipleObjectsRequest($options = array())
     {
@@ -406,15 +381,9 @@ class Bucket
             'Body' => null,
         );
         $this->deleteMultipleObjectsValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -432,13 +401,13 @@ class Bucket
      */
     public function deleteMultipleObjects($options = array())
     {
-        $signer = $this->deleteMultipleObjectsRequest($options);
+        $req = $this->deleteMultipleObjectsRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteMultipleObjects');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -463,13 +432,13 @@ class Bucket
      * @param array 'objects' A list of keys to delete
      * @param bool 'quiet' Whether to return the list of deleted objects
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteMultipleObjectsQuery($expires, $options = array())
     {
-        $signer = $this->deleteMultipleObjectsRequest($options);
+        $req = $this->deleteMultipleObjectsRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function deleteMultipleObjectsValidate($operation)
@@ -491,7 +460,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get_acl.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getACLRequest()
     {
@@ -510,15 +479,9 @@ class Bucket
             'Body' => null,
         );
         $this->getACLValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -532,13 +495,13 @@ class Bucket
      */
     public function getACL()
     {
-        $signer = $this->getACLRequest();
+        $req = $this->getACLRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getACL');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -559,13 +522,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get_acl.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getACLQuery($expires)
     {
-        $signer = $this->getACLRequest();
+        $req = $this->getACLRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function getACLValidate($operation)
@@ -577,7 +540,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/get_cors.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getCORSRequest()
     {
@@ -596,15 +559,9 @@ class Bucket
             'Body' => null,
         );
         $this->getCORSValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -618,13 +575,13 @@ class Bucket
      */
     public function getCORS()
     {
-        $signer = $this->getCORSRequest();
+        $req = $this->getCORSRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getCORS');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -645,13 +602,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/get_cors.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getCORSQuery($expires)
     {
-        $signer = $this->getCORSRequest();
+        $req = $this->getCORSRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function getCORSValidate($operation)
@@ -663,7 +620,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/get_external_mirror.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getExternalMirrorRequest()
     {
@@ -682,15 +639,9 @@ class Bucket
             'Body' => null,
         );
         $this->getExternalMirrorValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -704,13 +655,13 @@ class Bucket
      */
     public function getExternalMirror()
     {
-        $signer = $this->getExternalMirrorRequest();
+        $req = $this->getExternalMirrorRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getExternalMirror');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -731,13 +682,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/get_external_mirror.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getExternalMirrorQuery($expires)
     {
-        $signer = $this->getExternalMirrorRequest();
+        $req = $this->getExternalMirrorRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function getExternalMirrorValidate($operation)
@@ -749,7 +700,7 @@ class Bucket
      *
      * @link https://https://docs.qingcloud.com/qingstor/api/bucket/policy/get_policy.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getPolicyRequest()
     {
@@ -768,15 +719,9 @@ class Bucket
             'Body' => null,
         );
         $this->getPolicyValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -790,13 +735,13 @@ class Bucket
      */
     public function getPolicy()
     {
-        $signer = $this->getPolicyRequest();
+        $req = $this->getPolicyRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getPolicy');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -817,13 +762,13 @@ class Bucket
      *
      * @link https://https://docs.qingcloud.com/qingstor/api/bucket/policy/get_policy.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getPolicyQuery($expires)
     {
-        $signer = $this->getPolicyRequest();
+        $req = $this->getPolicyRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function getPolicyValidate($operation)
@@ -835,7 +780,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get_stats.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getStatisticsRequest()
     {
@@ -854,15 +799,9 @@ class Bucket
             'Body' => null,
         );
         $this->getStatisticsValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -876,13 +815,13 @@ class Bucket
      */
     public function getStatistics()
     {
-        $signer = $this->getStatisticsRequest();
+        $req = $this->getStatisticsRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getStatistics');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -903,13 +842,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get_stats.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function getStatisticsQuery($expires)
     {
-        $signer = $this->getStatisticsRequest();
+        $req = $this->getStatisticsRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function getStatisticsValidate($operation)
@@ -921,7 +860,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/head.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function headRequest()
     {
@@ -940,15 +879,9 @@ class Bucket
             'Body' => null,
         );
         $this->headValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -962,13 +895,13 @@ class Bucket
      */
     public function head()
     {
-        $signer = $this->headRequest();
+        $req = $this->headRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: head');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -989,13 +922,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/head.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function headQuery($expires)
     {
-        $signer = $this->headRequest();
+        $req = $this->headRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function headValidate($operation)
@@ -1012,7 +945,7 @@ class Bucket
      * @param string 'marker' Limit results to keys that start at this marker
      * @param string 'prefix' Limits results to keys that begin with the prefix
      *
-     * @return Signer
+     * @return Request
      */
     public function listObjectsRequest($options = array())
     {
@@ -1035,15 +968,9 @@ class Bucket
             'Body' => null,
         );
         $this->listObjectsValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1062,13 +989,13 @@ class Bucket
      */
     public function listObjects($options = array())
     {
-        $signer = $this->listObjectsRequest($options);
+        $req = $this->listObjectsRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: listObjects');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1094,13 +1021,13 @@ class Bucket
      * @param string 'marker' Limit results to keys that start at this marker
      * @param string 'prefix' Limits results to keys that begin with the prefix
      *
-     * @return Signer
+     * @return Request
      */
     public function listObjectsQuery($expires, $options = array())
     {
-        $signer = $this->listObjectsRequest($options);
+        $req = $this->listObjectsRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function listObjectsValidate($operation)
@@ -1112,7 +1039,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/put.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function putRequest()
     {
@@ -1131,15 +1058,9 @@ class Bucket
             'Body' => null,
         );
         $this->putValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1153,13 +1074,13 @@ class Bucket
      */
     public function put()
     {
-        $signer = $this->putRequest();
+        $req = $this->putRequest();
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: put');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1180,13 +1101,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/put.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function putQuery($expires)
     {
-        $signer = $this->putRequest();
+        $req = $this->putRequest();
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function putValidate($operation)
@@ -1200,7 +1121,7 @@ class Bucket
      *
      * @param array 'acl' Bucket ACL rules
      *
-     * @return Signer
+     * @return Request
      */
     public function putACLRequest($options = array())
     {
@@ -1220,15 +1141,9 @@ class Bucket
             'Body' => null,
         );
         $this->putACLValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1244,13 +1159,13 @@ class Bucket
      */
     public function putACL($options = array())
     {
-        $signer = $this->putACLRequest($options);
+        $req = $this->putACLRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putACL');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1273,13 +1188,13 @@ class Bucket
      *
      * @param array 'acl' Bucket ACL rules
      *
-     * @return Signer
+     * @return Request
      */
     public function putACLQuery($expires, $options = array())
     {
-        $signer = $this->putACLRequest($options);
+        $req = $this->putACLRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function putACLValidate($operation)
@@ -1358,7 +1273,7 @@ class Bucket
      *
      * @param array 'cors_rules' Bucket CORS rules
      *
-     * @return Signer
+     * @return Request
      */
     public function putCORSRequest($options = array())
     {
@@ -1378,15 +1293,9 @@ class Bucket
             'Body' => null,
         );
         $this->putCORSValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1402,13 +1311,13 @@ class Bucket
      */
     public function putCORS($options = array())
     {
-        $signer = $this->putCORSRequest($options);
+        $req = $this->putCORSRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putCORS');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1431,13 +1340,13 @@ class Bucket
      *
      * @param array 'cors_rules' Bucket CORS rules
      *
-     * @return Signer
+     * @return Request
      */
     public function putCORSQuery($expires, $options = array())
     {
-        $signer = $this->putCORSRequest($options);
+        $req = $this->putCORSRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function putCORSValidate($operation)
@@ -1477,7 +1386,7 @@ class Bucket
      *
      * @param string 'source_site' Source site url
      *
-     * @return Signer
+     * @return Request
      */
     public function putExternalMirrorRequest($options = array())
     {
@@ -1497,15 +1406,9 @@ class Bucket
             'Body' => null,
         );
         $this->putExternalMirrorValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1521,13 +1424,13 @@ class Bucket
      */
     public function putExternalMirror($options = array())
     {
-        $signer = $this->putExternalMirrorRequest($options);
+        $req = $this->putExternalMirrorRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putExternalMirror');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1550,13 +1453,13 @@ class Bucket
      *
      * @param string 'source_site' Source site url
      *
-     * @return Signer
+     * @return Request
      */
     public function putExternalMirrorQuery($expires, $options = array())
     {
-        $signer = $this->putExternalMirrorRequest($options);
+        $req = $this->putExternalMirrorRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function putExternalMirrorValidate($operation)
@@ -1577,7 +1480,7 @@ class Bucket
      *
      * @param array 'statement' Bucket policy statement
      *
-     * @return Signer
+     * @return Request
      */
     public function putPolicyRequest($options = array())
     {
@@ -1597,15 +1500,9 @@ class Bucket
             'Body' => null,
         );
         $this->putPolicyValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1621,13 +1518,13 @@ class Bucket
      */
     public function putPolicy($options = array())
     {
-        $signer = $this->putPolicyRequest($options);
+        $req = $this->putPolicyRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putPolicy');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1650,13 +1547,13 @@ class Bucket
      *
      * @param array 'statement' Bucket policy statement
      *
-     * @return Signer
+     * @return Request
      */
     public function putPolicyQuery($expires, $options = array())
     {
-        $signer = $this->putPolicyRequest($options);
+        $req = $this->putPolicyRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function putPolicyValidate($operation)
@@ -1784,7 +1681,7 @@ class Bucket
      *
      * @param string 'upload_id' Object multipart upload ID
      *
-     * @return Signer
+     * @return Request
      */
     public function abortMultipartUploadRequest($object_key, $options = array())
     {
@@ -1805,15 +1702,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->abortMultipartUploadValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1830,13 +1721,13 @@ class Bucket
      */
     public function abortMultipartUpload($object_key, $options = array())
     {
-        $signer = $this->abortMultipartUploadRequest($object_key, $options);
+        $req = $this->abortMultipartUploadRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: abortMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1859,13 +1750,13 @@ class Bucket
      *
      * @param string 'upload_id' Object multipart upload ID
      *
-     * @return Signer
+     * @return Request
      */
     public function abortMultipartUploadQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->abortMultipartUploadRequest($object_key, $options);
+        $req = $this->abortMultipartUploadRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function abortMultipartUploadValidate($operation)
@@ -1891,7 +1782,7 @@ class Bucket
      * @param string 'upload_id' Object multipart upload ID
      * @param array 'object_parts' Object parts
      *
-     * @return Signer
+     * @return Request
      */
     public function completeMultipartUploadRequest($object_key, $options = array())
     {
@@ -1917,15 +1808,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->completeMultipartUploadValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -1947,13 +1832,13 @@ class Bucket
      */
     public function completeMultipartUpload($object_key, $options = array())
     {
-        $signer = $this->completeMultipartUploadRequest($object_key, $options);
+        $req = $this->completeMultipartUploadRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: completeMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -1981,13 +1866,13 @@ class Bucket
      * @param string 'upload_id' Object multipart upload ID
      * @param array 'object_parts' Object parts
      *
-     * @return Signer
+     * @return Request
      */
     public function completeMultipartUploadQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->completeMultipartUploadRequest($object_key, $options);
+        $req = $this->completeMultipartUploadRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function completeMultipartUploadValidate($operation)
@@ -2016,7 +1901,7 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/delete.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteObjectRequest($object_key)
     {
@@ -2036,15 +1921,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->deleteObjectValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2059,13 +1938,13 @@ class Bucket
      */
     public function deleteObject($object_key)
     {
-        $signer = $this->deleteObjectRequest($object_key);
+        $req = $this->deleteObjectRequest($object_key);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteObject');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2086,13 +1965,13 @@ class Bucket
      *
      * @link https://docs.qingcloud.com/qingstor/api/object/delete.html Documentation URL
      *
-     * @return Signer
+     * @return Request
      */
     public function deleteObjectQuery($object_key, $expires)
     {
-        $signer = $this->deleteObjectRequest($object_key);
+        $req = $this->deleteObjectRequest($object_key);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function deleteObjectValidate($operation)
@@ -2119,7 +1998,7 @@ class Bucket
      * @param string 'response-content-type' Specified the Content-Type response header
      * @param string 'response-expires' Specified the Expires response header
      *
-     * @return Signer
+     * @return Request
      */
     public function getObjectRequest($object_key, $options = array())
     {
@@ -2153,15 +2032,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->getObjectValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2191,13 +2064,13 @@ class Bucket
      */
     public function getObject($object_key, $options = array())
     {
-        $signer = $this->getObjectRequest($object_key, $options);
+        $req = $this->getObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getObject');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2233,13 +2106,13 @@ class Bucket
      * @param string 'response-content-type' Specified the Content-Type response header
      * @param string 'response-expires' Specified the Expires response header
      *
-     * @return Signer
+     * @return Request
      */
     public function getObjectQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->getObjectRequest($object_key, $options);
+        $req = $this->getObjectRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function getObjectValidate($operation)
@@ -2259,7 +2132,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
-     * @return Signer
+     * @return Request
      */
     public function headObjectRequest($object_key, $options = array())
     {
@@ -2286,15 +2159,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->headObjectValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2317,13 +2184,13 @@ class Bucket
      */
     public function headObject($object_key, $options = array())
     {
-        $signer = $this->headObjectRequest($object_key, $options);
+        $req = $this->headObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: headObject');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2352,13 +2219,13 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
-     * @return Signer
+     * @return Request
      */
     public function headObjectQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->headObjectRequest($object_key, $options);
+        $req = $this->headObjectRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function headObjectValidate($operation)
@@ -2375,7 +2242,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
-     * @return Signer
+     * @return Request
      */
     public function initiateMultipartUploadRequest($object_key, $options = array())
     {
@@ -2399,15 +2266,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->initiateMultipartUploadValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2427,13 +2288,13 @@ class Bucket
      */
     public function initiateMultipartUpload($object_key, $options = array())
     {
-        $signer = $this->initiateMultipartUploadRequest($object_key, $options);
+        $req = $this->initiateMultipartUploadRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: initiateMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2459,13 +2320,13 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
      *
-     * @return Signer
+     * @return Request
      */
     public function initiateMultipartUploadQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->initiateMultipartUploadRequest($object_key, $options);
+        $req = $this->initiateMultipartUploadRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function initiateMultipartUploadValidate($operation)
@@ -2481,7 +2342,7 @@ class Bucket
      * @param int 'part_number_marker' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
      *
-     * @return Signer
+     * @return Request
      */
     public function listMultipartRequest($object_key, $options = array())
     {
@@ -2504,15 +2365,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->listMultipartValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2531,13 +2386,13 @@ class Bucket
      */
     public function listMultipart($object_key, $options = array())
     {
-        $signer = $this->listMultipartRequest($object_key, $options);
+        $req = $this->listMultipartRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: listMultipart');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2562,13 +2417,13 @@ class Bucket
      * @param int 'part_number_marker' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
      *
-     * @return Signer
+     * @return Request
      */
     public function listMultipartQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->listMultipartRequest($object_key, $options);
+        $req = $this->listMultipartRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function listMultipartValidate($operation)
@@ -2591,7 +2446,7 @@ class Bucket
      * @param string 'Access-Control-Request-Method' Request method
      * @param string 'Origin' Request origin
      *
-     * @return Signer
+     * @return Request
      */
     public function optionsObjectRequest($object_key, $options = array())
     {
@@ -2614,15 +2469,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->optionsObjectValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2641,13 +2490,13 @@ class Bucket
      */
     public function optionsObject($object_key, $options = array())
     {
-        $signer = $this->optionsObjectRequest($object_key, $options);
+        $req = $this->optionsObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: optionsObject');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2672,13 +2521,13 @@ class Bucket
      * @param string 'Access-Control-Request-Method' Request method
      * @param string 'Origin' Request origin
      *
-     * @return Signer
+     * @return Request
      */
     public function optionsObjectQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->optionsObjectRequest($object_key, $options);
+        $req = $this->optionsObjectRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function optionsObjectValidate($operation)
@@ -2724,7 +2573,7 @@ class Bucket
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      *
-     * @return Signer
+     * @return Request
      */
     public function putObjectRequest($object_key, $options = array())
     {
@@ -2762,15 +2611,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->putObjectValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2804,13 +2647,13 @@ class Bucket
      */
     public function putObject($object_key, $options = array())
     {
-        $signer = $this->putObjectRequest($object_key, $options);
+        $req = $this->putObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putObject');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2850,13 +2693,13 @@ class Bucket
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
      *
-     * @return Signer
+     * @return Request
      */
     public function putObjectQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->putObjectRequest($object_key, $options);
+        $req = $this->putObjectRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function putObjectValidate($operation)
@@ -2876,7 +2719,7 @@ class Bucket
      * @param int 'part_number' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
      *
-     * @return Signer
+     * @return Request
      */
     public function uploadMultipartRequest($object_key, $options = array())
     {
@@ -2903,15 +2746,9 @@ class Bucket
         );
         $operation['Properties']['object-key'] = $object_key;
         $this->uploadMultipartValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -2934,13 +2771,13 @@ class Bucket
      */
     public function uploadMultipart($object_key, $options = array())
     {
-        $signer = $this->uploadMultipartRequest($object_key, $options);
+        $req = $this->uploadMultipartRequest($object_key, $options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: uploadMultipart');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -2969,13 +2806,13 @@ class Bucket
      * @param int 'part_number' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
      *
-     * @return Signer
+     * @return Request
      */
     public function uploadMultipartQuery($object_key, $expires, $options = array())
     {
-        $signer = $this->uploadMultipartRequest($object_key, $options);
+        $req = $this->uploadMultipartRequest($object_key, $options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function uploadMultipartValidate($operation)

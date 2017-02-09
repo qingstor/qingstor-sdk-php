@@ -17,8 +17,7 @@
 
 namespace QingStor\SDK\Service;
 
-use QingStor\SDK\Signer;
-use QingStor\SDK\Builder;
+use QingStor\SDK\Request;
 use QingStor\SDK\Unpacker;
 
 // QingStor provides QingStor Service API (API Version 2016-01-06)
@@ -37,7 +36,7 @@ class QingStor
      *
      * @param string 'Location' Limits results to buckets that in the location
      *
-     * @return Signer
+     * @return Request
      */
     public function listBucketsRequest($options = array())
     {
@@ -56,16 +55,10 @@ class QingStor
             'Properties' => array(),
             'Body' => null,
         );
-        $this->listsValidate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
+        $this->listBucketsValidate($operation);
+        $req = new Request($this->config, $operation);
 
-        return $signer;
+        return $req;
     }
 
     /**
@@ -81,13 +74,13 @@ class QingStor
      */
     public function listBuckets($options = array())
     {
-        $signer = $this->listBucketsRequest($options);
+        $req = $this->listBucketsRequest($options);
         $retries = $this->config->connection_retries;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: lists');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -110,13 +103,13 @@ class QingStor
      *
      * @param string 'Location' Limits results to buckets that in the location
      *
-     * @return Signer
+     * @return Request
      */
     public function listBucketsQuery($expires, $options = array())
     {
-        $signer = $this->listBucketsRequest($options);
+        $req = $this->listBucketsRequest($options);
 
-        return $signer->query_sign($expires);
+        return $req->query_sign($expires);
     }
 
     public function listBucketsValidate($operation)
