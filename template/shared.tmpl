@@ -149,7 +149,7 @@
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
-     * @return Signer
+     * @return Request
      */
     {{- if ne $belongs "QingStor" }}
     public function {{$opID | camelCase | lowerFirst}}Request(
@@ -197,15 +197,14 @@
         {{- if eq $belongs "Object"}}
         $operation['Properties']['object-key'] = $object_key;
         {{- end}}
+        {{- if ne $belongs "QingStor"}}
         $this->{{$opID | camelCase | lowerFirst}}Validate($operation);
-        $builder = new Builder($this->config, $operation);
-        $request = $builder->parse();
-        $signer = new Signer(
-            $request,
-            $this->config->access_key_id,
-            $this->config->secret_access_key
-        );
-        return $signer;
+        {{- end}}
+        {{- if eq $belongs "QingStor"}}
+        $this->{{$operation.ID | camelCase | lowerFirst}}Validate($operation);
+        {{- end}}
+        $req = new Request($this->config, $operation);
+        return $req;
     }
 {{- end}}
 
@@ -257,10 +256,10 @@
         {{- if $hasInput -}}$options=array(){{- end -}})
     {
         {{- if ne $belongs "QingStor" }}
-        $signer = $this->{{$opID | camelCase | lowerFirst}}Request(
+        $req = $this->{{$opID | camelCase | lowerFirst}}Request(
         {{- end}}
         {{- if eq $belongs "QingStor" }}
-        $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request(
+        $req = $this->{{$operation.ID | camelCase | lowerFirst}}Request(
         {{- end}}
         {{- if eq $belongs "Object" -}}$object_key{{- end -}}
         {{- if and (eq $belongs "Object") $hasInput -}},{{- end -}}
@@ -270,7 +269,7 @@
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: {{$opID | camelCase | lowerFirst}}');
                 $response = new Unpacker($this->config->client->send(
-                    $signer->sign()
+                    $req->sign()
                 ));
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
@@ -318,7 +317,7 @@
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      *
-     * @return Signer
+     * @return Request
      */
     {{- if ne $belongs "QingStor" }}
     public function {{$opID | camelCase | lowerFirst}}Query(
@@ -331,15 +330,15 @@
     {{- if $hasInput -}},$options=array(){{- end -}})
         {
             {{- if ne $belongs "QingStor" }}
-            $signer = $this->{{$opID | camelCase | lowerFirst}}Request(
+            $req = $this->{{$opID | camelCase | lowerFirst}}Request(
             {{- end}}
             {{- if eq $belongs "QingStor" }}
-            $signer = $this->{{$operation.ID | camelCase | lowerFirst}}Request(
+            $req = $this->{{$operation.ID | camelCase | lowerFirst}}Request(
             {{- end}}
             {{- if eq $belongs "Object" -}}$object_key{{- end -}}
             {{- if and (eq $belongs "Object") $hasInput -}},{{- end -}}
             {{- if $hasInput}}$options{{- end -}});
-            return $signer->query_sign($expires);
+            return $req->query_sign($expires);
         }
     {{- end}}
 

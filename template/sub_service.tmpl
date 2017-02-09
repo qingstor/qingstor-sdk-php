@@ -25,14 +25,12 @@
 {{$customizedTypes := .Data.CustomizedTypes}}
 namespace QingStor\SDK\Service;
 
-use QingStor\SDK\Builder;
-use QingStor\SDK\Signer;
+use QingStor\SDK\Request;
 use QingStor\SDK\Exception;
 use QingStor\SDK\Unpacker;
 
 class Bucket
 {
-
     function __construct($config, $properties)
     {
         $this->config = $config;
