@@ -936,6 +936,105 @@ class Bucket
     }
 
     /**
+     * listMultipartUploadsRequest: Build ListMultipartUploads's request.
+     *
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/list_multipart_uploads.html Documentation URL
+     *
+     * @param string 'delimiter' Put all keys that share a common prefix into a list
+     * @param int 'limit' Results count limit
+     * @param string 'marker' Limit results to keys that start at this marker
+     * @param string 'prefix' Limits results to keys that begin with the prefix
+     *
+     * @return Request
+     */
+    public function listMultipartUploadsRequest($options = array())
+    {
+        $operation = array(
+            'API' => 'ListMultipartUploads',
+            'Method' => 'GET',
+            'Uri' => '/<bucket-name>?uploads',
+            'Headers' => array(
+                'Host' => $this->properties['zone'].'.'.$this->config->host,
+            ),
+            'Params' => array(
+                'delimiter' => isset($options['delimiter']) ? $options['delimiter'] : null,
+                'limit' => isset($options['limit']) ? $options['limit'] : null,
+                'marker' => isset($options['marker']) ? $options['marker'] : null,
+                'prefix' => isset($options['prefix']) ? $options['prefix'] : null,
+            ),
+            'Elements' => array(
+            ),
+            'Properties' => $this->properties,
+            'Body' => null,
+        );
+        $this->listMultipartUploadsValidate($operation);
+        $req = new Request($this->config, $operation);
+
+        return $req;
+    }
+
+    /**
+     * listMultipartUploads: List multipart uploads in the bucket.
+     *
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/list_multipart_uploads.html Documentation URL
+     *
+     * @param string 'delimiter' Put all keys that share a common prefix into a list
+     * @param int 'limit' Results count limit
+     * @param string 'marker' Limit results to keys that start at this marker
+     * @param string 'prefix' Limits results to keys that begin with the prefix
+     *
+     * @return Unpacker
+     *
+     * @throws \Exception
+     */
+    public function listMultipartUploads($options = array())
+    {
+        $req = $this->listMultipartUploadsRequest($options);
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: listMultipartUploads');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+
+        return $response;
+    }
+
+    /**
+     * listMultipartUploadsQuery: listMultipartUploads's Query Sign Way.
+     *
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/list_multipart_uploads.html Documentation URL
+     *
+     * @param string 'delimiter' Put all keys that share a common prefix into a list
+     * @param int 'limit' Results count limit
+     * @param string 'marker' Limit results to keys that start at this marker
+     * @param string 'prefix' Limits results to keys that begin with the prefix
+     *
+     * @return Request
+     */
+    public function listMultipartUploadsQuery($expires, $options = array())
+    {
+        $req = $this->listMultipartUploadsRequest($options);
+
+        return $req->query_sign($expires);
+    }
+
+    public function listMultipartUploadsValidate($operation)
+    {
+    }
+
+    /**
      * listObjectsRequest: Build ListObjects's request.
      *
      * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
