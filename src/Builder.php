@@ -104,7 +104,7 @@ class Builder
     {
         $parsedProperties = null;
         foreach ($this->operation['Properties'] as $key => $value) {
-            if ($value !== '' && $value !== array() && $value !== null) {
+            if ($value !== '' && $value !== null) {
                 $parsedProperties[$key] = $value;
                 $GLOBALS['logger']->debug($key.': '.$value);
             }
