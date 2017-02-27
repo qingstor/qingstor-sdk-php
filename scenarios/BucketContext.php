@@ -63,13 +63,6 @@ class BucketContext implements Context
     /** @AfterSuite */
     public static function teardown(AfterSuiteScope $scope)
     {
-        $config = new Config();
-        $test_config = spyc_load_file('test_config.yaml');
-        $test_service = new QingStor(
-            $config
-        );
-        $test_bucket = $test_service->Bucket($test_config['bucket_name'], $test_config['zone']);
-        $test_bucket->delete();
     }
 
     // ----------------------------------------------------------------------------
@@ -484,5 +477,29 @@ class BucketContext implements Context
     public function deleteBucketPolicyStatusCodeIs($arg1)
     {
         PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    /**
+     * @Given an object created by Initiate Multipart Upload
+     */
+    public function anObjectCreatedByInitiateMultipartUpload()
+    {
+        $this->test_bucket->initiateMultipartUpload('list_multipart_uploads');
+    }
+
+    /**
+     * @When list multipart uploads
+     */
+    public function listMultipartUploads()
+    {
+        $this->res = $this->test_bucket->listMultipartUploads();
+    }
+
+    /**
+     * @Then list multipart uploads count is :arg1
+     */
+    public function listMultipartUploadsCountIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, count($this->res->uploads));
     }
 }

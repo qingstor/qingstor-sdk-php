@@ -44,8 +44,10 @@ class Unpacker
         if ($this->{'Content-Type'} === 'application/json') {
             if ($body !== '') {
                 $data = json_decode($body, true);
-                foreach ($data as $key => $value) {
-                    $this->$key = $value;
+                if (is_array($data)) {
+                    foreach ($data as $key => $value) {
+                        $this->$key = $value;
+                    }
                 }
             }
         } else {
