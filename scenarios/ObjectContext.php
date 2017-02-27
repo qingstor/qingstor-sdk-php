@@ -52,18 +52,15 @@ class ObjectContext implements Context
         );
         $test_bucket = $test_service->Bucket($test_config['bucket_name'], $test_config['zone']);
         $test_bucket->put();
+        exec('dd if=/dev/zero of=/tmp/sdk_bin bs=1048576 count=1');
+        exec('dd if=/dev/zero of=/tmp/sdk_bin_part bs=1048576 count=5');
     }
 
     /** @AfterFeature */
     public static function teardownFeature(AfterFeatureScope $scope)
     {
-        $config = new Config();
-        $test_config = spyc_load_file('test_config.yaml');
-        $test_service = new QingStor(
-            $config
-        );
-        $test_bucket = $test_service->Bucket($test_config['bucket_name'], $test_config['zone']);
-        $test_bucket->delete();
+        exec('rm -f /tmp/sdk_bin');
+        exec('rm -f /tmp/sdk_bin_part');
     }
 
     // ----------------------------------------------------------------------------
@@ -73,14 +70,12 @@ class ObjectContext implements Context
      */
     public function putObjectWithKey($arg1)
     {
-        exec('dd if=/dev/zero of=/tmp/sdk_bin bs=1048576 count=1');
         $this->res = self::$test_bucket->putObject(
             $arg1,
             array(
                 'body' => fopen('/tmp/sdk_bin', 'r'),
             )
         );
-        exec('rm -f /tmp/sdk_bin');
     }
 
     /**
@@ -97,9 +92,9 @@ class ObjectContext implements Context
     public function copyObjectWithKey($arg1)
     {
         $this->res = self::$test_bucket->putObject(
-            "$arg1",
+            $arg1.'copy',
             array(
-                'x_qs_copy_source' => '/'.$this->test_config['bucket_name'].'/'.'test_object',
+                'x_qs_copy_source' => '/'.$this->test_config['bucket_name'].'/'.$arg1,
             )
         );
     }
@@ -118,9 +113,9 @@ class ObjectContext implements Context
     public function moveObjectWithKey($arg1)
     {
         $this->res = self::$test_bucket->putObject(
-            $arg1,
+            $arg1.'move',
             array(
-                'x_qs_move_source' => '/'.$this->test_config['bucket_name'].'/'.'test_copy_object',
+                'x_qs_move_source' => '/'.$this->test_config['bucket_name'].'/'.$arg1.'copy',
             )
         );
     }
@@ -134,12 +129,12 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When get object
+     * @When get object with key :arg1
      */
-    public function getObject()
+    public function getObject($arg1)
     {
         $this->res = self::$test_bucket->getObject(
-            'test_object'
+            $arg1
         );
     }
 
@@ -160,13 +155,13 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When get object with query signature
+     * @When get object :arg1 with query signature
      */
-    public function getObjectWithQuerySignature()
+    public function getObjectWithQuerySignature($arg1)
     {
         $client = new \GuzzleHttp\Client();
         $req = self::$test_bucket->getObjectQuery(
-            'test_object',
+            $arg1,
             time() + 10
         );
         $this->res = new \QingStor\SDK\Unpacker($client->send($req));
@@ -181,14 +176,14 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When get object with content type :arg1
+     * @When get object :arg1 with content type :arg2
      */
-    public function getObjectWithContentType($arg1)
+    public function getObjectWithContentType($arg1, $arg2)
     {
         $this->res = self::$test_bucket->getObject(
-            'test_object',
+            $arg1,
             array(
-                'response-content-type' => $arg1,
+                'response-content-type' => $arg2,
             )
         );
     }
@@ -202,11 +197,11 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When head object
+     * @When head object with key :arg1
      */
-    public function headObject()
+    public function headObject($arg1)
     {
-        $this->res = self::$test_bucket->headObject('test_object');
+        $this->res = self::$test_bucket->headObject($arg1);
     }
 
     /**
@@ -218,15 +213,15 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When options object with method :arg1 and origin :arg2
+     * @When options object :arg1 with method :arg2 and origin :arg3
      */
-    public function optionsObjectWithMethodAndOrigin($arg1, $arg2)
+    public function optionsObjectWithMethodAndOrigin($arg1, $arg2, $arg3)
     {
         $this->res = self::$test_bucket->optionsObject(
-            'test_object',
+            $arg1,
             array(
-                'Access-Control-Request-Method' => $arg1,
-                'Origin' => $arg2,
+                'Access-Control-Request-Method' => $arg2,
+                'Origin' => $arg3,
             )
         );
     }
@@ -240,11 +235,11 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When delete object
+     * @When delete object with key :arg1
      */
-    public function deleteObject()
+    public function deleteObject($arg1)
     {
-        $this->res = self::$test_bucket->deleteObject('test_object');
+        $this->res = self::$test_bucket->deleteObject($arg1);
     }
 
     /**
@@ -256,11 +251,11 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When delete the move object
+     * @When delete the move object with key :arg1
      */
-    public function deleteTheMoveObject()
+    public function deleteTheMoveObject($arg1)
     {
-        $this->res = self::$test_bucket->deleteObject('test_move_object');
+        $this->res = self::$test_bucket->deleteObject($arg1.'move');
     }
 
     /**
@@ -297,20 +292,18 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When upload the first part
+     * @When upload the first part with key :arg1
      */
-    public function uploadTheFirstPart()
+    public function uploadTheFirstPart($arg1)
     {
-        exec('dd if=/dev/zero of=/tmp/sdk_bin_part_0 bs=1048576 count=5');
         $this->res = self::$test_bucket->uploadMultipart(
-            'test_object_multipart',
+            $arg1,
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 0,
-                'body' => fopen('/tmp/sdk_bin_part_0', 'r'),
+                'body' => fopen('/tmp/sdk_bin_part', 'r'),
             )
         );
-        exec('rm -f /tmp/sdk_bin_part_0');
     }
 
     /**
@@ -322,20 +315,18 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When upload the second part
+     * @When upload the second part with key :arg1
      */
-    public function uploadTheSecondPart()
+    public function uploadTheSecondPart($arg1)
     {
-        exec('dd if=/dev/zero of=/tmp/sdk_bin_part_1 bs=1048576 count=5');
         $this->res = self::$test_bucket->uploadMultipart(
-            'test_object_multipart',
+            $arg1,
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 1,
-                'body' => fopen('/tmp/sdk_bin_part_1', 'r'),
+                'body' => fopen('/tmp/sdk_bin_part', 'r'),
             )
         );
-        exec('rm -f /tmp/sdk_bin_part_1');
     }
 
     /**
@@ -347,20 +338,18 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When upload the third part
+     * @When upload the third part with key :arg1
      */
-    public function uploadTheThirdPart()
+    public function uploadTheThirdPart($arg1)
     {
-        exec('dd if=/dev/zero of=/tmp/sdk_bin_part_2 bs=1048576 count=5');
         $this->res = self::$test_bucket->uploadMultipart(
-            'test_object_multipart',
+            $arg1,
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'part_number' => 2,
-                'body' => fopen('/tmp/sdk_bin_part_2', 'r'),
+                'body' => fopen('/tmp/sdk_bin_part', 'r'),
             )
         );
-        exec('rm -f /tmp/sdk_bin_part_2');
     }
 
     /**
@@ -374,12 +363,12 @@ class ObjectContext implements Context
     public static $complete_multipart_upload_output;
 
     /**
-     * @When list multipart
+     * @When list multipart with key :arg1
      */
-    public function listMultipart()
+    public function listMultipart($arg1)
     {
         self::$complete_multipart_upload_output = self::$test_bucket->listMultipart(
-            'test_object_multipart',
+            $arg1,
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
             )
@@ -403,12 +392,12 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When Complete multipart upload
+     * @When complete multipart upload with key :arg1
      */
-    public function completeMultipartUpload()
+    public function completeMultipartUpload($arg1)
     {
         $this->res = self::$test_bucket->completeMultipartUpload(
-            'test_object_multipart',
+            $arg1,
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
                 'etag' => '"4072783b8efb99a9e5817067d68f61c6"',
@@ -426,12 +415,12 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When abort multipart upload
+     * @When abort multipart upload with key :arg1
      */
-    public function abortMultipartUpload()
+    public function abortMultipartUpload($arg1)
     {
         $this->res = self::$test_bucket->abortMultipartUpload(
-            'test_object_multipart',
+            $arg1,
             array(
                 'upload_id' => self::$initiate_multipart_upload_output->upload_id,
             )
@@ -447,11 +436,11 @@ class ObjectContext implements Context
     }
 
     /**
-     * @When delete the multipart object
+     * @When delete the multipart object with key :arg1
      */
-    public function deleteTheMultipartObject()
+    public function deleteTheMultipartObject($arg1)
     {
-        $this->res = self::$test_bucket->deleteObject('test_object_multipart');
+        $this->res = self::$test_bucket->deleteObject($arg1);
     }
 
     /**
