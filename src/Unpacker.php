@@ -17,14 +17,29 @@
 
 namespace QingStor\SDK;
 
+use GuzzleHttp\ClientInterface;
+use QingStor\SDK\Handler as QingStorHandler;
+
 class Unpacker
 {
     public function __construct($res)
     {
-        $this->res = $res;
+        $this->res = $this->handler($res);
         $this->statusCode = $res->getStatusCode();
         $this->unpackResponseHeaders();
         $this->unpackResponseBody();
+    }
+
+    public function handler($res)
+    {
+        $version = (string) ClientInterface::VERSION;
+        if ($version[0] === '5') {
+            return QingStorHandler\GuzzleV5\createPsr7Response($res);
+        } elseif ($version[0] === '6') {
+            return QingStorHandler\GuzzleV6\createPsr7Response($res);
+        } else {
+            throw new \RuntimeException('Unknown Guzzle version: '.$version);
+        }
     }
 
     public function unpackResponseHeaders()

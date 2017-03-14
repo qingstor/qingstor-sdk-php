@@ -17,9 +17,8 @@
 
 namespace QingStor\SDK;
 
-use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Psr7\Request as PsrRequest;
+use QingStor\SDK\Handler as QingStorHandler;
 
 class Request
 {
@@ -38,34 +37,16 @@ class Request
         $this->secret_access_key = $config->secret_access_key;
     }
 
-    private function handler(PsrRequest $req)
+    private function handler($req)
     {
         $version = (string) ClientInterface::VERSION;
         if ($version[0] === '5') {
-            return $this->createGuzzleRequest($req);
+            return QingStorHandler\GuzzleV5\createGuzzleRequest($this->config->client, $req);
         } elseif ($version[0] === '6') {
-            return $req;
+            return QingStorHandler\GuzzleV6\createPsr7Request($req);
         } else {
             throw new \RuntimeException('Unknown Guzzle version: '.$version);
         }
-    }
-
-    private function createGuzzleRequest(PsrRequest $req)
-    {
-        $request = $this->config->client->createRequest(
-            $req->getMethod(),
-            $req->getUri(),
-            ['exceptions' => false]
-        );
-        $body = $req->getBody();
-        if ($body->getSize() === 0) {
-            $request->setBody(null);
-        } else {
-            $request->setBody(Stream::factory($body));
-        }
-        $request->setHeaders($req->getHeaders());
-
-        return $request;
     }
 
     public function sign()
@@ -88,7 +69,7 @@ class Request
             )
         );
 
-        return $this->handler($req);
+        return $this->handler($this->req);
     }
 
     public function getContentMD5()
