@@ -36,7 +36,11 @@
     "psr-4": {
       "QingStor\\SDK\\": "src/",
       "QingStor\\SDK\\Service\\": "src/QingStor/"
-    }
+    },
+    "files": [
+      "src/Handler/GuzzleV5/GuzzleHandler.php",
+      "src/Handler/GuzzleV6/GuzzleHandler.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {

@@ -17,7 +17,7 @@
 
 namespace QingStor\SDK;
 
-use GuzzleHttp\Psr7\Request as PsrRequest;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 
 class Builder
 {
@@ -33,7 +33,7 @@ class Builder
     public function parse()
     {
         $GLOBALS['logger']->debug('RequestURL'.': '.$this->parseRequestURL());
-        $request = new PsrRequest(
+        $request = new Psr7Request(
             $this->operation['Method'],
             $this->parseRequestURL(),
             $this->parseRequestHeaders(),
