@@ -41,7 +41,7 @@ class Config
 
     public function __construct($access_key_id = '', $secret_access_key = '')
     {
-        $GLOBALS['version'] = '2.2.0';
+        $GLOBALS['version'] = '2.2.1';
         $this->client = new Client([
             'http_errors' => false,
         ]);
