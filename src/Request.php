@@ -61,7 +61,10 @@ class Request
 
     public function query_sign($expires)
     {
-        $req = $this->req->withUri(
+        $this->req = $this->req
+            ->withoutHeader('Content-Type')
+            ->withoutHeader('Content-MD5');
+        $this->req = $this->req->withUri(
             $this->req->getUri()->withQuery(
                 'signature='.$this->getQuerySignature($expires)
                 .'&'.'access_key_id='.$this->access_key_id
