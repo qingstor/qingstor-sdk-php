@@ -14,7 +14,7 @@ composer require yunify/qingstor-sdk
 2. Include in your php code
 
 ```php
-include 'qingstor-sdk.phar';
+include '/path/to/qingstor-sdk.phar';
 ```
 
 or
@@ -29,10 +29,11 @@ require_once '/path/to/qingstor-sdk.phar';
 
 ```bash
 git clone git@github.com:yunify/qingstor-sdk-php.git
+cd qingstor-sdk-php && composer install
 ```
 
 2. Require `autoload.php` in your php code
 
 ```php
-require_once '/path/to/qingstor-sdk/autoload.php';
+require_once '/path/to/qingstor-sdk/vendor/autoload.php';
 ```
