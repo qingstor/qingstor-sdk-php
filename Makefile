@@ -43,7 +43,7 @@ unit:
 
 build:
 	@echo "build phar"
-	rm -rf composer.lock vendor/
+	rm -rf composer.lock vendor/ *.phar
 	composer install --no-dev
 	phar-composer build . qingstor-sdk-php-$(version).phar
 	@echo "ok"
