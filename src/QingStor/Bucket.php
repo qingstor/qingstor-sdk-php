@@ -26,6 +26,9 @@ class Bucket
 {
     public function __construct($config, $properties)
     {
+        // Zone should be forced to lower case
+        $properties['zone'] = strtolower($properties['zone']);
+
         $this->config = $config;
         $this->properties = $properties;
     }
