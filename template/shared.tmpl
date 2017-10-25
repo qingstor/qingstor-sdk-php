@@ -24,7 +24,7 @@
     public function {{$operation.ID | camelCase | lowerFirst}}Validate($operation)
     {{- end}}
     {
-    {{- $i := passThrough "operation['Params']" $operation $request.Params $customizedTypes}}
+    {{- $i := passThrough "operation['Params']" $operation $request.Query $customizedTypes}}
     {{- template "RenderCustomizedTypeValidation" $i}}
     {{- $i := passThrough "operation['Headers']" $operation $request.Headers $customizedTypes}}
     {{- template "RenderCustomizedTypeValidation" $i}}
@@ -119,16 +119,16 @@
     {{- $operation := index . 1}}
     {{$opID := replace $operation.ID "Bucket" "" -1}}
 
-    {{- $hasParams := gt (len $operation.Request.Params.Properties) 0}}
+    {{- $hasParams := gt (len $operation.Request.Query.Properties) 0}}
     {{- $hasHeaders := gt (len $operation.Request.Headers.Properties) 0}}
     {{- $hasElements := gt (len $operation.Request.Elements.Properties) 0}}
     {{- $hasStringBody := eq $operation.Request.Body.Type "string"}}
     {{- $hasBinaryBody := eq $operation.Request.Body.Type "binary"}}
     {{- $hasInput := or $hasParams $hasHeaders $hasElements $hasStringBody $hasBinaryBody}}
-    {{- $uri := $operation.Request.URI}}
-    {{- $uri := replace $uri "{" "<" -1}}
-    {{- $uri := replace $uri "}" ">" -1}}
-    {{- $uri := dashConnected $uri}}
+    {{- $path := $operation.Request.Path}}
+    {{- $path := replace $path "{" "<" -1}}
+    {{- $path := replace $path "}" ">" -1}}
+    {{- $path := dashConnected $path}}
     /**
      {{- if ne $belongs "QingStor"}}
      * {{$opID | camelCase | lowerFirst}}Request: Build {{$opID}}'s request
@@ -142,7 +142,7 @@
      {{- range $id, $property := $operation.Request.Headers.Properties}}
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
-     {{- range $id, $property := $operation.Request.Params.Properties}}
+     {{- range $id, $property := $operation.Request.Query.Properties}}
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
@@ -164,7 +164,7 @@
         $operation = array(
             'API' => '{{$operation.ID}}',
             'Method' => '{{$operation.Request.Method}}',
-            'Uri' => '{{$uri}}',
+            'Uri' => '{{$path}}',
             'Headers' => array(
                 {{- if ne $belongs "QingStor" }}
                 'Host' => $this->properties['zone'] . '.' . $this->config->host,
@@ -177,7 +177,7 @@
                 {{- end}}
             ),
             'Params' => array(
-                {{- range $id, $property := $operation.Request.Params.Properties}}
+                {{- range $id, $property := $operation.Request.Query.Properties}}
                 '{{$property.Name}}'=> isset($options['{{$property.Name}}'])?$options['{{$property.Name}}']:null,
                 {{- end}}
             ),
@@ -213,7 +213,7 @@
     {{- $operation := index . 1}}
     {{$opID := replace $operation.ID "Bucket" "" -1}}
 
-    {{- $hasParams := gt (len $operation.Request.Params.Properties) 0}}
+    {{- $hasParams := gt (len $operation.Request.Query.Properties) 0}}
     {{- $hasHeaders := gt (len $operation.Request.Headers.Properties) 0}}
     {{- $hasElements := gt (len $operation.Request.Elements.Properties) 0}}
     {{- $hasStringBody := eq $operation.Request.Body.Type "string"}}
@@ -233,7 +233,7 @@
      {{- range $id, $property := $operation.Request.Headers.Properties}}
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
-     {{- range $id, $property := $operation.Request.Params.Properties}}
+     {{- range $id, $property := $operation.Request.Query.Properties}}
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
@@ -290,7 +290,7 @@
     {{- $operation := index . 1}}
     {{$opID := replace $operation.ID "Bucket" "" -1}}
 
-    {{- $hasParams := gt (len $operation.Request.Params.Properties) 0}}
+    {{- $hasParams := gt (len $operation.Request.Query.Properties) 0}}
     {{- $hasHeaders := gt (len $operation.Request.Headers.Properties) 0}}
     {{- $hasElements := gt (len $operation.Request.Elements.Properties) 0}}
     {{- $hasStringBody := eq $operation.Request.Body.Type "string"}}
@@ -310,7 +310,7 @@
      {{- range $id, $property := $operation.Request.Headers.Properties}}
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
-     {{- range $id, $property := $operation.Request.Params.Properties}}
+     {{- range $id, $property := $operation.Request.Query.Properties}}
      * @param {{$property.Type}} '{{$property.ID}}' {{$property.Description}}
      {{- end}}
      {{- range $id, $property := $operation.Request.Elements.Properties}}
