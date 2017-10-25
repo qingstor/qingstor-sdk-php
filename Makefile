@@ -25,10 +25,11 @@ generate:
 		echo "ERROR: Command \"snips\" not found."; \
 	fi
 	snips \
-		--service=qingstor --service-api-version=latest \
-		--spec="./specs" --template="./template" --output="./src/QingStor"
+		-f ./specs/qingstor/2016-01-06/swagger/api_v2.0.json \
+		-t="./template" \
+		-o="./src/QingStor"
 	rm ./src/QingStor/Object.php
-	-php-cs-fixer fix --level=symfony .
+	-php-cs-fixer fix .
 	@echo "ok"
 
 update:
