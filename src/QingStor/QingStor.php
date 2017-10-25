@@ -15,12 +15,14 @@
 // | limitations under the License.
 // +-------------------------------------------------------------------------
 
+
 namespace QingStor\SDK\Service;
 
 use QingStor\SDK\Request;
 use QingStor\SDK\Unpacker;
+use QingStor\SDK\Exception;
 
-// QingStor provides QingStor Service API (API Version 2016-01-06)
+# QingStor provides QingStor Service API (API Version 2016-01-06)
 
 class QingStor
 {
@@ -28,17 +30,15 @@ class QingStor
     {
         $this->config = $config;
     }
-
+    
     /**
-     * listBucketsRequest: Build Lists's request.
-     *
+     * listBucketsRequest: Build Lists's request
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
-     *
      * @param string 'Location' Limits results to buckets that in the location
      *
      * @return Request
      */
-    public function listBucketsRequest($options = array())
+    public function listBucketsRequest($options=array())
     {
         $operation = array(
             'API' => 'ListBuckets',
@@ -46,33 +46,29 @@ class QingStor
             'Uri' => '/',
             'Headers' => array(
                 'Host' => $this->config->host,
-                'Location' => isset($options['Location']) ? $options['Location'] : null,
+                'Location' => isset($options['Location'])?$options['Location']:null,
             ),
             'Params' => array(
             ),
             'Elements' => array(
             ),
             'Properties' => array(),
-            'Body' => null,
+            'Body' => null
         );
         $this->listBucketsValidate($operation);
         $req = new Request($this->config, $operation);
-
         return $req;
     }
+    
 
     /**
      * listBuckets: Retrieve the bucket list.
-     *
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
-     *
      * @param string 'Location' Limits results to buckets that in the location
-     *
      * @return Unpacker
-     *
      * @throws \Exception
      */
-    public function listBuckets($options = array())
+    public function listBuckets($options=array())
     {
         $req = $this->listBucketsRequest($options);
         $retries = $this->config->connection_retries;
@@ -92,37 +88,34 @@ class QingStor
             }
             break;
         }
-
         return $response;
     }
+    
 
     /**
-     * listBucketsQuery: listBuckets's Query Sign Way.
-     *
+     * listBucketsQuery: listBuckets's Query Sign Way
      * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
-     *
      * @param string 'Location' Limits results to buckets that in the location
      *
      * @return Request
      */
-    public function listBucketsQuery($expires, $options = array())
+    public function listBucketsQuery($expires, $options=array())
     {
         $req = $this->listBucketsRequest($options);
-
         return $req->query_sign($expires);
     }
-
+    
     public function listBucketsValidate($operation)
     {
     }
+
 
     public function Bucket($bucket_name, $zone)
     {
         $properties = array(
             'bucket-name' => $bucket_name,
-            'zone' => $zone,
+            'zone' => $zone
         );
-
         return new Bucket($this->config, $properties);
     }
 }
