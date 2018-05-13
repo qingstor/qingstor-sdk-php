@@ -127,18 +127,18 @@ class Builder
             $endpoint = $this->config->protocol.'://'.$zone.'.'.$this->config->host.':'.$port;
         }
         $requestURI = $this->operation['Uri'];
-        if (count($properties)) {
+        if (count((array)$properties)) {
             foreach ($properties as $key => $value) {
-                $endpoint = str_replace('<'.$key.'>', urlencode($value), $endpoint);
-                $requestURI = str_replace('<'.$key.'>', urlencode($value), $requestURI);
+                $endpoint = str_replace('<'.$key.'>', rawurlencode($value), $endpoint);
+                $requestURI = str_replace('<'.$key.'>', rawurlencode($value), $requestURI);
             }
         }
         $parsedURL = $endpoint.$requestURI;
         $params = $this->parseRequestParams();
-        if (count($params)) {
+        if (count((array)$params)) {
             $paramsParts = array();
             foreach ($params as $key => $value) {
-                $paramsParts[] = $key.'='.urlencode($value);
+                $paramsParts[] = $key.'='.rawurlencode($value);
             }
             $joined = implode('&', $paramsParts);
             if ($joined) {
