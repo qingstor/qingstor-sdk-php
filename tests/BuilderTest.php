@@ -63,7 +63,7 @@ class BuilderTest extends TestCase
             'Properties' => array(
                 'zone' => 'pek3a',
                 'bucket-name' => 'test_bucket',
-                'object-key' => '中文测试.json',
+                'object-key' => '中文 测试.json',
             ),
             'Body' => null,
         );
@@ -115,7 +115,7 @@ class BuilderTest extends TestCase
             array(
                 'zone' => 'pek3a',
                 'bucket-name' => 'test_bucket',
-                'object-key' => '中文测试.json',
+                'object-key' => '中文 测试.json',
             ),
             $parsedProperties
         );
@@ -126,7 +126,7 @@ class BuilderTest extends TestCase
         $parsedURL = $this->testBuilder->parseRequestURL();
 
         $this->assertEquals(
-            'https://pek3a.qingstor.com:443/test_bucket/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95.json?test_params_1=test_val&test_params_2=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95',
+            'https://pek3a.qingstor.com:443/test_bucket/%E4%B8%AD%E6%96%87%20%E6%B5%8B%E8%AF%95.json?test_params_1=test_val&test_params_2=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95',
             $parsedURL
         );
     }
