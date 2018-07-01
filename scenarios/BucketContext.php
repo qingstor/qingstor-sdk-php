@@ -345,6 +345,144 @@ class BucketContext implements Context
     // ----------------------------------------------------------------------------
 
     /**
+     * @When put bucket lifecycle:
+     */
+    public function putBucketLifecycle(PyStringNode $string)
+    {
+        $test_data = json_decode($string, true);
+        $this->res = $this->test_bucket->putLifecycle(
+            array(
+                'cors_rules' => $test_data['cors_rules'],
+            )
+        );
+    }
+
+    /**
+     * @Then put bucket lifecycle status code is :arg1
+     */
+    public function putBucketLifecycleStatusCodeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    /**
+     * @When get bucket lifecycle
+     */
+    public function getBucketLifecycle()
+    {
+        $this->res = $this->test_bucket->getLifecycle();
+    }
+
+    /**
+     * @Then get bucket lifecycle status code is :arg1
+     */
+    public function getBucketLifecycleStatusCodeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    /**
+     * @Then get bucket lifecycle should have filter prefix :arg1
+     */
+    public function getBucketLifecycleShouldHaveFilterPrefix($arg1)
+    {
+        $ok = false;
+        foreach ($this->res->rule as $key => $value) {
+            if ($value['filter']['prefix'] === $arg1) {
+                $ok = true;
+            }
+        }
+        PHPUnit::assertEquals(true, $ok);
+    }
+
+    /**
+     * @When delete bucket lifecycle
+     */
+    public function deleteBucketLifecycle()
+    {
+        $this->res = $this->test_bucket->deleteLifecycle();
+    }
+
+    /**
+     * @Then delete bucket lifecycle status code is :arg1
+     */
+    public function deleteBucketLifecycleStatusCodeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    // ----------------------------------------------------------------------------
+ 
+    /**
+     * @When put bucket notification:
+     */
+    public function putBucketNotification(PyStringNode $string)
+    {
+        $test_data = json_decode($string, true);
+        $this->res = $this->test_bucket->putNotification(
+            array(
+                'cors_rules' => $test_data['cors_rules'],
+            )
+        );
+    }
+
+    /**
+     * @Then put bucket notification status code is :arg1
+     */
+    public function putBucketNotificationStatusCodeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    /**
+     * @When get bucket notification
+     */
+    public function getBucketNotification()
+    {
+        $this->res = $this->test_bucket->getNotification();
+    }
+
+    /**
+     * @Then get bucket notification status code is :arg1
+     */
+    public function getBucketNotificationStatusCodeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    /**
+     * @Then get bucket notification should have cloudfunc :arg1
+     */
+    public function getBucketNotificationShouldHaveCloudfunc($arg1)
+    {
+        $ok = false;
+        foreach ($this->res->notifications as $key => $value) {
+            if ($value['cloudfunc'] === $arg1) {
+                $ok = true;
+            }
+        }
+        PHPUnit::assertEquals(true, $ok);
+    }
+
+    /**
+     * @When delete bucket notification
+     */
+    public function deleteBucketNotification()
+    {
+        $this->res = $this->test_bucket->deleteNotification();
+    }
+
+    /**
+     * @Then delete bucket notification status code is :arg1
+     */
+    public function deleteBucketNotificationStatusCodeIs($arg1)
+    {
+        PHPUnit::assertEquals($arg1, $this->res->statusCode);
+    }
+
+    // ----------------------------------------------------------------------------
+
+    /**
      * @When put bucket external mirror:
      */
     public function putBucketExternalMirror(PyStringNode $string)
