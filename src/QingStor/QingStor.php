@@ -26,7 +26,8 @@ use QingStor\SDK\Exception;
 
 class QingStor
 {
-    public function __construct($config)
+
+    function __construct($config)
     {
         $this->config = $config;
     }
@@ -72,7 +73,7 @@ class QingStor
     {
         $req = $this->listBucketsRequest($options);
         $retries = $this->config->connection_retries;
-        while (1) {
+        while(1){
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: lists');
                 $response = new Unpacker($this->config->client->send(
@@ -99,14 +100,15 @@ class QingStor
      *
      * @return Request
      */
-    public function listBucketsQuery($expires, $options=array())
-    {
-        $req = $this->listBucketsRequest($options);
-        return $req->query_sign($expires);
-    }
+    public function listBucketsQuery($expires,$options=array())
+        {
+            $req = $this->listBucketsRequest($options);
+            return $req->query_sign($expires);
+        }
     
     public function listBucketsValidate($operation)
     {
+      
     }
 
 
@@ -119,3 +121,12 @@ class QingStor
         return new Bucket($this->config, $properties);
     }
 }
+
+
+
+
+
+
+
+
+
