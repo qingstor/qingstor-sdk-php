@@ -260,6 +260,156 @@ class Bucket
 
     
     /**
+     * deleteLifecycleRequest: Build DeleteLifecycle's request
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/delete_lifecycle.html Documentation URL
+     *
+     * @return Request
+     */
+    public function deleteLifecycleRequest()
+    {
+        $operation = array(
+            'API' => 'DeleteBucketLifecycle',
+            'Method' => 'DELETE',
+            'Uri' => '/<bucket-name>?lifecycle',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
+            ),
+            'Params' => array(
+            ),
+            'Elements' => array(
+            ),
+            'Properties' => $this->properties,
+            'Body' => null
+        );
+        $this->deleteLifecycleValidate($operation);
+        $req = new Request($this->config, $operation);
+        return $req;
+    }
+    
+
+    /**
+     * deleteLifecycle: Delete Lifecycle information of the bucket.
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/delete_lifecycle.html Documentation URL
+     * @return Unpacker
+     * @throws \Exception
+     */
+    public function deleteLifecycle()
+    {
+        $req = $this->deleteLifecycleRequest();
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: deleteLifecycle');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+        return $response;
+    }
+    
+
+    /**
+     * deleteLifecycleQuery: deleteLifecycle's Query Sign Way
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/delete_lifecycle.html Documentation URL
+     *
+     * @return Request
+     */
+    public function deleteLifecycleQuery($expires)
+    {
+        $req = $this->deleteLifecycleRequest();
+        return $req->query_sign($expires);
+    }
+    
+    public function deleteLifecycleValidate($operation)
+    {
+    }
+
+    
+    /**
+     * deleteNotificationRequest: Build DeleteNotification's request
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/delete_notification.html Documentation URL
+     *
+     * @return Request
+     */
+    public function deleteNotificationRequest()
+    {
+        $operation = array(
+            'API' => 'DeleteBucketNotification',
+            'Method' => 'DELETE',
+            'Uri' => '/<bucket-name>?notification',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
+            ),
+            'Params' => array(
+            ),
+            'Elements' => array(
+            ),
+            'Properties' => $this->properties,
+            'Body' => null
+        );
+        $this->deleteNotificationValidate($operation);
+        $req = new Request($this->config, $operation);
+        return $req;
+    }
+    
+
+    /**
+     * deleteNotification: Delete Notification information of the bucket.
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/delete_notification.html Documentation URL
+     * @return Unpacker
+     * @throws \Exception
+     */
+    public function deleteNotification()
+    {
+        $req = $this->deleteNotificationRequest();
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: deleteNotification');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+        return $response;
+    }
+    
+
+    /**
+     * deleteNotificationQuery: deleteNotification's Query Sign Way
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/delete_notification.html Documentation URL
+     *
+     * @return Request
+     */
+    public function deleteNotificationQuery($expires)
+    {
+        $req = $this->deleteNotificationRequest();
+        return $req->query_sign($expires);
+    }
+    
+    public function deleteNotificationValidate($operation)
+    {
+    }
+
+    
+    /**
      * deletePolicyRequest: Build DeletePolicy's request
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
      *
@@ -653,6 +803,156 @@ class Bucket
     }
     
     public function getExternalMirrorValidate($operation)
+    {
+    }
+
+    
+    /**
+     * getLifecycleRequest: Build GetLifecycle's request
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/get_lifecycle.html Documentation URL
+     *
+     * @return Request
+     */
+    public function getLifecycleRequest()
+    {
+        $operation = array(
+            'API' => 'GetBucketLifecycle',
+            'Method' => 'GET',
+            'Uri' => '/<bucket-name>?lifecycle',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
+            ),
+            'Params' => array(
+            ),
+            'Elements' => array(
+            ),
+            'Properties' => $this->properties,
+            'Body' => null
+        );
+        $this->getLifecycleValidate($operation);
+        $req = new Request($this->config, $operation);
+        return $req;
+    }
+    
+
+    /**
+     * getLifecycle: Get Lifecycle information of the bucket.
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/get_lifecycle.html Documentation URL
+     * @return Unpacker
+     * @throws \Exception
+     */
+    public function getLifecycle()
+    {
+        $req = $this->getLifecycleRequest();
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: getLifecycle');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+        return $response;
+    }
+    
+
+    /**
+     * getLifecycleQuery: getLifecycle's Query Sign Way
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/get_lifecycle.html Documentation URL
+     *
+     * @return Request
+     */
+    public function getLifecycleQuery($expires)
+    {
+        $req = $this->getLifecycleRequest();
+        return $req->query_sign($expires);
+    }
+    
+    public function getLifecycleValidate($operation)
+    {
+    }
+
+    
+    /**
+     * getNotificationRequest: Build GetNotification's request
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/get_notification.html Documentation URL
+     *
+     * @return Request
+     */
+    public function getNotificationRequest()
+    {
+        $operation = array(
+            'API' => 'GetBucketNotification',
+            'Method' => 'GET',
+            'Uri' => '/<bucket-name>?notification',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
+            ),
+            'Params' => array(
+            ),
+            'Elements' => array(
+            ),
+            'Properties' => $this->properties,
+            'Body' => null
+        );
+        $this->getNotificationValidate($operation);
+        $req = new Request($this->config, $operation);
+        return $req;
+    }
+    
+
+    /**
+     * getNotification: Get Notification information of the bucket.
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/get_notification.html Documentation URL
+     * @return Unpacker
+     * @throws \Exception
+     */
+    public function getNotification()
+    {
+        $req = $this->getNotificationRequest();
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: getNotification');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+        return $response;
+    }
+    
+
+    /**
+     * getNotificationQuery: getNotification's Query Sign Way
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/get_notification.html Documentation URL
+     *
+     * @return Request
+     */
+    public function getNotificationQuery($expires)
+    {
+        $req = $this->getNotificationRequest();
+        return $req->query_sign($expires);
+    }
+    
+    public function getNotificationValidate($operation)
     {
     }
 
@@ -1489,6 +1789,342 @@ class Bucket
 
     
     /**
+     * putLifecycleRequest: Build PutLifecycle's request
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/put_lifecycle.html Documentation URL
+     * @param array 'rule' Bucket Lifecycle rule
+     *
+     * @return Request
+     */
+    public function putLifecycleRequest($options=array())
+    {
+        $operation = array(
+            'API' => 'PutBucketLifecycle',
+            'Method' => 'PUT',
+            'Uri' => '/<bucket-name>?lifecycle',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
+            ),
+            'Params' => array(
+            ),
+            'Elements' => array(
+                'rule' => isset($options['rule'])?$options['rule']:null,
+            ),
+            'Properties' => $this->properties,
+            'Body' => null
+        );
+        $this->putLifecycleValidate($operation);
+        $req = new Request($this->config, $operation);
+        return $req;
+    }
+    
+
+    /**
+     * putLifecycle: Set Lifecycle information of the bucket.
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/put_lifecycle.html Documentation URL
+     * @param array 'rule' Bucket Lifecycle rule
+     * @return Unpacker
+     * @throws \Exception
+     */
+    public function putLifecycle($options=array())
+    {
+        $req = $this->putLifecycleRequest($options);
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: putLifecycle');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+        return $response;
+    }
+    
+
+    /**
+     * putLifecycleQuery: putLifecycle's Query Sign Way
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/put_lifecycle.html Documentation URL
+     * @param array 'rule' Bucket Lifecycle rule
+     *
+     * @return Request
+     */
+    public function putLifecycleQuery($expires, $options=array())
+    {
+        $req = $this->putLifecycleRequest($options);
+        return $req->query_sign($expires);
+    }
+    
+    public function putLifecycleValidate($operation)
+    {
+        if (!isset($operation['Elements']['rule'])
+              || (
+                  $operation['Elements']['rule'] ===''
+                  || $operation['Elements']['rule'] === array()
+                  || $operation['Elements']['rule'] === null
+                  )
+          ) {
+            throw new Exception\ParameterRequiredException('rule', 'PutBucketLifecycleInput');
+        }
+        foreach ($operation['Elements']['rule'] as $key) {
+            if (!isset($key['abort_incomplete_multipart_upload'])
+              ||(
+                  $key['abort_incomplete_multipart_upload'] ===''
+                  || $key['abort_incomplete_multipart_upload'] === array()
+                  || $key['abort_incomplete_multipart_upload'] === null
+                 )
+          ) {
+                if (!isset($key["abort_incomplete_multipart_upload"]['days_after_initiation'])
+          ||(
+              $key["abort_incomplete_multipart_upload"]['days_after_initiation'] ===''
+          || $key["abort_incomplete_multipart_upload"]['days_after_initiation'] === array()
+          || $key["abort_incomplete_multipart_upload"]['days_after_initiation'] === null
+      )) {
+                    throw new Exception\ParameterRequiredException('days_after_initiation', 'abort_incomplete_multipart_upload');
+                }
+            }
+      
+            if (!isset($key['expiration'])
+              ||(
+                  $key['expiration'] ===''
+                  || $key['expiration'] === array()
+                  || $key['expiration'] === null
+                 )
+          ) {
+            }
+      
+            if (!isset($key['filter'])
+              ||(
+                  $key['filter'] ===''
+                  || $key['filter'] === array()
+                  || $key['filter'] === null
+                 )
+          ) {
+                if (!isset($key["filter"]['prefix'])
+          ||(
+              $key["filter"]['prefix'] ===''
+          || $key["filter"]['prefix'] === array()
+          || $key["filter"]['prefix'] === null
+      )) {
+                    throw new Exception\ParameterRequiredException('prefix', 'filter');
+                }
+            }
+            if (!isset($key['filter'])) {
+                throw new Exception\ParameterRequiredException('filter', 'rule');
+            }
+      
+            if (!isset($key['id'])
+          ||(
+              $key['id'] ===''
+          || $key['id'] === array()
+          || $key['id'] === null
+      )) {
+                throw new Exception\ParameterRequiredException('id', 'rule');
+            }
+      
+            if (!isset($key['status'])
+          ||(
+              $key['status'] ===''
+          || $key['status'] === array()
+          || $key['status'] === null
+      )) {
+                throw new Exception\ParameterRequiredException('status', 'rule');
+            }
+            if (!isset($key['status'])
+          || (
+              $key['status'] ===''
+              || $key['status'] === array()
+              || $key['status'] === null
+              )
+          ) {
+                $status_valid_values = array("enabled", "disabled");
+                if (in_array($key['status'], $status_valid_values)) {
+                    throw new Exception\ParameterValueNotAllowedException(
+                  'status',
+                  $key['status'],
+                  $status_valid_values
+              );
+                }
+            }
+      
+            if (!isset($key['transition'])
+              ||(
+                  $key['transition'] ===''
+                  || $key['transition'] === array()
+                  || $key['transition'] === null
+                 )
+          ) {
+                if (!isset($key["transition"]['storage_class'])
+          ||(
+              $key["transition"]['storage_class'] ===''
+          || $key["transition"]['storage_class'] === array()
+          || $key["transition"]['storage_class'] === null
+      )) {
+                    throw new Exception\ParameterRequiredException('storage_class', 'transition');
+                }
+            }
+        }
+    }
+
+    
+    /**
+     * putNotificationRequest: Build PutNotification's request
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/put_notification.html Documentation URL
+     * @param array 'notifications' Bucket Notification
+     *
+     * @return Request
+     */
+    public function putNotificationRequest($options=array())
+    {
+        $operation = array(
+            'API' => 'PutBucketNotification',
+            'Method' => 'PUT',
+            'Uri' => '/<bucket-name>?notification',
+            'Headers' => array(
+                'Host' => $this->properties['zone'] . '.' . $this->config->host,
+            ),
+            'Params' => array(
+            ),
+            'Elements' => array(
+                'notifications' => isset($options['notifications'])?$options['notifications']:null,
+            ),
+            'Properties' => $this->properties,
+            'Body' => null
+        );
+        $this->putNotificationValidate($operation);
+        $req = new Request($this->config, $operation);
+        return $req;
+    }
+    
+
+    /**
+     * putNotification: Set Notification information of the bucket.
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/put_notification.html Documentation URL
+     * @param array 'notifications' Bucket Notification
+     * @return Unpacker
+     * @throws \Exception
+     */
+    public function putNotification($options=array())
+    {
+        $req = $this->putNotificationRequest($options);
+        $retries = $this->config->connection_retries;
+        while (1) {
+            try {
+                $GLOBALS['logger']->info('Sending QingStor request: putNotification');
+                $response = new Unpacker($this->config->client->send(
+                    $req->sign()
+                ));
+            } catch (\Exception $e) {
+                $GLOBALS['logger']->error($e->getMessage());
+                if ($retries > 0) {
+                    $retries -= 1;
+                } else {
+                    throw new \Exception('Network Error');
+                }
+            }
+            break;
+        }
+        return $response;
+    }
+    
+
+    /**
+     * putNotificationQuery: putNotification's Query Sign Way
+     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/put_notification.html Documentation URL
+     * @param array 'notifications' Bucket Notification
+     *
+     * @return Request
+     */
+    public function putNotificationQuery($expires, $options=array())
+    {
+        $req = $this->putNotificationRequest($options);
+        return $req->query_sign($expires);
+    }
+    
+    public function putNotificationValidate($operation)
+    {
+        if (!isset($operation['Elements']['notifications'])
+              || (
+                  $operation['Elements']['notifications'] ===''
+                  || $operation['Elements']['notifications'] === array()
+                  || $operation['Elements']['notifications'] === null
+                  )
+          ) {
+            throw new Exception\ParameterRequiredException('notifications', 'PutBucketNotificationInput');
+        }
+        foreach ($operation['Elements']['notifications'] as $key) {
+            if (!isset($key['cloudfunc'])
+          ||(
+              $key['cloudfunc'] ===''
+          || $key['cloudfunc'] === array()
+          || $key['cloudfunc'] === null
+      )) {
+                throw new Exception\ParameterRequiredException('cloudfunc', 'notification');
+            }
+            if (!isset($key['cloudfunc'])
+          || (
+              $key['cloudfunc'] ===''
+              || $key['cloudfunc'] === array()
+              || $key['cloudfunc'] === null
+              )
+          ) {
+                $cloudfunc_valid_values = array("tupu-porn", "notifier", "image");
+                if (in_array($key['cloudfunc'], $cloudfunc_valid_values)) {
+                    throw new Exception\ParameterValueNotAllowedException(
+                  'cloudfunc',
+                  $key['cloudfunc'],
+                  $cloudfunc_valid_values
+              );
+                }
+            }
+      
+            if (!isset($key['cloudfunc_args'])
+              ||(
+                  $key['cloudfunc_args'] ===''
+                  || $key['cloudfunc_args'] === array()
+                  || $key['cloudfunc_args'] === null
+                 )
+          ) {
+                if (!isset($key["cloudfunc_args"]['action'])
+          ||(
+              $key["cloudfunc_args"]['action'] ===''
+          || $key["cloudfunc_args"]['action'] === array()
+          || $key["cloudfunc_args"]['action'] === null
+      )) {
+                    throw new Exception\ParameterRequiredException('action', 'cloudfunc_args');
+                }
+            }
+      
+            if (!isset($key['event_types'])
+              || (
+                  $key['event_types'] ===''
+                  || $key['event_types'] === array()
+                  || $key['event_types'] === null
+                  )
+          ) {
+                throw new Exception\ParameterRequiredException('event_types', 'notification');
+            }
+      
+            if (!isset($key['id'])
+          ||(
+              $key['id'] ===''
+          || $key['id'] === array()
+          || $key['id'] === null
+      )) {
+                throw new Exception\ParameterRequiredException('id', 'notification');
+            }
+        }
+    }
+
+    
+    /**
      * putPolicyRequest: Build PutPolicy's request
      * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
      * @param array 'statement' Bucket policy statement
@@ -1885,6 +2521,15 @@ class Bucket
       
       
       
+        if (!isset($operation['Elements']['object_parts'])
+              || (
+                  $operation['Elements']['object_parts'] ===''
+                  || $operation['Elements']['object_parts'] === array()
+                  || $operation['Elements']['object_parts'] === null
+                  )
+          ) {
+            throw new Exception\ParameterRequiredException('object_parts', 'CompleteMultipartUploadInput');
+        }
         foreach ($operation['Elements']['object_parts'] as $key) {
             if (!isset($key['part_number'])
           ||(
@@ -2337,6 +2982,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Storage-Class' Specify the storage class for object
      *
      * @return Request
      */
@@ -2352,6 +2998,7 @@ class Bucket
                 'X-QS-Encryption-Customer-Algorithm' => isset($options['X-QS-Encryption-Customer-Algorithm'])?$options['X-QS-Encryption-Customer-Algorithm']:null,
                 'X-QS-Encryption-Customer-Key' => isset($options['X-QS-Encryption-Customer-Key'])?$options['X-QS-Encryption-Customer-Key']:null,
                 'X-QS-Encryption-Customer-Key-MD5' => isset($options['X-QS-Encryption-Customer-Key-MD5'])?$options['X-QS-Encryption-Customer-Key-MD5']:null,
+                'X-QS-Storage-Class' => isset($options['X-QS-Storage-Class'])?$options['X-QS-Storage-Class']:null,
             ),
             'Params' => array(
             ),
@@ -2374,6 +3021,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Storage-Class' Specify the storage class for object
      * @params string $object_key
      * @return Unpacker
      * @throws \Exception
@@ -2409,6 +3057,7 @@ class Bucket
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
      * @param string 'X-QS-Encryption-Customer-Key-MD5' MD5sum of encryption key
+     * @param string 'X-QS-Storage-Class' Specify the storage class for object
      *
      * @return Request
      */
@@ -2420,6 +3069,22 @@ class Bucket
     
     public function initiateMultipartUploadValidate($operation)
     {
+        if (!isset($operation['Headers']['X-QS-Storage-Class'])
+          || (
+              $operation['Headers']['X-QS-Storage-Class'] ===''
+              || $operation['Headers']['X-QS-Storage-Class'] === array()
+              || $operation['Headers']['X-QS-Storage-Class'] === null
+              )
+          ) {
+            $x_qs_storage_class_valid_values = array("STANDARD", "STANDARD_IA");
+            if (in_array($operation['Headers']['X-QS-Storage-Class'], $x_qs_storage_class_valid_values)) {
+                throw new Exception\ParameterValueNotAllowedException(
+                  'X-QS-Storage-Class',
+                  $operation['Headers']['X-QS-Storage-Class'],
+                  $x_qs_storage_class_valid_values
+              );
+            }
+        }
     }
 
     
@@ -2647,6 +3312,7 @@ class Bucket
      * @param timestamp 'X-QS-Fetch-If-Unmodified-Since' Check whether fetch target object has not been modified
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
+     * @param string 'X-QS-Storage-Class' Specify the storage class for object
      *
      * @return Request
      */
@@ -2676,6 +3342,7 @@ class Bucket
                 'X-QS-Fetch-If-Unmodified-Since' => isset($options['X-QS-Fetch-If-Unmodified-Since'])?$options['X-QS-Fetch-If-Unmodified-Since']:null,
                 'X-QS-Fetch-Source' => isset($options['X-QS-Fetch-Source'])?$options['X-QS-Fetch-Source']:null,
                 'X-QS-Move-Source' => isset($options['X-QS-Move-Source'])?$options['X-QS-Move-Source']:null,
+                'X-QS-Storage-Class' => isset($options['X-QS-Storage-Class'])?$options['X-QS-Storage-Class']:null,
             ),
             'Params' => array(
             ),
@@ -2712,6 +3379,7 @@ class Bucket
      * @param timestamp 'X-QS-Fetch-If-Unmodified-Since' Check whether fetch target object has not been modified
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
+     * @param string 'X-QS-Storage-Class' Specify the storage class for object
      * @params string $object_key
      * @return Unpacker
      * @throws \Exception
@@ -2761,6 +3429,7 @@ class Bucket
      * @param timestamp 'X-QS-Fetch-If-Unmodified-Since' Check whether fetch target object has not been modified
      * @param string 'X-QS-Fetch-Source' Fetch source, should be a valid url
      * @param string 'X-QS-Move-Source' Move source, format (/<bucket-name>/<object-key>)
+     * @param string 'X-QS-Storage-Class' Specify the storage class for object
      *
      * @return Request
      */
@@ -2772,6 +3441,22 @@ class Bucket
     
     public function putObjectValidate($operation)
     {
+        if (!isset($operation['Headers']['X-QS-Storage-Class'])
+          || (
+              $operation['Headers']['X-QS-Storage-Class'] ===''
+              || $operation['Headers']['X-QS-Storage-Class'] === array()
+              || $operation['Headers']['X-QS-Storage-Class'] === null
+              )
+          ) {
+            $x_qs_storage_class_valid_values = array("STANDARD", "STANDARD_IA");
+            if (in_array($operation['Headers']['X-QS-Storage-Class'], $x_qs_storage_class_valid_values)) {
+                throw new Exception\ParameterValueNotAllowedException(
+                  'X-QS-Storage-Class',
+                  $operation['Headers']['X-QS-Storage-Class'],
+                  $x_qs_storage_class_valid_values
+              );
+            }
+        }
     }
 
     
