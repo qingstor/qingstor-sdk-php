@@ -184,6 +184,9 @@ class Request
             'response-content-language',
             'response-content-encoding',
             'response-content-disposition',
+            'image',
+            'lifecycle',
+            'notification',
         );
 
         return in_array($key, $keysMap);
