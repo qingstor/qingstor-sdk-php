@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.5] - 2018-08-14
+
+### Fixed
+
+- Fix bug that is not compatible with php 7
+
 ## [2.2.4] - 2018-05-13
 
 ### Fixed
@@ -85,6 +91,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 - Provide Official Qingstor SDK for PHP
 
+[2.2.5]: https://github.com/yunify/qingstor-sdk-php/compare/2.2.4...2.2.5
 [2.2.4]: https://github.com/yunify/qingstor-sdk-php/compare/2.2.3...2.2.4
 [2.2.3]: https://github.com/yunify/qingstor-sdk-php/compare/2.2.2...2.2.3
 [2.2.2]: https://github.com/yunify/qingstor-sdk-php/compare/2.2.1...2.2.2
