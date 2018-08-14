@@ -45,7 +45,7 @@ class Builder
 
     public function parseRequestParams()
     {
-        $parsedParams = null;
+        $parsedParams = [];
         foreach ($this->operation['Params'] as $key => $value) {
             if ($value !== '' && $value !== array() && $value !== null) {
                 $parsedParams[$key] = $value;
