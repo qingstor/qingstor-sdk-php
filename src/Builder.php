@@ -102,7 +102,7 @@ class Builder
 
     public function parseRequestProperties()
     {
-        $parsedProperties = null;
+        $parsedProperties = [];
         foreach ($this->operation['Properties'] as $key => $value) {
             if ($value !== '' && $value !== null) {
                 $parsedProperties[$key] = $value;
@@ -127,7 +127,7 @@ class Builder
             $endpoint = $this->config->protocol.'://'.$zone.'.'.$this->config->host.':'.$port;
         }
         $requestURI = $this->operation['Uri'];
-        if (count((array)$properties)) {
+        if (count($properties)) {
             foreach ($properties as $key => $value) {
                 $endpoint = str_replace('<'.$key.'>', rawurlencode($value), $endpoint);
                 $requestURI = str_replace('<'.$key.'>', rawurlencode($value), $requestURI);
@@ -135,7 +135,7 @@ class Builder
         }
         $parsedURL = $endpoint.$requestURI;
         $params = $this->parseRequestParams();
-        if (count((array)$params)) {
+        if (count($params)) {
             $paramsParts = array();
             foreach ($params as $key => $value) {
                 $paramsParts[] = $key.'='.rawurlencode($value);
