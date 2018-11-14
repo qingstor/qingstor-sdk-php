@@ -29,7 +29,7 @@ generate:
 		-t="./template" \
 		-o="./src/QingStor"
 	rm ./src/QingStor/Object.php
-	-php-cs-fixer fix .
+	vendor/bin/php-cs-fixer fix .
 	@echo "ok"
 
 update:
@@ -39,12 +39,12 @@ update:
 unit:
 	@echo "run unit test"
 	composer install
-	php vendor/phpunit/phpunit/phpunit --no-configuration tests
+	vendor/bin/phpunit --no-configuration tests
 	@echo "ok"
 
 build:
 	@echo "build phar"
-	rm -rf composer.lock vendor/ *.phar
-	composer install --no-dev
-	phar-composer build . qingstor-sdk-php-$(version).phar
+	rm -rf *.phar
+	vendor/bin/box compile
+	mv index.phar qingstor-sdk-php-$(version).phar
 	@echo "ok"
