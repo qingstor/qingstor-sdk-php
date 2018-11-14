@@ -72,12 +72,14 @@ class Bucket
     {
         $req = $this->deleteRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: delete');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -86,7 +88,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -147,12 +148,14 @@ class Bucket
     {
         $req = $this->deleteCORSRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteCORS');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -161,7 +164,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -222,12 +224,14 @@ class Bucket
     {
         $req = $this->deleteExternalMirrorRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteExternalMirror');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -236,7 +240,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -297,12 +300,14 @@ class Bucket
     {
         $req = $this->deleteLifecycleRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteLifecycle');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -311,7 +316,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -372,12 +376,14 @@ class Bucket
     {
         $req = $this->deleteNotificationRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteNotification');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -386,7 +392,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -447,12 +452,14 @@ class Bucket
     {
         $req = $this->deletePolicyRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deletePolicy');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -461,7 +468,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -531,12 +537,14 @@ class Bucket
     {
         $req = $this->deleteMultipleObjectsRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteMultipleObjects');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -545,7 +553,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -620,12 +627,14 @@ class Bucket
     {
         $req = $this->getACLRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getACL');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -634,7 +643,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -695,12 +703,14 @@ class Bucket
     {
         $req = $this->getCORSRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getCORS');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -709,7 +719,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -770,12 +779,14 @@ class Bucket
     {
         $req = $this->getExternalMirrorRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getExternalMirror');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -784,7 +795,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -845,12 +855,14 @@ class Bucket
     {
         $req = $this->getLifecycleRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getLifecycle');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -859,7 +871,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -920,12 +931,14 @@ class Bucket
     {
         $req = $this->getNotificationRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getNotification');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -934,7 +947,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -995,12 +1007,14 @@ class Bucket
     {
         $req = $this->getPolicyRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getPolicy');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1009,7 +1023,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1070,12 +1083,14 @@ class Bucket
     {
         $req = $this->getStatisticsRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getStatistics');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1084,7 +1099,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1145,12 +1159,14 @@ class Bucket
     {
         $req = $this->headRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: head');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1159,7 +1175,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1235,12 +1250,14 @@ class Bucket
     {
         $req = $this->listMultipartUploadsRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: listMultipartUploads');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1249,7 +1266,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1327,12 +1343,14 @@ class Bucket
     {
         $req = $this->listObjectsRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: listObjects');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1341,7 +1359,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1406,12 +1423,14 @@ class Bucket
     {
         $req = $this->putRequest();
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: put');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1420,7 +1439,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1484,12 +1502,14 @@ class Bucket
     {
         $req = $this->putACLRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putACL');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1498,7 +1518,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1634,12 +1653,14 @@ class Bucket
     {
         $req = $this->putCORSRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putCORS');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1648,7 +1669,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1742,12 +1762,14 @@ class Bucket
     {
         $req = $this->putExternalMirrorRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putExternalMirror');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1756,7 +1778,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -1829,12 +1850,14 @@ class Bucket
     {
         $req = $this->putLifecycleRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putLifecycle');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -1843,7 +1866,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2015,12 +2037,14 @@ class Bucket
     {
         $req = $this->putNotificationRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putNotification');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2029,7 +2053,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2165,12 +2188,14 @@ class Bucket
     {
         $req = $this->putPolicyRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putPolicy');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2179,7 +2204,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2364,12 +2388,14 @@ class Bucket
     {
         $req = $this->abortMultipartUploadRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: abortMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2378,7 +2404,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2468,12 +2493,14 @@ class Bucket
     {
         $req = $this->completeMultipartUploadRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: completeMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2482,7 +2509,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2583,12 +2609,14 @@ class Bucket
     {
         $req = $this->deleteObjectRequest($object_key);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: deleteObject');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2597,7 +2625,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2702,12 +2729,14 @@ class Bucket
     {
         $req = $this->getObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: getObject');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2716,7 +2745,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2814,12 +2842,14 @@ class Bucket
     {
         $req = $this->headObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: headObject');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2828,7 +2858,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -2922,12 +2951,14 @@ class Bucket
     {
         $req = $this->imageProcessRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: imageProcess');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -2936,7 +2967,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -3030,12 +3060,14 @@ class Bucket
     {
         $req = $this->initiateMultipartUploadRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: initiateMultipartUpload');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -3044,7 +3076,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -3137,12 +3168,14 @@ class Bucket
     {
         $req = $this->listMultipartRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: listMultipart');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -3151,7 +3184,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -3234,12 +3266,14 @@ class Bucket
     {
         $req = $this->optionsObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: optionsObject');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -3248,7 +3282,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -3388,12 +3421,14 @@ class Bucket
     {
         $req = $this->putObjectRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: putObject');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -3402,7 +3437,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }
@@ -3548,12 +3582,14 @@ class Bucket
     {
         $req = $this->uploadMultipartRequest($object_key, $options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: uploadMultipart');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -3562,7 +3598,6 @@ class Bucket
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }

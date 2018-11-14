@@ -72,12 +72,14 @@ class QingStor
     {
         $req = $this->listBucketsRequest($options);
         $retries = $this->config->connection_retries;
+        $response = null;
         while (1) {
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: lists');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -86,7 +88,6 @@ class QingStor
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }

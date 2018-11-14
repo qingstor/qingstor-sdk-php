@@ -265,12 +265,14 @@
         {{- if and (eq $belongs "Object") $hasInput -}},{{- end -}}
         {{- if $hasInput}}$options{{- end -}});
         $retries = $this->config->connection_retries;
+        $response = null;
         while(1){
             try {
                 $GLOBALS['logger']->info('Sending QingStor request: {{$opID | camelCase | lowerFirst}}');
                 $response = new Unpacker($this->config->client->send(
                     $req->sign()
                 ));
+                break;
             } catch (\Exception $e) {
                 $GLOBALS['logger']->error($e->getMessage());
                 if ($retries > 0) {
@@ -279,7 +281,6 @@
                     throw new \Exception('Network Error');
                 }
             }
-            break;
         }
         return $response;
     }

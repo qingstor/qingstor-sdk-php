@@ -32,18 +32,22 @@ class Unpacker
 
     public function handler($res)
     {
-        $version = (string) ClientInterface::VERSION;
+        $version = (string)ClientInterface::VERSION;
         if ($version[0] === '5') {
             return QingStorHandler\GuzzleV5\createPsr7Response($res);
         } elseif ($version[0] === '6') {
             return QingStorHandler\GuzzleV6\createPsr7Response($res);
         } else {
-            throw new \RuntimeException('Unknown Guzzle version: '.$version);
+            throw new \RuntimeException('Unknown Guzzle version: ' . $version);
         }
     }
 
     public function unpackResponseHeaders()
     {
+        if ($this->res == null) {
+            return;
+        }
+
         foreach ($this->res->getHeaders() as $key => $value) {
             if (count($value) > 1) {
                 $this->$key = $value;
@@ -55,6 +59,12 @@ class Unpacker
 
     public function unpackResponseBody()
     {
+        if ($this->res == null) {
+            $this->body = null;
+
+            return;
+        }
+
         $body = $this->res->getBody();
         if ($this->{'Content-Type'} === 'application/json') {
             if ($body !== '') {
