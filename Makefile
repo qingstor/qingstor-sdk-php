@@ -38,13 +38,15 @@ update:
 
 unit:
 	@echo "run unit test"
-	composer install
 	vendor/bin/phpunit --no-configuration tests
 	@echo "ok"
 
 build:
 	@echo "build phar"
 	rm -rf *.phar
+	@if [[ ! -f "vendor/bin/box" ]]; then \
+		composer require humbug/box --dev; \
+	fi
 	vendor/bin/box compile
 	mv index.phar qingstor-sdk-php-$(version).phar
 	@echo "ok"

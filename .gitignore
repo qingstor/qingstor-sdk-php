@@ -55,5 +55,5 @@ vendor/
 
 *.cache
 *.phar
-scenarios/composer.lock
+composer.lock
 test_config.yaml

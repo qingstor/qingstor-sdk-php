@@ -3,17 +3,18 @@ language: php
 matrix:
   include:
     - php: 7.0
-      env: GUZZLE_VERSION="6.2.2"
+      env: GUZZLE_VERSION="~6"
     - php: 5.6
-      env: GUZZLE_VERSION="5.3.1"
+      env: GUZZLE_VERSION="~5"
     - php: 7.0
-      env: GUZZLE_VERSION="5.3.1"
+      env: GUZZLE_VERSION="~5"
     - php: 5.6
-      env: GUZZLE_VERSION="6.2.2"
+      env: GUZZLE_VERSION="~6"
     - php: 7.2
-      env: GUZZLE_VERSION="6.2.2"
+      env: GUZZLE_VERSION="~6"
 
 install:
+  - composer install --no-dev
   - composer require guzzlehttp/guzzle:${GUZZLE_VERSION}
-  - composer install
-script: php vendor/phpunit/phpunit/phpunit --no-configuration tests
+  - composer require phpunit/phpunit:5.7.27
+script: make unit
