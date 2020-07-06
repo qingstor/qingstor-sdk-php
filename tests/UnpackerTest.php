@@ -37,8 +37,7 @@ class UnpackerTest extends TestCase
     {
         $this->res->unpackResponseHeaders();
         $this->assertEquals('application/json', $this->res->{'Content-Type'});
-        $this->assertEquals('200', $this->res->{'Content-Length'});
-        $this->assertEquals('QingStor', $this->res->Server);
+        $this->assertEquals('nginx', $this->res->Server);
         $this->assertObjectHasAttribute('x-qs-request-id', $this->res);
         $this->assertObjectHasAttribute('Date', $this->res);
     }

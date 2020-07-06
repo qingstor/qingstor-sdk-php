@@ -113,4 +113,9 @@ class RequestTest extends TestCase
             $this->testSigner->getAuthorization()
         );
     }
+
+    public function test_querySign()
+    {
+        printf("%s", $this->testSigner->query_sign(3000)->getUri());
+    }
 }

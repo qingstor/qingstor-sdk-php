@@ -39,13 +39,13 @@ class Request
 
     private function handler($req)
     {
-        $version = (string) ClientInterface::VERSION;
+        $version = (string)ClientInterface::VERSION;
         if ($version[0] === '5') {
             return QingStorHandler\GuzzleV5\createGuzzleRequest($this->config->client, $req);
         } elseif ($version[0] === '6') {
             return QingStorHandler\GuzzleV6\createPsr7Request($req);
         } else {
-            throw new \RuntimeException('Unknown Guzzle version: '.$version);
+            throw new \RuntimeException('Unknown Guzzle version: ' . $version);
         }
     }
 
@@ -53,7 +53,7 @@ class Request
     {
         $req = $this->req->withHeader(
             'Authorization',
-            'QS '.$this->access_key_id.':'.$this->getAuthorization()
+            'QS ' . $this->access_key_id . ':' . $this->getAuthorization()
         );
 
         return $this->handler($req);
@@ -64,12 +64,15 @@ class Request
         $this->req = $this->req
             ->withoutHeader('Content-Type')
             ->withoutHeader('Content-MD5');
+
+        // Make sure uri query has been copied.
+        parse_str($this->req->getUri()->getQuery(), $arr);
+        $arr["signature"] = $this->getQuerySignature($expires);
+        $arr["access_key_id"] = $this->access_key_id;
+        $arr["expires"] = $expires;
+
         $this->req = $this->req->withUri(
-            $this->req->getUri()->withQuery(
-                'signature='.$this->getQuerySignature($expires)
-                .'&'.'access_key_id='.$this->access_key_id
-                .'&'.'expires='.$expires
-            )
+            $this->req->getUri()->withQuery(http_build_query($arr))
         );
 
         return $this->handler($this->req);
@@ -103,7 +106,7 @@ class Request
         $canonicalizedHeaders = '';
         if (count($keys) > 0) {
             foreach ($keys as $key => $value) {
-                $canonicalizedHeaders = $canonicalizedHeaders.$key.':'.$value."\n";
+                $canonicalizedHeaders = $canonicalizedHeaders . $key . ':' . $value . "\n";
             }
         }
 
@@ -119,7 +122,7 @@ class Request
             $values = explode('=', $values);
             if ($this->isSubResource($values[0])) {
                 if (count($values) > 1) {
-                    $keys[] = $values[0].'='.urldecode($values[1]);
+                    $keys[] = $values[0] . '=' . urldecode($values[1]);
                 } else {
                     $keys[] = $values[0];
                 }
@@ -128,7 +131,7 @@ class Request
         sort($keys);
         $joinedKeys = implode('&', $keys);
         if ($joinedKeys !== '') {
-            $path = $path.'?'.$joinedKeys;
+            $path = $path . '?' . $joinedKeys;
         }
 
         return $path;
@@ -136,12 +139,12 @@ class Request
 
     public function getAuthorization()
     {
-        $string_to_sign = $this->req->getMethod()."\n"
-            .$this->getContentMD5()."\n"
-            .$this->getContentType()."\n"
-            .$this->getDate()."\n"
-            .$this->getCanonicalizedHeaders()
-            .$this->getCanonicalizedResource();
+        $string_to_sign = $this->req->getMethod() . "\n"
+            . $this->getContentMD5() . "\n"
+            . $this->getContentType() . "\n"
+            . $this->getDate() . "\n"
+            . $this->getCanonicalizedHeaders()
+            . $this->getCanonicalizedResource();
         $GLOBALS['logger']->debug($string_to_sign);
         $sign = hash_hmac('sha256', $string_to_sign, $this->secret_access_key, true);
         $sign_b64 = base64_encode($sign);
@@ -152,12 +155,12 @@ class Request
 
     public function getQuerySignature($expires)
     {
-        $string_to_sign = $this->req->getMethod()."\n"
-            .$this->getContentMD5()."\n"
-            .$this->getContentType()."\n"
-            .$expires."\n"
-            .$this->getCanonicalizedHeaders()
-            .$this->getCanonicalizedResource();
+        $string_to_sign = $this->req->getMethod() . "\n"
+            . $this->getContentMD5() . "\n"
+            . $this->getContentType() . "\n"
+            . $expires . "\n"
+            . $this->getCanonicalizedHeaders()
+            . $this->getCanonicalizedResource();
         $GLOBALS['logger']->debug($string_to_sign);
         $sign = hash_hmac('sha256', $string_to_sign, $this->secret_access_key, true);
         $sign_b64 = urlencode(base64_encode($sign));

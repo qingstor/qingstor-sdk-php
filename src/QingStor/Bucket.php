@@ -580,7 +580,7 @@ class Bucket
                   $operation['Elements']['objects'] ===''
                   || $operation['Elements']['objects'] === array()
                   || $operation['Elements']['objects'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('objects', 'DeleteMultipleObjectsInput');
         }
@@ -1543,7 +1543,7 @@ class Bucket
                   $operation['Elements']['acl'] ===''
                   || $operation['Elements']['acl'] === array()
                   || $operation['Elements']['acl'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('acl', 'PutBucketACLInput');
         }
@@ -1553,14 +1553,14 @@ class Bucket
                   $key['grantee'] ===''
                   || $key['grantee'] === array()
                   || $key['grantee'] === null
-                 )
+              )
           ) {
                 if (!isset($key["grantee"]['type'])
           ||(
               $key["grantee"]['type'] ===''
           || $key["grantee"]['type'] === array()
           || $key["grantee"]['type'] === null
-      )) {
+          )) {
                     throw new Exception\ParameterRequiredException('type', 'grantee');
                 }
                 if (!isset($key["grantee"]['type'])
@@ -1568,15 +1568,15 @@ class Bucket
               $key["grantee"]['type'] ===''
               || $key["grantee"]['type'] === array()
               || $key["grantee"]['type'] === null
-              )
+          )
           ) {
                     $type_valid_values = array("user", "group");
                     if (in_array($key["grantee"]['type'], $type_valid_values)) {
                         throw new Exception\ParameterValueNotAllowedException(
-                  'type',
-                  $key["grantee"]['type'],
-                  $type_valid_values
-              );
+                            'type',
+                            $key["grantee"]['type'],
+                            $type_valid_values
+                        );
                     }
                 }
             }
@@ -1589,7 +1589,7 @@ class Bucket
               $key['permission'] ===''
           || $key['permission'] === array()
           || $key['permission'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('permission', 'acl');
             }
             if (!isset($key['permission'])
@@ -1597,15 +1597,15 @@ class Bucket
               $key['permission'] ===''
               || $key['permission'] === array()
               || $key['permission'] === null
-              )
+          )
           ) {
                 $permission_valid_values = array("READ", "WRITE", "FULL_CONTROL");
                 if (in_array($key['permission'], $permission_valid_values)) {
                     throw new Exception\ParameterValueNotAllowedException(
-                  'permission',
-                  $key['permission'],
-                  $permission_valid_values
-              );
+                        'permission',
+                        $key['permission'],
+                        $permission_valid_values
+                    );
                 }
             }
         }
@@ -1694,7 +1694,7 @@ class Bucket
                   $operation['Elements']['cors_rules'] ===''
                   || $operation['Elements']['cors_rules'] === array()
                   || $operation['Elements']['cors_rules'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('cors_rules', 'PutBucketCORSInput');
         }
@@ -1704,7 +1704,7 @@ class Bucket
                   $key['allowed_methods'] ===''
                   || $key['allowed_methods'] === array()
                   || $key['allowed_methods'] === null
-                  )
+              )
           ) {
                 throw new Exception\ParameterRequiredException('allowed_methods', 'cors_rule');
             }
@@ -1714,7 +1714,7 @@ class Bucket
               $key['allowed_origin'] ===''
           || $key['allowed_origin'] === array()
           || $key['allowed_origin'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('allowed_origin', 'cors_rule');
             }
         }
@@ -1803,7 +1803,7 @@ class Bucket
               $operation['Elements']['source_site'] ===''
           || $operation['Elements']['source_site'] === array()
           || $operation['Elements']['source_site'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('source_site', 'PutBucketExternalMirrorInput');
         }
     }
@@ -1891,7 +1891,7 @@ class Bucket
                   $operation['Elements']['rule'] ===''
                   || $operation['Elements']['rule'] === array()
                   || $operation['Elements']['rule'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('rule', 'PutBucketLifecycleInput');
         }
@@ -1901,14 +1901,14 @@ class Bucket
                   $key['abort_incomplete_multipart_upload'] ===''
                   || $key['abort_incomplete_multipart_upload'] === array()
                   || $key['abort_incomplete_multipart_upload'] === null
-                 )
+              )
           ) {
                 if (!isset($key["abort_incomplete_multipart_upload"]['days_after_initiation'])
           ||(
               $key["abort_incomplete_multipart_upload"]['days_after_initiation'] ===''
           || $key["abort_incomplete_multipart_upload"]['days_after_initiation'] === array()
           || $key["abort_incomplete_multipart_upload"]['days_after_initiation'] === null
-      )) {
+          )) {
                     throw new Exception\ParameterRequiredException('days_after_initiation', 'abort_incomplete_multipart_upload');
                 }
             }
@@ -1918,7 +1918,7 @@ class Bucket
                   $key['expiration'] ===''
                   || $key['expiration'] === array()
                   || $key['expiration'] === null
-                 )
+              )
           ) {
             }
       
@@ -1927,14 +1927,14 @@ class Bucket
                   $key['filter'] ===''
                   || $key['filter'] === array()
                   || $key['filter'] === null
-                 )
+              )
           ) {
                 if (!isset($key["filter"]['prefix'])
           ||(
               $key["filter"]['prefix'] ===''
           || $key["filter"]['prefix'] === array()
           || $key["filter"]['prefix'] === null
-      )) {
+          )) {
                     throw new Exception\ParameterRequiredException('prefix', 'filter');
                 }
             }
@@ -1947,7 +1947,7 @@ class Bucket
               $key['id'] ===''
           || $key['id'] === array()
           || $key['id'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('id', 'rule');
             }
       
@@ -1956,7 +1956,7 @@ class Bucket
               $key['status'] ===''
           || $key['status'] === array()
           || $key['status'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('status', 'rule');
             }
             if (!isset($key['status'])
@@ -1964,15 +1964,15 @@ class Bucket
               $key['status'] ===''
               || $key['status'] === array()
               || $key['status'] === null
-              )
+          )
           ) {
                 $status_valid_values = array("enabled", "disabled");
                 if (in_array($key['status'], $status_valid_values)) {
                     throw new Exception\ParameterValueNotAllowedException(
-                  'status',
-                  $key['status'],
-                  $status_valid_values
-              );
+                        'status',
+                        $key['status'],
+                        $status_valid_values
+                    );
                 }
             }
       
@@ -1981,14 +1981,14 @@ class Bucket
                   $key['transition'] ===''
                   || $key['transition'] === array()
                   || $key['transition'] === null
-                 )
+              )
           ) {
                 if (!isset($key["transition"]['storage_class'])
           ||(
               $key["transition"]['storage_class'] ===''
           || $key["transition"]['storage_class'] === array()
           || $key["transition"]['storage_class'] === null
-      )) {
+          )) {
                     throw new Exception\ParameterRequiredException('storage_class', 'transition');
                 }
             }
@@ -2078,7 +2078,7 @@ class Bucket
                   $operation['Elements']['notifications'] ===''
                   || $operation['Elements']['notifications'] === array()
                   || $operation['Elements']['notifications'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('notifications', 'PutBucketNotificationInput');
         }
@@ -2088,7 +2088,7 @@ class Bucket
               $key['cloudfunc'] ===''
           || $key['cloudfunc'] === array()
           || $key['cloudfunc'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('cloudfunc', 'notification');
             }
             if (!isset($key['cloudfunc'])
@@ -2096,15 +2096,15 @@ class Bucket
               $key['cloudfunc'] ===''
               || $key['cloudfunc'] === array()
               || $key['cloudfunc'] === null
-              )
+          )
           ) {
                 $cloudfunc_valid_values = array("tupu-porn", "notifier", "image");
                 if (in_array($key['cloudfunc'], $cloudfunc_valid_values)) {
                     throw new Exception\ParameterValueNotAllowedException(
-                  'cloudfunc',
-                  $key['cloudfunc'],
-                  $cloudfunc_valid_values
-              );
+                        'cloudfunc',
+                        $key['cloudfunc'],
+                        $cloudfunc_valid_values
+                    );
                 }
             }
       
@@ -2113,14 +2113,14 @@ class Bucket
                   $key['cloudfunc_args'] ===''
                   || $key['cloudfunc_args'] === array()
                   || $key['cloudfunc_args'] === null
-                 )
+              )
           ) {
                 if (!isset($key["cloudfunc_args"]['action'])
           ||(
               $key["cloudfunc_args"]['action'] ===''
           || $key["cloudfunc_args"]['action'] === array()
           || $key["cloudfunc_args"]['action'] === null
-      )) {
+          )) {
                     throw new Exception\ParameterRequiredException('action', 'cloudfunc_args');
                 }
             }
@@ -2130,7 +2130,7 @@ class Bucket
                   $key['event_types'] ===''
                   || $key['event_types'] === array()
                   || $key['event_types'] === null
-                  )
+              )
           ) {
                 throw new Exception\ParameterRequiredException('event_types', 'notification');
             }
@@ -2140,7 +2140,7 @@ class Bucket
               $key['id'] ===''
           || $key['id'] === array()
           || $key['id'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('id', 'notification');
             }
         }
@@ -2229,7 +2229,7 @@ class Bucket
                   $operation['Elements']['statement'] ===''
                   || $operation['Elements']['statement'] === array()
                   || $operation['Elements']['statement'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('statement', 'PutBucketPolicyInput');
         }
@@ -2239,7 +2239,7 @@ class Bucket
                   $key['action'] ===''
                   || $key['action'] === array()
                   || $key['action'] === null
-                  )
+              )
           ) {
                 throw new Exception\ParameterRequiredException('action', 'statement');
             }
@@ -2249,14 +2249,14 @@ class Bucket
                   $key['condition'] ===''
                   || $key['condition'] === array()
                   || $key['condition'] === null
-                 )
+              )
           ) {
                 if (!isset($key["condition"]['ip_address'])
               ||(
                   $key["condition"]['ip_address'] ===''
                   || $key["condition"]['ip_address'] === array()
                   || $key["condition"]['ip_address'] === null
-                 )
+              )
           ) {
                 }
       
@@ -2265,7 +2265,7 @@ class Bucket
                   $key["condition"]['is_null'] ===''
                   || $key["condition"]['is_null'] === array()
                   || $key["condition"]['is_null'] === null
-                 )
+              )
           ) {
                 }
       
@@ -2274,7 +2274,7 @@ class Bucket
                   $key["condition"]['not_ip_address'] ===''
                   || $key["condition"]['not_ip_address'] === array()
                   || $key["condition"]['not_ip_address'] === null
-                 )
+              )
           ) {
                 }
       
@@ -2283,7 +2283,7 @@ class Bucket
                   $key["condition"]['string_like'] ===''
                   || $key["condition"]['string_like'] === array()
                   || $key["condition"]['string_like'] === null
-                 )
+              )
           ) {
                 }
       
@@ -2292,7 +2292,7 @@ class Bucket
                   $key["condition"]['string_not_like'] ===''
                   || $key["condition"]['string_not_like'] === array()
                   || $key["condition"]['string_not_like'] === null
-                 )
+              )
           ) {
                 }
             }
@@ -2302,7 +2302,7 @@ class Bucket
               $key['effect'] ===''
           || $key['effect'] === array()
           || $key['effect'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('effect', 'statement');
             }
             if (!isset($key['effect'])
@@ -2310,15 +2310,15 @@ class Bucket
               $key['effect'] ===''
               || $key['effect'] === array()
               || $key['effect'] === null
-              )
+          )
           ) {
                 $effect_valid_values = array("allow", "deny");
                 if (in_array($key['effect'], $effect_valid_values)) {
                     throw new Exception\ParameterValueNotAllowedException(
-                  'effect',
-                  $key['effect'],
-                  $effect_valid_values
-              );
+                        'effect',
+                        $key['effect'],
+                        $effect_valid_values
+                    );
                 }
             }
       
@@ -2327,7 +2327,7 @@ class Bucket
               $key['id'] ===''
           || $key['id'] === array()
           || $key['id'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('id', 'statement');
             }
       
@@ -2337,7 +2337,7 @@ class Bucket
                   $key['user'] ===''
                   || $key['user'] === array()
                   || $key['user'] === null
-                  )
+              )
           ) {
                 throw new Exception\ParameterRequiredException('user', 'statement');
             }
@@ -2429,7 +2429,7 @@ class Bucket
               $operation['Params']['upload_id'] ===''
           || $operation['Params']['upload_id'] === array()
           || $operation['Params']['upload_id'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('upload_id', 'AbortMultipartUploadInput');
         }
     }
@@ -2539,7 +2539,7 @@ class Bucket
               $operation['Params']['upload_id'] ===''
           || $operation['Params']['upload_id'] === array()
           || $operation['Params']['upload_id'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('upload_id', 'CompleteMultipartUploadInput');
         }
       
@@ -2552,7 +2552,7 @@ class Bucket
                   $operation['Elements']['object_parts'] ===''
                   || $operation['Elements']['object_parts'] === array()
                   || $operation['Elements']['object_parts'] === null
-                  )
+              )
           ) {
             throw new Exception\ParameterRequiredException('object_parts', 'CompleteMultipartUploadInput');
         }
@@ -2562,7 +2562,7 @@ class Bucket
               $key['part_number'] ===''
           || $key['part_number'] === array()
           || $key['part_number'] === null
-      )) {
+          )) {
                 throw new Exception\ParameterRequiredException('part_number', 'object_part');
             }
         }
@@ -2999,7 +2999,7 @@ class Bucket
               $operation['Params']['action'] ===''
           || $operation['Params']['action'] === array()
           || $operation['Params']['action'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('action', 'ImageProcessInput');
         }
     }
@@ -3105,15 +3105,15 @@ class Bucket
               $operation['Headers']['X-QS-Storage-Class'] ===''
               || $operation['Headers']['X-QS-Storage-Class'] === array()
               || $operation['Headers']['X-QS-Storage-Class'] === null
-              )
+          )
           ) {
             $x_qs_storage_class_valid_values = array("STANDARD", "STANDARD_IA");
             if (in_array($operation['Headers']['X-QS-Storage-Class'], $x_qs_storage_class_valid_values)) {
                 throw new Exception\ParameterValueNotAllowedException(
-                  'X-QS-Storage-Class',
-                  $operation['Headers']['X-QS-Storage-Class'],
-                  $x_qs_storage_class_valid_values
-              );
+                    'X-QS-Storage-Class',
+                    $operation['Headers']['X-QS-Storage-Class'],
+                    $x_qs_storage_class_valid_values
+                );
             }
         }
     }
@@ -3211,7 +3211,7 @@ class Bucket
               $operation['Params']['upload_id'] ===''
           || $operation['Params']['upload_id'] === array()
           || $operation['Params']['upload_id'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('upload_id', 'ListMultipartInput');
         }
     }
@@ -3309,7 +3309,7 @@ class Bucket
               $operation['Headers']['Access-Control-Request-Method'] ===''
           || $operation['Headers']['Access-Control-Request-Method'] === array()
           || $operation['Headers']['Access-Control-Request-Method'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('Access-Control-Request-Method', 'OptionsObjectInput');
         }
       
@@ -3318,7 +3318,7 @@ class Bucket
               $operation['Headers']['Origin'] ===''
           || $operation['Headers']['Origin'] === array()
           || $operation['Headers']['Origin'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('Origin', 'OptionsObjectInput');
         }
     }
@@ -3480,15 +3480,15 @@ class Bucket
               $operation['Headers']['X-QS-Storage-Class'] ===''
               || $operation['Headers']['X-QS-Storage-Class'] === array()
               || $operation['Headers']['X-QS-Storage-Class'] === null
-              )
+          )
           ) {
             $x_qs_storage_class_valid_values = array("STANDARD", "STANDARD_IA");
             if (in_array($operation['Headers']['X-QS-Storage-Class'], $x_qs_storage_class_valid_values)) {
                 throw new Exception\ParameterValueNotAllowedException(
-                  'X-QS-Storage-Class',
-                  $operation['Headers']['X-QS-Storage-Class'],
-                  $x_qs_storage_class_valid_values
-              );
+                    'X-QS-Storage-Class',
+                    $operation['Headers']['X-QS-Storage-Class'],
+                    $x_qs_storage_class_valid_values
+                );
             }
         }
     }
@@ -3638,7 +3638,7 @@ class Bucket
               $operation['Params']['part_number'] ===''
           || $operation['Params']['part_number'] === array()
           || $operation['Params']['part_number'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('part_number', 'UploadMultipartInput');
         }
       
@@ -3647,7 +3647,7 @@ class Bucket
               $operation['Params']['upload_id'] ===''
           || $operation['Params']['upload_id'] === array()
           || $operation['Params']['upload_id'] === null
-      )) {
+          )) {
             throw new Exception\ParameterRequiredException('upload_id', 'UploadMultipartInput');
         }
     }
