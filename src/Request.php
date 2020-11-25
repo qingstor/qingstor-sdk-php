@@ -17,9 +17,6 @@
 
 namespace QingStor\SDK;
 
-use GuzzleHttp\ClientInterface;
-use QingStor\SDK\Handler as QingStorHandler;
-
 class Request
 {
     public $req = null;
@@ -37,26 +34,12 @@ class Request
         $this->secret_access_key = $config->secret_access_key;
     }
 
-    private function handler($req)
-    {
-        $version = (string)ClientInterface::VERSION;
-        if ($version[0] === '5') {
-            return QingStorHandler\GuzzleV5\createGuzzleRequest($this->config->client, $req);
-        } elseif ($version[0] === '6') {
-            return QingStorHandler\GuzzleV6\createPsr7Request($req);
-        } else {
-            throw new \RuntimeException('Unknown Guzzle version: ' . $version);
-        }
-    }
-
     public function sign()
     {
-        $req = $this->req->withHeader(
+        return $this->req->withHeader(
             'Authorization',
             'QS ' . $this->access_key_id . ':' . $this->getAuthorization()
         );
-
-        return $this->handler($req);
     }
 
     public function query_sign($expires)
@@ -75,7 +58,7 @@ class Request
             $this->req->getUri()->withQuery(http_build_query($arr))
         );
 
-        return $this->handler($this->req);
+        return $this->req;
     }
 
     public function getContentMD5()
