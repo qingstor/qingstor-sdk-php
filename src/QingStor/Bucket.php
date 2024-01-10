@@ -36,7 +36,7 @@ class Bucket
     
     /**
      * deleteRequest: Build Delete's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/delete.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/delete/ Documentation URL
      *
      * @return Request
      */
@@ -64,7 +64,7 @@ class Bucket
 
     /**
      * delete: Delete a bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/delete.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/delete/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -95,7 +95,7 @@ class Bucket
 
     /**
      * deleteQuery: delete's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/delete.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/delete/ Documentation URL
      *
      * @return Request
      */
@@ -112,7 +112,7 @@ class Bucket
     
     /**
      * deleteCORSRequest: Build DeleteCORS's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/delete_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/delete_cors/ Documentation URL
      *
      * @return Request
      */
@@ -140,7 +140,7 @@ class Bucket
 
     /**
      * deleteCORS: Delete CORS information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/delete_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/delete_cors/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -171,7 +171,7 @@ class Bucket
 
     /**
      * deleteCORSQuery: deleteCORS's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/delete_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/delete_cors/ Documentation URL
      *
      * @return Request
      */
@@ -188,7 +188,7 @@ class Bucket
     
     /**
      * deleteExternalMirrorRequest: Build DeleteExternalMirror's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/delete_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/delete_external_mirror/ Documentation URL
      *
      * @return Request
      */
@@ -216,7 +216,7 @@ class Bucket
 
     /**
      * deleteExternalMirror: Delete external mirror of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/delete_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/delete_external_mirror/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -247,7 +247,7 @@ class Bucket
 
     /**
      * deleteExternalMirrorQuery: deleteExternalMirror's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/delete_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/delete_external_mirror/ Documentation URL
      *
      * @return Request
      */
@@ -264,7 +264,7 @@ class Bucket
     
     /**
      * deleteLifecycleRequest: Build DeleteLifecycle's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/delete_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/delete_lifecycle/ Documentation URL
      *
      * @return Request
      */
@@ -292,7 +292,7 @@ class Bucket
 
     /**
      * deleteLifecycle: Delete Lifecycle information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/delete_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/delete_lifecycle/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -323,7 +323,7 @@ class Bucket
 
     /**
      * deleteLifecycleQuery: deleteLifecycle's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/delete_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/delete_lifecycle/ Documentation URL
      *
      * @return Request
      */
@@ -340,7 +340,7 @@ class Bucket
     
     /**
      * deleteNotificationRequest: Build DeleteNotification's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/delete_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/delete_notification/ Documentation URL
      *
      * @return Request
      */
@@ -368,7 +368,7 @@ class Bucket
 
     /**
      * deleteNotification: Delete Notification information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/delete_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/delete_notification/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -399,7 +399,7 @@ class Bucket
 
     /**
      * deleteNotificationQuery: deleteNotification's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/delete_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/delete_notification/ Documentation URL
      *
      * @return Request
      */
@@ -416,7 +416,7 @@ class Bucket
     
     /**
      * deletePolicyRequest: Build DeletePolicy's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/delete_policy/ Documentation URL
      *
      * @return Request
      */
@@ -444,7 +444,7 @@ class Bucket
 
     /**
      * deletePolicy: Delete policy information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/delete_policy/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -475,7 +475,7 @@ class Bucket
 
     /**
      * deletePolicyQuery: deletePolicy's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/delete_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/delete_policy/ Documentation URL
      *
      * @return Request
      */
@@ -492,7 +492,7 @@ class Bucket
     
     /**
      * deleteMultipleObjectsRequest: Build DeleteMultipleObjects's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/delete_multiple.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/delete_multiple/ Documentation URL
      * @param string 'Content-MD5' Object MD5sum
      * @param array 'objects' A list of keys to delete
      * @param boolean 'quiet' Whether to return the list of deleted objects
@@ -526,7 +526,7 @@ class Bucket
 
     /**
      * deleteMultipleObjects: Delete multiple objects from the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/delete_multiple.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/delete_multiple/ Documentation URL
      * @param string 'Content-MD5' Object MD5sum
      * @param array 'objects' A list of keys to delete
      * @param boolean 'quiet' Whether to return the list of deleted objects
@@ -560,7 +560,7 @@ class Bucket
 
     /**
      * deleteMultipleObjectsQuery: deleteMultipleObjects's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/delete_multiple.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/delete_multiple/ Documentation URL
      * @param string 'Content-MD5' Object MD5sum
      * @param array 'objects' A list of keys to delete
      * @param boolean 'quiet' Whether to return the list of deleted objects
@@ -591,7 +591,7 @@ class Bucket
     
     /**
      * getACLRequest: Build GetACL's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get_acl.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/acl/get_acl/ Documentation URL
      *
      * @return Request
      */
@@ -619,7 +619,7 @@ class Bucket
 
     /**
      * getACL: Get ACL information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get_acl.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/acl/get_acl/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -650,7 +650,7 @@ class Bucket
 
     /**
      * getACLQuery: getACL's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get_acl.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/acl/get_acl/ Documentation URL
      *
      * @return Request
      */
@@ -667,7 +667,7 @@ class Bucket
     
     /**
      * getCORSRequest: Build GetCORS's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/get_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/get_cors/ Documentation URL
      *
      * @return Request
      */
@@ -695,7 +695,7 @@ class Bucket
 
     /**
      * getCORS: Get CORS information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/get_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/get_cors/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -726,7 +726,7 @@ class Bucket
 
     /**
      * getCORSQuery: getCORS's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/get_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/get_cors/ Documentation URL
      *
      * @return Request
      */
@@ -743,7 +743,7 @@ class Bucket
     
     /**
      * getExternalMirrorRequest: Build GetExternalMirror's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/get_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/get_external_mirror/ Documentation URL
      *
      * @return Request
      */
@@ -771,7 +771,7 @@ class Bucket
 
     /**
      * getExternalMirror: Get external mirror of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/get_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/get_external_mirror/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -802,7 +802,7 @@ class Bucket
 
     /**
      * getExternalMirrorQuery: getExternalMirror's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/get_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/get_external_mirror/ Documentation URL
      *
      * @return Request
      */
@@ -819,7 +819,7 @@ class Bucket
     
     /**
      * getLifecycleRequest: Build GetLifecycle's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/get_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/get_lifecycle/ Documentation URL
      *
      * @return Request
      */
@@ -847,7 +847,7 @@ class Bucket
 
     /**
      * getLifecycle: Get Lifecycle information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/get_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/get_lifecycle/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -878,7 +878,7 @@ class Bucket
 
     /**
      * getLifecycleQuery: getLifecycle's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/get_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/get_lifecycle/ Documentation URL
      *
      * @return Request
      */
@@ -895,7 +895,7 @@ class Bucket
     
     /**
      * getNotificationRequest: Build GetNotification's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/get_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/get_notification/ Documentation URL
      *
      * @return Request
      */
@@ -923,7 +923,7 @@ class Bucket
 
     /**
      * getNotification: Get Notification information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/get_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/get_notification/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -954,7 +954,7 @@ class Bucket
 
     /**
      * getNotificationQuery: getNotification's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/get_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/get_notification/ Documentation URL
      *
      * @return Request
      */
@@ -971,7 +971,7 @@ class Bucket
     
     /**
      * getPolicyRequest: Build GetPolicy's request
-     * @link https://https://docs.qingcloud.com/qingstor/api/bucket/policy/get_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/get_policy/ Documentation URL
      *
      * @return Request
      */
@@ -999,7 +999,7 @@ class Bucket
 
     /**
      * getPolicy: Get policy information of the bucket.
-     * @link https://https://docs.qingcloud.com/qingstor/api/bucket/policy/get_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/get_policy/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -1030,7 +1030,7 @@ class Bucket
 
     /**
      * getPolicyQuery: getPolicy's Query Sign Way
-     * @link https://https://docs.qingcloud.com/qingstor/api/bucket/policy/get_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/get_policy/ Documentation URL
      *
      * @return Request
      */
@@ -1047,7 +1047,7 @@ class Bucket
     
     /**
      * getStatisticsRequest: Build GetStatistics's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get_stats.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/get_stats/ Documentation URL
      *
      * @return Request
      */
@@ -1075,7 +1075,7 @@ class Bucket
 
     /**
      * getStatistics: Get statistics information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get_stats.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/get_stats/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -1106,7 +1106,7 @@ class Bucket
 
     /**
      * getStatisticsQuery: getStatistics's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get_stats.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/get_stats/ Documentation URL
      *
      * @return Request
      */
@@ -1123,7 +1123,7 @@ class Bucket
     
     /**
      * headRequest: Build Head's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/head.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/head/ Documentation URL
      *
      * @return Request
      */
@@ -1151,7 +1151,7 @@ class Bucket
 
     /**
      * head: Check whether the bucket exists and available.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/head.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/head/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -1182,7 +1182,7 @@ class Bucket
 
     /**
      * headQuery: head's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/head.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/head/ Documentation URL
      *
      * @return Request
      */
@@ -1199,7 +1199,7 @@ class Bucket
     
     /**
      * listMultipartUploadsRequest: Build ListMultipartUploads's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/list_multipart_uploads.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/list/ Documentation URL
      * @param string 'delimiter' Put all keys that share a common prefix into a list
      * @param string 'key_marker' Limit results returned from the first key after key_marker sorted by alphabetical order
      * @param integer 'limit' Results count limit
@@ -1237,7 +1237,7 @@ class Bucket
 
     /**
      * listMultipartUploads: List multipart uploads in the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/list_multipart_uploads.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/list/ Documentation URL
      * @param string 'delimiter' Put all keys that share a common prefix into a list
      * @param string 'key_marker' Limit results returned from the first key after key_marker sorted by alphabetical order
      * @param integer 'limit' Results count limit
@@ -1273,7 +1273,7 @@ class Bucket
 
     /**
      * listMultipartUploadsQuery: listMultipartUploads's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/list_multipart_uploads.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/list/ Documentation URL
      * @param string 'delimiter' Put all keys that share a common prefix into a list
      * @param string 'key_marker' Limit results returned from the first key after key_marker sorted by alphabetical order
      * @param integer 'limit' Results count limit
@@ -1295,7 +1295,7 @@ class Bucket
     
     /**
      * listObjectsRequest: Build ListObjects's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/get/ Documentation URL
      * @param string 'delimiter' Put all keys that share a common prefix into a list
      * @param integer 'limit' Results count limit
      * @param string 'marker' Limit results to keys that start at this marker
@@ -1331,7 +1331,7 @@ class Bucket
 
     /**
      * listObjects: Retrieve the object list in a bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/get/ Documentation URL
      * @param string 'delimiter' Put all keys that share a common prefix into a list
      * @param integer 'limit' Results count limit
      * @param string 'marker' Limit results to keys that start at this marker
@@ -1366,7 +1366,7 @@ class Bucket
 
     /**
      * listObjectsQuery: listObjects's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/get/ Documentation URL
      * @param string 'delimiter' Put all keys that share a common prefix into a list
      * @param integer 'limit' Results count limit
      * @param string 'marker' Limit results to keys that start at this marker
@@ -1387,7 +1387,7 @@ class Bucket
     
     /**
      * putRequest: Build Put's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/put.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/put/ Documentation URL
      *
      * @return Request
      */
@@ -1415,7 +1415,7 @@ class Bucket
 
     /**
      * put: Create a new bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/put.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/put/ Documentation URL
      * @return Unpacker
      * @throws \Exception
      */
@@ -1446,7 +1446,7 @@ class Bucket
 
     /**
      * putQuery: put's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/put.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/basic_opt/put/ Documentation URL
      *
      * @return Request
      */
@@ -1463,7 +1463,7 @@ class Bucket
     
     /**
      * putACLRequest: Build PutACL's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/put_acl.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/acl/put_acl/ Documentation URL
      * @param array 'acl' Bucket ACL rules
      *
      * @return Request
@@ -1493,7 +1493,7 @@ class Bucket
 
     /**
      * putACL: Set ACL information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/put_acl.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/acl/put_acl/ Documentation URL
      * @param array 'acl' Bucket ACL rules
      * @return Unpacker
      * @throws \Exception
@@ -1525,7 +1525,7 @@ class Bucket
 
     /**
      * putACLQuery: putACL's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/put_acl.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/acl/put_acl/ Documentation URL
      * @param array 'acl' Bucket ACL rules
      *
      * @return Request
@@ -1614,7 +1614,7 @@ class Bucket
     
     /**
      * putCORSRequest: Build PutCORS's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/put_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/put_cors/ Documentation URL
      * @param array 'cors_rules' Bucket CORS rules
      *
      * @return Request
@@ -1644,7 +1644,7 @@ class Bucket
 
     /**
      * putCORS: Set CORS information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/put_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/put_cors/ Documentation URL
      * @param array 'cors_rules' Bucket CORS rules
      * @return Unpacker
      * @throws \Exception
@@ -1676,7 +1676,7 @@ class Bucket
 
     /**
      * putCORSQuery: putCORS's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/cors/put_cors.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/cors/put_cors/ Documentation URL
      * @param array 'cors_rules' Bucket CORS rules
      *
      * @return Request
@@ -1723,7 +1723,7 @@ class Bucket
     
     /**
      * putExternalMirrorRequest: Build PutExternalMirror's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/put_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/put_external_mirror/ Documentation URL
      * @param string 'source_site' Source site url
      *
      * @return Request
@@ -1753,7 +1753,7 @@ class Bucket
 
     /**
      * putExternalMirror: Set external mirror of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/put_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/put_external_mirror/ Documentation URL
      * @param string 'source_site' Source site url
      * @return Unpacker
      * @throws \Exception
@@ -1785,7 +1785,7 @@ class Bucket
 
     /**
      * putExternalMirrorQuery: putExternalMirror's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/external_mirror/put_external_mirror.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/external_mirror/put_external_mirror/ Documentation URL
      * @param string 'source_site' Source site url
      *
      * @return Request
@@ -1811,7 +1811,7 @@ class Bucket
     
     /**
      * putLifecycleRequest: Build PutLifecycle's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/put_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/put_lifecycle/ Documentation URL
      * @param array 'rule' Bucket Lifecycle rule
      *
      * @return Request
@@ -1841,7 +1841,7 @@ class Bucket
 
     /**
      * putLifecycle: Set Lifecycle information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/put_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/put_lifecycle/ Documentation URL
      * @param array 'rule' Bucket Lifecycle rule
      * @return Unpacker
      * @throws \Exception
@@ -1873,7 +1873,7 @@ class Bucket
 
     /**
      * putLifecycleQuery: putLifecycle's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/lifecycle/put_lifecycle.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/lifecycle/put_lifecycle/ Documentation URL
      * @param array 'rule' Bucket Lifecycle rule
      *
      * @return Request
@@ -1998,7 +1998,7 @@ class Bucket
     
     /**
      * putNotificationRequest: Build PutNotification's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/put_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/put_notification/ Documentation URL
      * @param array 'notifications' Bucket Notification
      *
      * @return Request
@@ -2028,7 +2028,7 @@ class Bucket
 
     /**
      * putNotification: Set Notification information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/put_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/put_notification/ Documentation URL
      * @param array 'notifications' Bucket Notification
      * @return Unpacker
      * @throws \Exception
@@ -2060,7 +2060,7 @@ class Bucket
 
     /**
      * putNotificationQuery: putNotification's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/notification/put_notification.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/notification/put_notification/ Documentation URL
      * @param array 'notifications' Bucket Notification
      *
      * @return Request
@@ -2149,7 +2149,7 @@ class Bucket
     
     /**
      * putPolicyRequest: Build PutPolicy's request
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/put_policy/ Documentation URL
      * @param array 'statement' Bucket policy statement
      *
      * @return Request
@@ -2179,7 +2179,7 @@ class Bucket
 
     /**
      * putPolicy: Set policy information of the bucket.
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/put_policy/ Documentation URL
      * @param array 'statement' Bucket policy statement
      * @return Unpacker
      * @throws \Exception
@@ -2211,7 +2211,7 @@ class Bucket
 
     /**
      * putPolicyQuery: putPolicy's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/bucket/policy/put_policy.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/bucket/policy/put_policy/ Documentation URL
      * @param array 'statement' Bucket policy statement
      *
      * @return Request
@@ -2347,7 +2347,7 @@ class Bucket
     
     /**
      * abortMultipartUploadRequest: Build AbortMultipartUpload's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/abort_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/abort/ Documentation URL
      * @param string 'upload_id' Object multipart upload ID
      *
      * @return Request
@@ -2378,7 +2378,7 @@ class Bucket
 
     /**
      * abortMultipartUpload: Abort multipart upload.
-     * @link https://docs.qingcloud.com/qingstor/api/object/abort_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/abort/ Documentation URL
      * @param string 'upload_id' Object multipart upload ID
      * @params string $object_key
      * @return Unpacker
@@ -2411,7 +2411,7 @@ class Bucket
 
     /**
      * abortMultipartUploadQuery: abortMultipartUpload's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/abort_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/abort/ Documentation URL
      * @param string 'upload_id' Object multipart upload ID
      *
      * @return Request
@@ -2437,7 +2437,7 @@ class Bucket
     
     /**
      * completeMultipartUploadRequest: Build CompleteMultipartUpload's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/complete_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/complete/ Documentation URL
      * @param string 'ETag' MD5sum of the object part
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
@@ -2478,7 +2478,7 @@ class Bucket
 
     /**
      * completeMultipartUpload: Complete multipart upload.
-     * @link https://docs.qingcloud.com/qingstor/api/object/complete_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/complete/ Documentation URL
      * @param string 'ETag' MD5sum of the object part
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
@@ -2516,7 +2516,7 @@ class Bucket
 
     /**
      * completeMultipartUploadQuery: completeMultipartUpload's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/complete_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/complete/ Documentation URL
      * @param string 'ETag' MD5sum of the object part
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
@@ -2571,7 +2571,7 @@ class Bucket
     
     /**
      * deleteObjectRequest: Build DeleteObject's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/delete.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/delete/ Documentation URL
      *
      * @return Request
      */
@@ -2600,7 +2600,7 @@ class Bucket
 
     /**
      * deleteObject: Delete the object.
-     * @link https://docs.qingcloud.com/qingstor/api/object/delete.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/delete/ Documentation URL
      * @params string $object_key
      * @return Unpacker
      * @throws \Exception
@@ -2632,7 +2632,7 @@ class Bucket
 
     /**
      * deleteObjectQuery: deleteObject's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/delete.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/delete/ Documentation URL
      *
      * @return Request
      */
@@ -2649,7 +2649,7 @@ class Bucket
     
     /**
      * getObjectRequest: Build GetObject's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/get/ Documentation URL
      * @param string 'If-Match' Check whether the ETag matches
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'If-None-Match' Check whether the ETag does not match
@@ -2706,7 +2706,7 @@ class Bucket
 
     /**
      * getObject: Retrieve the object.
-     * @link https://docs.qingcloud.com/qingstor/api/object/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/get/ Documentation URL
      * @param string 'If-Match' Check whether the ETag matches
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'If-None-Match' Check whether the ETag does not match
@@ -2752,7 +2752,7 @@ class Bucket
 
     /**
      * getObjectQuery: getObject's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/get/ Documentation URL
      * @param string 'If-Match' Check whether the ETag matches
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'If-None-Match' Check whether the ETag does not match
@@ -2783,7 +2783,7 @@ class Bucket
     
     /**
      * headObjectRequest: Build HeadObject's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/head.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/head/ Documentation URL
      * @param string 'If-Match' Check whether the ETag matches
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'If-None-Match' Check whether the ETag does not match
@@ -2826,7 +2826,7 @@ class Bucket
 
     /**
      * headObject: Check whether the object exists and available.
-     * @link https://docs.qingcloud.com/qingstor/api/object/head.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/head/ Documentation URL
      * @param string 'If-Match' Check whether the ETag matches
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'If-None-Match' Check whether the ETag does not match
@@ -2865,7 +2865,7 @@ class Bucket
 
     /**
      * headObjectQuery: headObject's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/head.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/head/ Documentation URL
      * @param string 'If-Match' Check whether the ETag matches
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'If-None-Match' Check whether the ETag does not match
@@ -2889,7 +2889,7 @@ class Bucket
     
     /**
      * imageProcessRequest: Build ImageProcess's request
-     * @link https://docs.qingcloud.com/qingstor/data_process/image_process/index.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/image_process/ Documentation URL
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'action' Image process action
      * @param string 'response-cache-control' Specified the Cache-Control response header
@@ -2934,7 +2934,7 @@ class Bucket
 
     /**
      * imageProcess: Image process with the action on the object
-     * @link https://docs.qingcloud.com/qingstor/data_process/image_process/index.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/image_process/ Documentation URL
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'action' Image process action
      * @param string 'response-cache-control' Specified the Cache-Control response header
@@ -2974,7 +2974,7 @@ class Bucket
 
     /**
      * imageProcessQuery: imageProcess's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/data_process/image_process/index.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/image_process/ Documentation URL
      * @param timestamp 'If-Modified-Since' Check whether the object has been modified
      * @param string 'action' Image process action
      * @param string 'response-cache-control' Specified the Cache-Control response header
@@ -3007,7 +3007,7 @@ class Bucket
     
     /**
      * initiateMultipartUploadRequest: Build InitiateMultipartUpload's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/initiate_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/initiate/ Documentation URL
      * @param string 'Content-Type' Object content type
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
@@ -3046,7 +3046,7 @@ class Bucket
 
     /**
      * initiateMultipartUpload: Initial multipart upload on the object.
-     * @link https://docs.qingcloud.com/qingstor/api/object/initiate_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/initiate/ Documentation URL
      * @param string 'Content-Type' Object content type
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
@@ -3083,7 +3083,7 @@ class Bucket
 
     /**
      * initiateMultipartUploadQuery: initiateMultipartUpload's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/initiate_multipart_upload.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/initiate/ Documentation URL
      * @param string 'Content-Type' Object content type
      * @param string 'X-QS-Encryption-Customer-Algorithm' Encryption algorithm of the object
      * @param string 'X-QS-Encryption-Customer-Key' Encryption key of the object
@@ -3121,7 +3121,7 @@ class Bucket
     
     /**
      * listMultipartRequest: Build ListMultipart's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/list_multipart.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/list/ Documentation URL
      * @param integer 'limit' Limit results count
      * @param integer 'part_number_marker' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
@@ -3156,7 +3156,7 @@ class Bucket
 
     /**
      * listMultipart: List object parts.
-     * @link https://docs.qingcloud.com/qingstor/api/object/list_multipart.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/list/ Documentation URL
      * @param integer 'limit' Limit results count
      * @param integer 'part_number_marker' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
@@ -3191,7 +3191,7 @@ class Bucket
 
     /**
      * listMultipartQuery: listMultipart's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/list_multipart.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/list/ Documentation URL
      * @param integer 'limit' Limit results count
      * @param integer 'part_number_marker' Object multipart upload part number
      * @param string 'upload_id' Object multipart upload ID
@@ -3219,7 +3219,7 @@ class Bucket
     
     /**
      * optionsObjectRequest: Build OptionsObject's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/options.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/options_object/ Documentation URL
      * @param string 'Access-Control-Request-Headers' Request headers
      * @param string 'Access-Control-Request-Method' Request method
      * @param string 'Origin' Request origin
@@ -3254,7 +3254,7 @@ class Bucket
 
     /**
      * optionsObject: Check whether the object accepts a origin with method and header.
-     * @link https://docs.qingcloud.com/qingstor/api/object/options.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/options_object/ Documentation URL
      * @param string 'Access-Control-Request-Headers' Request headers
      * @param string 'Access-Control-Request-Method' Request method
      * @param string 'Origin' Request origin
@@ -3289,7 +3289,7 @@ class Bucket
 
     /**
      * optionsObjectQuery: optionsObject's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/options.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/options_object/ Documentation URL
      * @param string 'Access-Control-Request-Headers' Request headers
      * @param string 'Access-Control-Request-Method' Request method
      * @param string 'Origin' Request origin
@@ -3326,7 +3326,7 @@ class Bucket
     
     /**
      * putObjectRequest: Build PutObject's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/put.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/put/ Documentation URL
      * @param long 'Content-Length' Object content size
      * @param string 'Content-MD5' Object MD5sum
      * @param string 'Content-Type' Object content type
@@ -3393,7 +3393,7 @@ class Bucket
 
     /**
      * putObject: Upload the object.
-     * @link https://docs.qingcloud.com/qingstor/api/object/put.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/put/ Documentation URL
      * @param long 'Content-Length' Object content size
      * @param string 'Content-MD5' Object MD5sum
      * @param string 'Content-Type' Object content type
@@ -3444,7 +3444,7 @@ class Bucket
 
     /**
      * putObjectQuery: putObject's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/put.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/basic_opt/put/ Documentation URL
      * @param long 'Content-Length' Object content size
      * @param string 'Content-MD5' Object MD5sum
      * @param string 'Content-Type' Object content type
@@ -3496,7 +3496,7 @@ class Bucket
     
     /**
      * uploadMultipartRequest: Build UploadMultipart's request
-     * @link https://docs.qingcloud.com/qingstor/api/object/multipart/upload_multipart.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/upload/ Documentation URL
      * @param long 'Content-Length' Object multipart content length
      * @param string 'Content-MD5' Object multipart content MD5sum
      * @param string 'X-QS-Copy-Range' Specify range of the source object
@@ -3557,7 +3557,7 @@ class Bucket
 
     /**
      * uploadMultipart: Upload object multipart.
-     * @link https://docs.qingcloud.com/qingstor/api/object/multipart/upload_multipart.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/upload/ Documentation URL
      * @param long 'Content-Length' Object multipart content length
      * @param string 'Content-MD5' Object multipart content MD5sum
      * @param string 'X-QS-Copy-Range' Specify range of the source object
@@ -3605,7 +3605,7 @@ class Bucket
 
     /**
      * uploadMultipartQuery: uploadMultipart's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/object/multipart/upload_multipart.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/object/multipart/upload/ Documentation URL
      * @param long 'Content-Length' Object multipart content length
      * @param string 'Content-MD5' Object multipart content MD5sum
      * @param string 'X-QS-Copy-Range' Specify range of the source object

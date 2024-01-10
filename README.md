@@ -1,6 +1,6 @@
 # QingStor SDK for PHP
 ![https://travis-ci.org/yunify/qingstor-sdk-php](https://travis-ci.org/yunify/qingstor-sdk-php.svg?branch=master)
-![http://docs.qingcloud.com/qingstor/](http://img.shields.io/badge/api-reference-green.svg)
+![https://docsv4.qingcloud.com/user_guide/storage/object_storage/](http://img.shields.io/badge/api-reference-green.svg)
 ![https://github.com/yunify/qingstor-sdk-php/blob/master/LICENSE](http://img.shields.io/badge/license-apache%20v2-blue.svg)
 
 The official QingStor SDK for the PHP programming language.
@@ -46,9 +46,9 @@ var_dump($res->keys);
 
 ## Reference Documentations
 
-- [QingStor Documentation](https://docs.qingcloud.com/qingstor/index.html)
-- [QingStor Guide](https://docs.qingcloud.com/qingstor/guide/index.html)
-- [QingStor APIs](https://docs.qingcloud.com/qingstor/api/index.html)
+- [QingStor Documentation](https://docsv4.qingcloud.com/user_guide/storage/object_storage/intro/product/)
+- [QingStor Guide](https://docsv4.qingcloud.com/user_guide/storage/object_storage/)
+- [QingStor APIs](https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/)
 
 ## Contributing
 

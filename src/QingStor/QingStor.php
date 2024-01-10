@@ -33,7 +33,7 @@ class QingStor
     
     /**
      * listBucketsRequest: Build Lists's request
-     * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/service/get/ Documentation URL
      * @param string 'Location' Limits results to buckets that in the location
      *
      * @return Request
@@ -63,7 +63,7 @@ class QingStor
 
     /**
      * listBuckets: Retrieve the bucket list.
-     * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/service/get/ Documentation URL
      * @param string 'Location' Limits results to buckets that in the location
      * @return Unpacker
      * @throws \Exception
@@ -95,7 +95,7 @@ class QingStor
 
     /**
      * listBucketsQuery: listBuckets's Query Sign Way
-     * @link https://docs.qingcloud.com/qingstor/api/service/get.html Documentation URL
+     * @link https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/service/get/ Documentation URL
      * @param string 'Location' Limits results to buckets that in the location
      *
      * @return Request

@@ -47,7 +47,7 @@ class UnpackerTest extends TestCase
         $this->res->unpackResponseBody();
         $this->assertEquals('The access key id you provided does not exist.', $this->res->message);
         $this->assertEquals('invalid_access_key_id', $this->res->code);
-        $this->assertEquals('https://docs.qingcloud.com/qingstor/api/common/signature.html', $this->res->url);
+        $this->assertEquals('https://docsv4.qingcloud.com/user_guide/storage/object_storage/api/signature/', $this->res->url);
         $this->assertObjectHasAttribute('request_id', $this->res);
     }
 }
